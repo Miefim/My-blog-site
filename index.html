@@ -6,6 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Блог Михаила Ефимова</title>
 </head>
 <body>
@@ -27,7 +28,7 @@
         </div>
         <div class="header-line">
             <div class="header-line-button">
-                <p class="header-line-button-text">Домой</p>
+                <p href="#resume" class="header-line-button-text">Домой</p>
                 <img class="header-line-button-icon" src="images/home-icon.png" alt="">               
             </div>
             <div class="header-line-button">
@@ -48,12 +49,12 @@
                 <img class="header-line-button-icon" src="images/project-icon.png" alt="">
             </div>
             <div class="header-line-button">
-                <p class="header-line-button-text">Мои<br>мини проекты</p>
-                <img class="header-line-button-icon" src="images/mini-project-icon.png" alt="">
-            </div>
-            <div class="header-line-button">
                 <p class="header-line-button-text">Блог</p>
                 <img class="header-line-button-icon" src="images/blog-icon.png" alt="">
+            </div>
+            <div class="header-line-button">
+                <p class="header-line-button-text">Связаться</p>
+                <img class="header-line-button-icon" src="images/feedback-icon.png" alt="">
             </div>
         </div>
     </section>
@@ -336,37 +337,57 @@
                 <div class="project-button">Смотреть все проекты</div>
             </div>
             <div class="project-content">
-                <div class="project-content-tape">
-                    <div class="project-unit">
-                        <div class="project-type">Мини-проект</div>
-                        <div class="project-image"></div>
-                        <div class="project-title">
-                            Генератор случайных цитат
+                <div class="button-slider button-screen-small">
+                    <img class="button-slider-left-image" src="images/left-arrow.png" alt="">
+                </div>
+                <div class="project-window">
+                    <div class="project-content-tape">
+                        <div class="project-unit">
+                            <div class="project-unit-content">
+                                <div class="project-type">Мини-проект</div>
+                                <div class="project-image-block">
+                                    <img class="project-image" src="images/project-quotes-image.jpg" alt="">
+                                </div>
+                                <div class="project-title">
+                                    Генератор случайных цитат
+                                </div>
+                                <div class="project-description">
+                                    Не знаете что умного сказать в компании своих друзей? Воспользуйтесь приложением-генератором цитат.
+                                </div>
+                            </div>
                         </div>
-                        <div class="project-description">
-                            Не знаете что умного сказать в компании своих друзей? Воспользуйтесь приложением-генератором цитат.
+                        <div class="project-unit">
+                            <div class="project-unit-content">
+                                <div class="project-type">Мини-проект</div>
+                                <div class="project-image-block">
+                                    <img class="project-image" src="images/project-recipes-image.jpg" alt="">
+                                </div>
+                                <div class="project-title">
+                                    Рецепты и анализ питания
+                                </div>
+                                <div class="project-description">
+                                    Если вопрос что приготовить преследует вас весь день, тогда вам сюда! Это мини-приложение подкинет идею для ужина.
+                                </div>
+                            </div>
                         </div>
+                        <div class="project-unit">
+                            <div class="project-unit-content">
+                                <div class="project-type">Мини-проект</div>
+                                <div class="project-image-block">
+                                    <img class="project-image" src="images/project-recipes-image.jpg" alt="">
+                                </div>
+                                <div class="project-title">
+                                    Рецепты и анализ питания
+                                </div>
+                                <div class="project-description">
+                                    Если вопрос что приготовить преследует вас весь день, тогда вам сюда! Это мини-приложение подкинет идею для ужина.
+                                </div>
+                            </div>
+                        </div>             
                     </div>
-                    <div class="project-unit">
-                        <div class="project-type">Мини-проект</div>
-                        <div class="project-image"></div>
-                        <div class="project-title">
-                            Рецепты и анализ питания
-                        </div>
-                        <div class="project-description">
-                            Если вопрос что приготовить преследует вас весь день, тогда вам сюда! Это мини-приложение подкинет идею для ужина.
-                        </div>
-                    </div>
-                    <div class="project-unit">
-                        <div class="project-type">Мини-проект</div>
-                        <div class="project-image"></div>
-                        <div class="project-title">
-                            Рецепты и анализ питания
-                        </div>
-                        <div class="project-description">
-                            Если вопрос что приготовить преследует вас весь день, тогда вам сюда! Это мини-приложение подкинет идею для ужина.
-                        </div>
-                    </div>              
+                </div>
+                <div class="button-slider button-screen-small">
+                    <img class="button-slider-right-image" src="images/left-arrow.png" alt="">
                 </div>
             </div>
         </div>
@@ -411,9 +432,7 @@
             </div> 
             <div class="blog-content">
                 <div class="blog-unit">
-                    <div class="blog-unit-image">
-
-                    </div>
+                    <img class="blog-unit-image" src="images/blog-image-news1.jpg" alt="">  
                     <div class="blog-unit-title">
                         Новость 1 
                     </div> 
@@ -436,9 +455,7 @@
                     </div>       
                 </div>
                 <div class="blog-unit">
-                    <div class="blog-unit-image">
-
-                    </div>
+                    <img class="blog-unit-image" src="images/blog-image-news2.jpg" alt="">
                     <div class="blog-unit-title">
                         Новость 2 
                     </div> 
@@ -461,9 +478,7 @@
                     </div>       
                 </div>
                 <div class="blog-unit">
-                    <div class="blog-unit-image">
-
-                    </div>
+                    <img class="blog-unit-image" src="images/blog-image-news1.jpg" alt="">
                     <div class="blog-unit-title">
                         Новость 3 
                     </div> 
@@ -489,8 +504,49 @@
             <div class="blog-button">Читать все новости</div>  
         </div>
     </section>
-    <section class="xz">
-        
+    <section class="feedback">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d47232.701377398516!2d49.81411495721418!3d40.39677052176031!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2s!4v1669223273236!5m2!1sru!2s" width="1519" height="811" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="container container-feedback"> 
+            <div class="feedback-content">
+                <div class="feedback-form">
+                    <div class="line-title"></div>
+                    <div class="title-feedback">
+                        Задайте свой вопрос
+                    </div>
+                    <input class="small-input" type="text" placeholder="Имя">
+                    <input class="small-input" type="text" placeholder="Телефон">
+                    <input class="small-input" type="text" placeholder="Email">
+                    <textarea class="big-input" type="text" placeholder="Ваш вопрос"></textarea>
+                    <div class="feedback-button-box">
+                        <div class="header-banner-button feedback-button">
+                            <p class="header-banner-button-text">Отправить</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <section class="footer">
+        <div class="footer-social-network-line">
+            <div class="footer-social-network-line-unit">
+                <img class="footer-social-network-line-unit-image" src="images/vk-logo-black.png" alt="">
+                Вконтакте
+            </div>
+            <div class="footer-social-network-line-unit">
+                <img class="footer-social-network-line-unit-image" src="images/instagram-logo-black.png" alt="">
+                Instagram
+            </div>
+            <div class="footer-social-network-line-unit">
+                <img class="footer-social-network-line-unit-image" src="images/hh-logo-black.png" alt="">
+                HeadHunter
+            </div>
+            <div class="footer-social-network-line-unit">
+                <img class="footer-social-network-line-unit-image" src="images/linkedin-logo-black.png" alt="">
+                Linkedin
+            </div>
+        </div>
+        <div class="rights">
+            © 2022 Михаил Ефимов.
+        </div>
     </section>
 <script src="app.js"></script>
 </body>
