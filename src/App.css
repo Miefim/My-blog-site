@@ -18,7 +18,7 @@ body {
 }
 
 .header-banner {
-    background: url("images/banner.jpg") fixed;
+    background: url("../public/images/banner.jpg") fixed;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -421,7 +421,7 @@ body {
 .logo-slider {
     height: 200px;
     display: flex;
-    background: url("images/logo-slider-background.jpg") fixed;
+    background: url("../public/images/logo-slider-background.jpg") fixed;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -1094,10 +1094,10 @@ li:before {
         margin: auto;
         font-size: 30px;
     }
-
+/* 
     .header-banner {
         height: 500px;
-    }
+    } */
 }
 
 @media screen and (max-width: 600px) {
@@ -1151,3 +1151,17 @@ li:before {
         margin: auto 50px auto 50px
     }
 }
+
+.header-line-center-enter {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  .header-line-center-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  .header-line-center-exit {
+    opacity: 1;
+  }
+ 
