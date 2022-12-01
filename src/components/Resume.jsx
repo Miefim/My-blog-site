@@ -1,6 +1,8 @@
+import { Element } from 'react-scroll'
+
 function Resume() {
    return (
-      <section className="resume">
+      <Element className="resume" name="resume">
          <div className="container">
             <div className="resume-title">
                <div className="line-title"></div>
@@ -203,7 +205,7 @@ function Resume() {
                </div>
             </div>
          </div>
-      </section>
+      </Element>
    )}
 
 export default Resume

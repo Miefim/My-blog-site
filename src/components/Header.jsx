@@ -1,5 +1,7 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
+import { Link, Element } from 'react-scroll'
+import ButtonUp from "./UI/button/ButtonUp";
 
 function Header() {
 
@@ -15,11 +17,12 @@ function Header() {
    },{
       passive: true
    })
- 
+
    let headerHeight = document.querySelector(".header")?.clientHeight
 
    return (
-      <section className="header">
+      <>
+      <Element className="header" name="header">
          <div className="header-banner" style = {activeHeaderLine? {height: `${(headerHeight)}px`} : {}}>
             <div className="container">
                <div className="header-banner-content-top">
@@ -38,18 +41,18 @@ function Header() {
             </div>
          </div>
          <div className="header-line" style = {activeHeaderLine && window.innerWidth >= 670? {position: "fixed", width: "100%", zIndex: "10", top: "0"} : {}}>
-            <div className="header-line-button">
+            <Link to = "header" className="header-line-button" spy={true} smooth={true} duration={500}>
                <p href="#resume" className="header-line-button-text">Домой</p>
                <img className="header-line-button-icon" src="images/home-icon.png" alt="" />
-            </div>
-            <div className="header-line-button">
+            </Link>
+            <Link to = "about-me" className="header-line-button" spy={true} smooth={true} duration={500}>
                <p className="header-line-button-text">Обо мне</p>
                <img className="header-line-button-icon" src="images/about-icon.png" alt="" />
-            </div>
-            <div className="header-line-button">
+            </Link>
+            <Link to = "resume" className="header-line-button" spy={true} smooth={true} duration={500}>
                <p className="header-line-button-text">Резюме</p>
                <img className="header-line-button-icon" src="images/resume-icon.png" alt="" />
-            </div>
+            </Link>
             <CSSTransition
             in={activeHeaderLine}
             timeout={300}
@@ -68,23 +71,25 @@ function Header() {
                <p className="header-line-center-subtitle no-display" style = {activeHeaderLine && window.innerWidth >= 670? {display: "flex"} : {}}>Web Developer</p>
             </div>
             </CSSTransition>
-            <div className="header-line-button">
+            <Link to = "project" className="header-line-button" spy={true} smooth={true} duration={500}>
                <p className="header-line-button-text">Мои<br />проекты</p>
                <img className="header-line-button-icon" src="images/project-icon.png" alt="" />
-            </div>
-            <div className="header-line-button">
+            </Link>
+            <Link to = "blog" className="header-line-button" spy={true} smooth={true} duration={500}>
                <p className="header-line-button-text">Блог</p>
                <img className="header-line-button-icon" src="images/blog-icon.png" alt="" />
-            </div>
-            <div className="header-line-button">
+            </Link>
+            <Link to = "feedback" className="header-line-button" spy={true} smooth={true} duration={500}>
                <p className="header-line-button-text">Связаться</p>
                <img className="header-line-button-icon" src="images/feedback-icon.png" alt="" />
-            </div>
+            </Link>
          </div>
          <div className="mobile-menu-line" style = {activeHeaderLine && window.innerWidth <= 670? {position: "fixed", width: "100%", zIndex: "10", top: "0"} : {}}>
             <img className="mobile-menu-image" src="images/button-mobile-menu-icon.png" alt="" />
          </div>
-      </section>
+      </Element>
+      <ButtonUp flag = {activeHeaderLine} />
+      </>
    )}
 
    export default Header;
