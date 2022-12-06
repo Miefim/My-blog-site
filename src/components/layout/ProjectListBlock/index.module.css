@@ -1,0 +1,70 @@
+.root {
+   display: flex;
+   flex-direction: column;
+   margin-top: 80px;
+}
+
+.container {
+   margin: auto;
+   display: flex;
+   flex-direction: column;
+   width: 1200px;
+}
+
+.pojectUnit {
+   margin: 10px;
+   border: 1px solid #e8e8e8;
+   height: 400px;
+   display: flex;
+   width: 100%;
+}
+
+.imageBlock {
+   display: flex;
+   min-width: 600px;
+   width: 600px;
+   height: 100%;
+}
+
+.type {
+   position: absolute;
+   margin: 20px;
+   padding: 10px 20px;
+   background-color: #499ad6;
+   color: #ffffff ;
+   border-radius: 20px;
+}
+
+.image {
+   width: 100%;
+}
+
+.description {
+   padding: 10px 20px 20px 20px;
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+}
+
+.more {
+   color: #499ad6;
+   margin: auto 0 10px 0;
+   font-size: 20px;
+   display: flex;
+   align-items: baseline;
+}
+
+.more:hover {
+   cursor: pointer;
+}
+
+.arrow {
+   height: 12px;
+   margin-left: 10px;
+}
+
+.more:hover .arrow {
+   margin-left: 20px;
+   transition: 0.3s;
+}
+

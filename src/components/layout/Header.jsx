@@ -1,7 +1,8 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
-import { Link, Element } from 'react-scroll'
-import ButtonUp from "./UI/button/ButtonUp";
+import { Link } from 'react-scroll'
+
+import ButtonUp from "../layout/ButtonUp";
 
 function Header() {
 
@@ -22,7 +23,7 @@ function Header() {
 
    return (
       <>
-      <Element className="header" name="header">
+      <section className="header" name="header">
          <div className="header-banner" style = {activeHeaderLine? {height: `${(headerHeight)}px`} : {}}>
             <div className="container">
                <div className="header-banner-content-top">
@@ -42,14 +43,14 @@ function Header() {
          </div>
          <div className="header-line" style = {activeHeaderLine && window.innerWidth >= 670? {position: "fixed", width: "100%", zIndex: "10", top: "0"} : {}}>
             <Link to = "header" className="header-line-button" spy={true} smooth={true} duration={500}>
-               <p href="#resume" className="header-line-button-text">Домой</p>
+               <p className="header-line-button-text">Домой</p>
                <img className="header-line-button-icon" src="images/home-icon.png" alt="" />
             </Link>
-            <Link to = "about-me" className="header-line-button" spy={true} smooth={true} duration={500}>
+            <Link to = "about-me" className="header-line-button" offset={-80} spy={true} smooth={true} duration={500}>
                <p className="header-line-button-text">Обо мне</p>
                <img className="header-line-button-icon" src="images/about-icon.png" alt="" />
             </Link>
-            <Link to = "resume" className="header-line-button" spy={true} smooth={true} duration={500}>
+            <Link to = "resume" className="header-line-button" offset={-160} spy={true} smooth={true} duration={500}>
                <p className="header-line-button-text">Резюме</p>
                <img className="header-line-button-icon" src="images/resume-icon.png" alt="" />
             </Link>
@@ -71,15 +72,15 @@ function Header() {
                <p className="header-line-center-subtitle no-display" style = {activeHeaderLine && window.innerWidth >= 670? {display: "flex"} : {}}>Web Developer</p>
             </div>
             </CSSTransition>
-            <Link to = "project" className="header-line-button" spy={true} smooth={true} duration={500}>
+            <Link to = "project" className="header-line-button" offset={-80} spy={true} smooth={true} duration={500}>
                <p className="header-line-button-text">Мои<br />проекты</p>
                <img className="header-line-button-icon" src="images/project-icon.png" alt="" />
             </Link>
-            <Link to = "blog" className="header-line-button" spy={true} smooth={true} duration={500}>
+            <Link to = "blog" className="header-line-button" offset={-79} spy={true} smooth={true} duration={500}>
                <p className="header-line-button-text">Блог</p>
                <img className="header-line-button-icon" src="images/blog-icon.png" alt="" />
             </Link>
-            <Link to = "feedback" className="header-line-button" spy={true} smooth={true} duration={500}>
+            <Link to = "feedback" className="header-line-button" offset={0} spy={true} smooth={true} duration={500}>
                <p className="header-line-button-text">Связаться</p>
                <img className="header-line-button-icon" src="images/feedback-icon.png" alt="" />
             </Link>
@@ -87,7 +88,7 @@ function Header() {
          <div className="mobile-menu-line" style = {activeHeaderLine && window.innerWidth <= 670? {position: "fixed", width: "100%", zIndex: "10", top: "0"} : {}}>
             <img className="mobile-menu-image" src="images/button-mobile-menu-icon.png" alt="" />
          </div>
-      </Element>
+      </section>
       <ButtonUp flag = {activeHeaderLine} />
       </>
    )}

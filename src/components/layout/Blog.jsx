@@ -1,8 +1,6 @@
-import { Element } from 'react-scroll'
-
 function Blog() {
    return (
-      <Element className="blog" name="blog">
+      <section className="blog" name="blog">
       <div className="container">
          <div className="resume-title">
             <div className="line-title"></div>
@@ -81,7 +79,7 @@ function Blog() {
          </div>
          <div className="blog-button">Читать все новости</div>
       </div>
-   </Element>
+   </section>
    )}
 
    export default Blog

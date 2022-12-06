@@ -1,7 +1,7 @@
-import { Element } from 'react-scroll'
 import React from 'react'
+import { Link } from "react-router-dom";
 
-import projectList from '../assets/projectList.json'
+import projectList from '../../assets/projectList.json'
 
 function Project() {
    let [projectWindowWidth, setProjectWindowWidth] = React.useState(0)
@@ -20,7 +20,7 @@ function Project() {
    let [stateMouse, setStateMouse] = React.useState(false)
    let [x, setX] = React.useState(0)
    
-   const incrementIndex = function () {
+   const incrementIndex = () => {
       if (index < maxIndex){
          index++
       }
@@ -31,7 +31,7 @@ function Project() {
       setTransformTape(transformTape = index * (widthUnit * numberUnitsScreen))
    }
 
-   const decrementIndex = function () {
+   const decrementIndex = () => {
       if(index > 0){
          index--
       }
@@ -79,7 +79,7 @@ function Project() {
    }
 
    return (
-      <Element className="project" name="project">
+      <section className="project" name="project">
       <div className="button-slider">
          <img className="button-slider-left-image" src="images/left-arrow.png" alt="" onClick={decrementIndex}/>
       </div>
@@ -87,7 +87,9 @@ function Project() {
          <div className="resume-title">
             <div className="line-title"></div>
             <div className="title">Мои проекты</div>
-            <div className="project-button">Смотреть все проекты</div>
+            <Link to="project-list">
+               <div className="project-button">Смотреть все проекты</div>
+            </Link>
          </div>
          <div className="project-content">
             <div className="button-slider button-screen-small" onClick={decrementIndex}>
@@ -117,7 +119,7 @@ function Project() {
                         </div>
                         <div className="project-title">{project.title}</div>
                         <div className="project-description">
-                           {project.description}
+                           {project.subtitle}
                         </div>
                      </div>
                   </div>
@@ -132,7 +134,7 @@ function Project() {
       <div className="button-slider">
          <img className="button-slider-right-image" src="images/left-arrow.png" alt="" onClick={incrementIndex} />
       </div>
-   </Element>
+   </section>
    )}
 
    export default Project

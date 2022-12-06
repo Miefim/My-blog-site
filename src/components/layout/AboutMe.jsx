@@ -1,8 +1,8 @@
-import { Element } from 'react-scroll'
+import React from "react"
 
 function AboutMe() {
    return (
-      <Element className="about-me" name = "about-me">
+      <section className="about-me" name = "about-me">
          <div className="about-me-card">
             <div className="about-me-card-content">
                <div className="line-title"></div>
@@ -107,7 +107,7 @@ function AboutMe() {
                </div>
             </div>
          </div>
-      </Element>
+      </section>
    )}
    
    export default AboutMe

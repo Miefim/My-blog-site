@@ -44,7 +44,7 @@ function LogoSlider() {
    }
    
    return (
-      <section className="logo-slider" onClick={incrementIndex}>
+      <section className="logo-slider">
       <div className="logo-slider-window">
          <div className="logo-slider-tape" style={{transform:`translate3d(-${index * 200}px, 0px, 0px)`}}>
             <div className="logo-slider-tape-unit">
