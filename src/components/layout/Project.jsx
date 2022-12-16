@@ -87,7 +87,7 @@ function Project() {
          <div className="resume-title">
             <div className="line-title"></div>
             <div className="title">Мои проекты</div>
-            <Link to="project-list">
+            <Link to="project_list">
                <div className="project-button">Смотреть все проекты</div>
             </Link>
          </div>
@@ -110,13 +110,13 @@ function Project() {
                   <div className="project-unit" key={project.id}>
                      <div className="project-unit-content">
                         <div className="project-type">{project.type}</div>
-                        <div className="project-image-block">
+                        <Link to={project.href} className="project-image-block">
                            <img
                               className="project-image"
                               src={project.img}
                               alt=""
                            />
-                        </div>
+                        </Link>
                         <div className="project-title">{project.title}</div>
                         <div className="project-description">
                            {project.subtitle}

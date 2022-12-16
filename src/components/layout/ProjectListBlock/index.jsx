@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import projectList from '../../../assets/projectList.json'
 import style from './index.module.css'
 
@@ -8,17 +10,17 @@ function ProjectListBlock() {
          <div className={style.container}>
          {projectList.map((project) => 
             <div className={style.pojectUnit} key={project.id}>
-               <div className={style.imageBlock}>
+               <Link to = {project.href} className={style.imageBlock}>
                   <img className={style.image} src={project.img} alt="" />
                   <div className={style.type}>{project.type}</div>
-               </div>
+               </Link>
                <div className={style.description}>
                   <h1>{project.title}</h1>
                   <h3>{project.description}</h3>
-                  <div className={style.more}>
+                  <Link to = {project.href} className={style.more}>
                      Подробнее
                      <img className={style.arrow} src='images/right-arrow.png' alt="" />
-                  </div>
+                  </Link>
                </div>
             </div>
          )}

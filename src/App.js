@@ -8,13 +8,17 @@ import {
 
 import "./App.css"
 import HomePage from "./pages/HomePage"
+import BlogListPage from "./pages/BlogListPage"
 import ProjectListPage from "./pages/ProjectListPage"
+import ProjectNasaApiPage from "./pages/ProjectNasaApiPage"
 import NotFoundPage from "./pages/NotFoundPage"
 
 const router = createBrowserRouter(createRoutesFromElements(
   <>
     <Route path="/" element={<HomePage />} />
-    <Route path="/project-list" element={<ProjectListPage />} />
+    <Route path="/blog_list" element={<BlogListPage />} />
+    <Route path="/project_list" element={<ProjectListPage />} />
+    <Route path="/project_nasa_api" element={<ProjectNasaApiPage />} />
     <Route path="*" element={<NotFoundPage />} />
   </>
 ))

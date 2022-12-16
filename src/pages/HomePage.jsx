@@ -1,5 +1,3 @@
-import React from "react";
-
 import Header from "../components/layout/Header";
 import AboutMe from "../components/layout/AboutMe";
 import Resume from "../components/layout/Resume";

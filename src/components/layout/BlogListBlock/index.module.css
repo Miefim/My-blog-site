@@ -11,7 +11,7 @@
    width: 1200px;
 }
 
-.pojectUnit {
+.blogUnit {
    margin: 10px;
    border: 1px solid #e8e8e8;
    height: 400px;
@@ -24,16 +24,6 @@
    min-width: 600px;
    width: 600px;
    height: 100%;
-   cursor: pointer;
-}
-
-.type {
-   position: absolute;
-   margin: 20px;
-   padding: 10px 20px;
-   background-color: #499ad6;
-   color: #ffffff ;
-   border-radius: 20px;
 }
 
 .image {
@@ -44,15 +34,27 @@
    padding: 10px 20px 20px 20px;
    display: flex;
    flex-direction: column;
-   width: auto;
+   width: 100%;
+}
+
+.description h3 {
+   max-height: 200px;
+   overflow: hidden;
+}
+
+.infoLine {
+   display: flex;
+   margin-bottom: 10px;
+   margin-top: auto;
+   justify-content: space-between;
 }
 
 .more {
    color: #499ad6;
-   margin: auto 0 10px 0;
    font-size: 20px;
    display: flex;
-   align-items: baseline;
+   align-items: center;
+   width: 188px;
 }
 
 .more:hover {
@@ -69,8 +71,30 @@
    transition: 0.3s;
 }
 
+.date {
+   display: flex;
+   padding: 10px 20px;
+   background-color: #499ad6;
+   color: #ffffffff;
+   border-radius: 20px;
+   font-size: 16px;
+}
+
+.comment {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 16px;
+}
+
+.commentIcon {
+   height: 30px;
+   margin-right: 10px;
+   opacity: .6;
+}
+
 @media screen and (max-width: 1250px) {
-   .pojectUnit {
+   .blogUnit {
       flex-direction: column;
       height: auto;
       width: 600px;
@@ -80,10 +104,14 @@
       width: 100%;
       align-items: center;
    }
+
+   .description {
+      width: auto;
+   }
 }
 
 @media screen and (max-width: 670px) {
-   .pojectUnit {
+   .blogUnit {
       width: 100%;
    }
 
@@ -92,17 +120,23 @@
       min-width: 0;
    }
 
-   .description {
+   .infoLine {
+      margin-top: 20px;
+      flex-direction: column;
+      align-items: center;
+      height: 150px;
+   }
+
+   .date {
+      width: fit-content;
+   }
+   .comment {
       width: fit-content;
    }
 }
 
 @media screen and (max-width: 450px) {
    .root {
-      font-size: 10px;
-   }
-
-   .more {
-      font-size: 15px;
+      font-size: 13px;
    }
 }

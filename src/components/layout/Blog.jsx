@@ -1,3 +1,7 @@
+import { Link } from "react-router-dom";
+
+import blogList from '../../assets/blogList.json'
+
 function Blog() {
    return (
       <section className="blog" name="blog">
@@ -7,77 +11,32 @@ function Blog() {
             <div className="title">Блог</div>
          </div>
          <div className="blog-content">
-            <div className="blog-unit">
-               <img className="blog-unit-image" src="images/blog-image-news1.jpg" alt="" />
-               <div className="blog-unit-title">Новость 1</div>
-               <div className="blog-unit-info-line">
-                  <div className="blog-unit-info-line-date">22 сентября 2022</div>
-                  <div className="blog-unit-info-line-comment">
-                     <img
-                        className="blog-unit-info-line-comment-icon"
-                        src="images/blog-unit-info-line-comment-icon.png"
-                        alt=""
-                     />
-                     Комментарии (1)
+            {blogList.slice(-3).reverse().map((project) => 
+               <div className="blog-unit" key={project.id}>
+                  <img className="blog-unit-image" src={project.img} alt="" />
+                  <div className="blog-unit-title">{project.title}</div>
+                  <div className="blog-unit-info-line">
+                     <div className="blog-unit-info-line-date">{project.date}</div>
+                     <div className="blog-unit-info-line-comment">
+                        <img
+                           className="blog-unit-info-line-comment-icon"
+                           src="images/blog-unit-info-line-comment-icon.png"
+                           alt=""
+                        />
+                        Комментарии ({project.numberСomments})
+                     </div>
+                  </div>
+                  <div className="blog-unit-news">
+                    {project.text}
+                  </div>
+                  <div className="blog-unit-read-more">
+                     Читать далее
+                     <img className="blog-unit-read-more-icon" src="images/right-arrow.png" alt="" />
                   </div>
                </div>
-               <div className="blog-unit-news">
-                  Тут начало очень веселой, креативной, актуальной новости, которую кроме меня
-                  никто не читал и не прочитает.
-               </div>
-               <div className="blog-unit-read-more">
-                  Читать далее
-                  <img className="blog-unit-read-more-icon" src="images/right-arrow.png" alt="" />
-               </div>
-            </div>
-            <div className="blog-unit">
-               <img className="blog-unit-image" src="images/blog-image-news2.jpg" alt="" />
-               <div className="blog-unit-title">Новость 2</div>
-               <div className="blog-unit-info-line">
-                  <div className="blog-unit-info-line-date">22 сентября 2022</div>
-                  <div className="blog-unit-info-line-comment">
-                     <img
-                        className="blog-unit-info-line-comment-icon"
-                        src="images/blog-unit-info-line-comment-icon.png"
-                        alt=""
-                     />
-                     Комментарии (1)
-                  </div>
-               </div>
-               <div className="blog-unit-news">
-                  Тут начало очень веселой, креативной, актуальной новости, которую кроме меня
-                  никто не читал и не прочитает.
-               </div>
-               <div className="blog-unit-read-more">
-                  Читать далее
-                  <img className="blog-unit-read-more-icon" src="images/right-arrow.png" alt="" />
-               </div>
-            </div>
-            <div className="blog-unit">
-               <img className="blog-unit-image" src="images/blog-image-news1.jpg" alt="" />
-               <div className="blog-unit-title">Новость 3</div>
-               <div className="blog-unit-info-line">
-                  <div className="blog-unit-info-line-date">22 сентября 2022</div>
-                  <div className="blog-unit-info-line-comment">
-                     <img
-                        className="blog-unit-info-line-comment-icon"
-                        src="images/blog-unit-info-line-comment-icon.png"
-                        alt=""
-                     />
-                     Комментарии (1)
-                  </div>
-               </div>
-               <div className="blog-unit-news">
-                  Тут начало очень веселой, креативной, актуальной новости, которую кроме меня
-                  никто не читал и не прочитает.
-               </div>
-               <div className="blog-unit-read-more">
-                  Читать далее
-                  <img className="blog-unit-read-more-icon" src="images/right-arrow.png" alt="" />
-               </div>
-            </div>
+            )}
          </div>
-         <div className="blog-button">Читать все новости</div>
+         <Link to ="/blog_list" className="blog-button">Читать все новости</Link>
       </div>
    </section>
    )}

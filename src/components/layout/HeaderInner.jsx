@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import ButtonUp from "../layout/ButtonUp";
 
-function HeaderInner() {
+function HeaderInner () {
 
    let [activeHeaderLine, setActiveHeaderLine] = React.useState(false)
 
@@ -20,7 +20,7 @@ function HeaderInner() {
 
    const scroller = (className) => {
       setTimeout(() => {
-         document.querySelector(`${className}`).scrollIntoView({
+         document.querySelector(`${className}`)?.scrollIntoView({
          behavior: 'smooth'
          })
       }, 1)

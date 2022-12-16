@@ -1,0 +1,206 @@
+.container {
+   display: flex;
+   flex-direction: column;
+   margin: 0 auto;
+   width: 1200px;
+}
+
+.header {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   margin-top: 80px;
+}
+
+.banner {
+   background: url("/public/images/nasaApiBlock/banner.jpg") no-repeat;
+   height: 200px;
+   width: auto;
+   display: flex;
+}
+
+.title {
+   margin: auto;
+   color: #ffffff;
+}
+
+.inputBlock {
+   display: flex;
+   margin: 20px auto auto auto;
+}
+
+.input {
+   border-radius: none;
+   border: 1px solid #d2d2d2;
+   width: 500px;
+   height: 50px;
+   padding: 5px 10px;
+   font-size: 17px;
+   border-right: none;
+}
+
+.input:focus {
+   outline: none;
+}
+
+.surchButton {
+   border: 1px solid #d2d2d2;
+   background-color: #ffffff;
+   display: flex;
+   width: 62px;
+   padding: 0;
+   cursor: pointer;
+}
+
+.surchButton_picture {
+   height: 30px;
+   margin: auto;
+   opacity: .5;
+}
+
+.surchButton:hover .surchButton_picture {
+   height: 31px; 
+}
+
+.body {
+   display: flex;
+   flex-wrap: wrap;
+   width: 100%;
+   margin-top: 80px;
+   justify-content: center;
+}
+
+.imageUnit {
+   display: flex;
+   width: 150px;
+   height: 150px;
+   cursor: pointer;
+   margin-right: 10px;
+   margin-bottom: 10px;
+}
+
+.imageUnit_picture {
+   max-width: 100%;
+   margin: auto;
+   max-height: 100%;
+}
+
+.slider {
+   display: flex;
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   margin: auto;
+}
+
+.slider::after {
+   content: '';
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background: rgba(0,0,0,.9);
+}
+
+.slider_btnL {
+   display: flex;
+   height: fit-content;
+   background: rgba(0,0,0,.0);
+   border: none;
+   cursor: pointer;
+   z-index: 1;
+   margin: auto;
+}
+
+.slider_btnL:hover .slider_btnL_picture {
+   opacity: 0.5;
+}
+
+.slider_btnL_picture {
+   height: 50px;
+}
+
+.slider_btnR {
+   display: flex;
+   height: fit-content;
+   background: rgba(0,0,0,.0);
+   border: none;
+   cursor: pointer;
+   z-index: 1;
+   margin: auto;
+}
+
+.slider_btnR:hover .slider_btnR_picture {
+   opacity: 0.5;
+}
+
+.slider_btnR_picture {
+   height: 50px;
+   transform: rotate(180deg);
+}
+
+.slider_window {
+   display: flex;
+   width: 1200px;
+   z-index: 1;
+   height: fit-content;
+   overflow: hidden;
+   margin: auto;
+}
+
+.slider_tape {
+   display: flex;
+   transition: 0.3s;
+}
+
+.slider_btnClose {
+   display: flex;
+   position: absolute;
+   top: 20px;
+   right: 20px;
+   background: rgba(0,0,0,.0);
+   border: none;
+   cursor: pointer;
+   z-index: 1;
+   padding: 0;
+   height: 20px;
+   width: 20px;
+}
+
+ .slider_btnClose:hover .slider_btnClose_picture {
+   opacity: .5;
+} 
+
+.slider_btnClose_picture {
+   height: 15px;
+   margin: auto;
+}
+
+.imageUnitSlider {
+   display: flex;
+   flex-direction: column;
+   width: 1180px;
+   height: 700px;
+   cursor: pointer;
+   margin: 0 10px;
+}
+
+.imageUnitSlider_picture {
+   max-width: 100%;
+   margin: auto;
+   max-height: 100%;
+   background-color: #ffffff;
+}
+
+.description {
+   display: flex;
+   color: #000000;
+   height: fit-content;
+   justify-content: center;
+   align-items: center;
+   background-color: #ffffff;
+   text-align: center;
+}
+
+h1 {
+   margin: auto;
+}

@@ -80,7 +80,7 @@ function Header() {
                <p className="header-line-button-text">Блог</p>
                <img className="header-line-button-icon" src="images/blog-icon.png" alt="" />
             </Link>
-            <Link to = "feedback" className="header-line-button" offset={0} spy={true} smooth={true} duration={500}>
+            <Link to = "feedback" className="header-line-button" offset={-76} spy={true} smooth={true} duration={500}>
                <p className="header-line-button-text">Связаться</p>
                <img className="header-line-button-icon" src="images/feedback-icon.png" alt="" />
             </Link>
