@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import projectList from '../../../assets/projectList.json'
 import style from './index.module.css'
 
 function ProjectListBlock() {
+   const projectList = useSelector(state => state.projectList.value)
+
    window.scrollTo(0, 0)
    return (
       <div className={style.root}>

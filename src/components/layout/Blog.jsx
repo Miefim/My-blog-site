@@ -1,8 +1,22 @@
+import React from "react";
 import { Link } from "react-router-dom";
-
-import blogList from '../../assets/blogList.json'
+import { useSelector, useDispatch } from 'react-redux';
+import { setBlogList } from "../../Redux/slices/blogListSlice";
 
 function Blog() {
+   const blogList = useSelector(state => state.blogList.value)  
+   const dispatch = useDispatch()
+
+   React.useEffect(() => {
+      fetch(`https://639ef68b7aaf11ceb88f020b.mockapi.io/blog-items`)
+      .then((response) => {
+         return response.json()
+      })
+      .then((data) => {
+         dispatch(setBlogList(data))
+      })
+   }, [])
+
    return (
       <section className="blog" name="blog">
       <div className="container">

@@ -4,6 +4,7 @@ import style from "./NasaApiBlock.module.css"
 
 function NasaApiBlock () {
    const [inputValue, setInputValue] = React.useState("")
+   
    const surchImages = () => {
       fetch(`https://images-api.nasa.gov/search?q=${inputValue}&media_type=image`)
       .then((response) => {
@@ -14,6 +15,7 @@ function NasaApiBlock () {
          setInputValue("")
       })  
    }
+
    let [imageArray, setImageArray] = React.useState()
    let [openSliderFlag, setOpenSliderFlag] = React.useState(false)
    let [index, setIndex] = React.useState(0)

@@ -1,7 +1,9 @@
-import blogList from '../../../assets/blogList.json'
+import { useSelector } from 'react-redux'
+
 import style from './index.module.css'
 
 function BlogListBlock() {
+   const blogList = useSelector(state => state.blogList.value)
    window.scrollTo(0, 0)
    return (
       <div className={style.root}>
