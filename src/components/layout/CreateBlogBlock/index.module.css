@@ -1,0 +1,13 @@
+.root {
+   display: flex;
+   flex-direction: column;
+   align-items: center
+}
+
+.btn {
+   width: fit-content;
+}
+
+textarea {
+   margin: 20px;
+}

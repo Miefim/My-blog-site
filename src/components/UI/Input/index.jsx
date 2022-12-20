@@ -1,8 +1,8 @@
 import style from './index.module.css'
 
-function Input( {placeholder, value, setValue} ) {
+function Input({className, ...props }) {
    return (
-      <input className={style.input} type="text" placeholder={placeholder} value = {value} onChange = { e => setValue(e.target.value) } />
+      <input {...props} className={[style.input, className].join(' ')} />
    );
  }
  

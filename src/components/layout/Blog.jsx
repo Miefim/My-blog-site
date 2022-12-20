@@ -1,20 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { setBlogList } from "../../Redux/slices/blogListSlice";
+import { fetchBlogList } from "../../Redux/slices/blogListSlice";
+import { useNavigate } from "react-router-dom";
 
 function Blog() {
-   const blogList = useSelector(state => state.blogList.value)  
+   const {blogList, status, error} = useSelector(state => state.blogList)  
    const dispatch = useDispatch()
 
+   const navigate = useNavigate()
+
    React.useEffect(() => {
-      fetch(`https://639ef68b7aaf11ceb88f020b.mockapi.io/blog-items`)
-      .then((response) => {
-         return response.json()
-      })
-      .then((data) => {
-         dispatch(setBlogList(data))
-      })
+      dispatch(fetchBlogList())
    }, [])
 
    return (
@@ -25,31 +22,33 @@ function Blog() {
             <div className="title">Блог</div>
          </div>
          <div className="blog-content">
-            {blogList.slice(-3).reverse().map((project) => 
-               <div className="blog-unit" key={project.id}>
-                  <img className="blog-unit-image" src={project.img} alt="" />
-                  <div className="blog-unit-title">{project.title}</div>
+            {blogList.slice(-3).reverse().map((news) => 
+               <div className="blog-unit" key={news.id}>
+                  <img className="blog-unit-image" src={news.img} alt="" />
+                  <div className="blog-unit-title">{news.title}</div>
                   <div className="blog-unit-info-line">
-                     <div className="blog-unit-info-line-date">{project.date}</div>
+                     <div className="blog-unit-info-line-date">{news.date}</div>
                      <div className="blog-unit-info-line-comment">
                         <img
                            className="blog-unit-info-line-comment-icon"
                            src="images/blog-unit-info-line-comment-icon.png"
                            alt=""
                         />
-                        Комментарии ({project.numberСomments})
+                        Комментарии ({news.comments.length})
                      </div>
                   </div>
                   <div className="blog-unit-news">
-                    {project.text}
+                    {news.text}
                   </div>
-                  <div className="blog-unit-read-more">
+                  <div className="blog-unit-read-more" onClick={ () => navigate(`${news.id}`)}>
                      Читать далее
                      <img className="blog-unit-read-more-icon" src="images/right-arrow.png" alt="" />
                   </div>
                </div>
             )}
          </div>
+         {status === 'loading' && <h1>Загрузка...</h1>}
+         {error && <h1>{error}</h1> }
          <Link to ="/blog_list" className="blog-button">Читать все новости</Link>
       </div>
    </section>

@@ -1,0 +1,13 @@
+.textarea {
+   border: 1px solid #ebebeb;
+   padding: 15px;
+   width: 450px;
+   height: 100px;
+   font-family: 'Open Sans', sans-serif;
+   resize: none;
+   overflow: auto;
+}
+
+.textarea:focus {
+   outline: none;
+}

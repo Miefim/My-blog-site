@@ -8,7 +8,8 @@
    margin: auto;
    display: flex;
    flex-direction: column;
-   width: 1200px;
+   width: 1250px;
+   position: relative;
 }
 
 .blogUnit {
@@ -16,7 +17,8 @@
    border: 1px solid #e8e8e8;
    height: 400px;
    display: flex;
-   width: 100%;
+   width: auto;
+   position: relative;
 }
 
 .imageBlock {
@@ -40,6 +42,12 @@
 .description h3 {
    max-height: 200px;
    overflow: hidden;
+}
+
+.description h1 {
+   margin: auto 0;
+   font-family: 'Open Sans', sans-serif;
+   font-weight: 100;
 }
 
 .infoLine {
@@ -92,6 +100,26 @@
    margin-right: 10px;
    opacity: .6;
 }
+
+.deleteBtn {
+   position: absolute;
+   top: 10px;
+   right: 10px;
+   border: 1px solid red;
+   color: red;
+   font-size: 13px;
+}
+
+.deleteBtn:hover {
+   background-color: red;
+}
+
+.createPost {
+   position: absolute;
+   right: 20px;
+   top: -50px;
+}
+
 
 @media screen and (max-width: 1250px) {
    .blogUnit {

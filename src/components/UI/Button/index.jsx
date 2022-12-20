@@ -1,8 +1,8 @@
 import style from "./index.module.css"
 
-function Button ({ children, onClick }) {
+function Button ({ children, className, ...props}) {
    return (
-      <button className={style.button} onClick = { onClick }>{children}</button>
+      <button {...props} className={[style.button, className].join(' ')}>{children}</button>
    )
 }
 
