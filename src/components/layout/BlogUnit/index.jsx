@@ -4,17 +4,16 @@ import { useSelector, useDispatch } from "react-redux"
 
 import { fetchBlogList } from "../../../Redux/slices/blogListSlice"
 
-import Textarea from "../../UI/Textarea"
-import Button from "../../UI/Button"
+import Comments from "../../UI/Comments"
 import style from "./index.module.css"
 
 
+
 function BlogUnit() {
+   const params = useParams()
    const blogUnit = useSelector(state => state.blogList.blogList)
    const { status, error } = useSelector(state => state.blogList)
    const dispatch = useDispatch()
-
-   const params = useParams()
 
    useEffect(() => {
       dispatch(fetchBlogList(`?id=${params.id}`))
@@ -31,18 +30,7 @@ function BlogUnit() {
             <img className={style.img} src={blogUnit[0]?.img} alt="" />
             {blogUnit[0]?.text}
          </p>
-         <div className={style.commentBlock}>
-            <p className={style.commentBlockTitle}>Комментарии</p>
-            {blogUnit[0]?.comments.map((comments) => 
-               <div className={style.commentUnit} key={comments.id}>
-                  <p className={style.commentName}>{comments.name}:</p>
-                  <p>{comments.comment}</p> 
-                  <p className={style.date}>{comments.date}</p>
-               </div>
-            )}
-            <Textarea className={style.textarea} type="text" placeholder="Ваш комментарий" ></Textarea>
-            <Button className={style.btn}>Отправить</Button>
-         </div>
+         <Comments url = {`https://639ef68b7aaf11ceb88f020b.mockapi.io/blog-items/${params.id}/comments`}/>
       </div>
    )
 }

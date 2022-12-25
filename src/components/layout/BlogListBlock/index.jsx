@@ -1,35 +1,42 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-import { fetchBlogList, setBlogList, deleteBlogList } from '../../../Redux/slices/blogListSlice'
+import { fetchBlogList, deleteBlogList } from '../../../Redux/slices/blogListSlice'
 
 import Button from '../../UI/Button'
 import style from './index.module.css'
 
 function BlogListBlock() {
    const store = useSelector(state => state)
+   const {deleteStatus, deleteError} = useSelector (state => state.blogList)
    const dispatch = useDispatch()
    const navigate = useNavigate()
 
+   const [buttonId, setButtonId] = useState(0)
+
    useEffect(() => {
-      dispatch(fetchBlogList())
+      dispatch(fetchBlogList('?sortBy=id&order=desc'))
    }, [])
 
-   const removePost = (e) => {
-      const blogList = store.blogList.blogList
-      let id = e.target.id
-      dispatch(setBlogList(blogList.filter(news => news.id != id)))
-      dispatch(deleteBlogList(id)) 
-   }
+   const removePost = async(e) => {
+      setButtonId(e.target.id)
+      await dispatch(deleteBlogList([e.target.id]))
+      setTimeout(() => {
+         dispatch(fetchBlogList('?sortBy=id&order=desc'))
+      }, 1000)  
+   } 
 
-   window.scrollTo(0, 0)
    return (
       <div className={style.root}>
          {store.blogList.status === 'loading'&& <h1>Загрузка...</h1> }
          {store.blogList.error && <h1>{store.blogList.error}</h1>}
          <div className={style.container}>
-         {store.adminAutorization.value && <Button className={style.createPost} onClick = {() => navigate('/create_blog')}>Создать пост +</Button>}
+         {store.adminAutorization.value && 
+            <Button className={style.createPost} onClick = {() => navigate('/create_blog')}>
+               Создать пост +
+            </Button>
+         }
          {store.blogList.blogList.map((news) => 
             <div className={style.blogUnit} key={news.id}>
                <div className={style.imageBlock}>
@@ -51,7 +58,13 @@ function BlogListBlock() {
                      </div>
                   </div>
                </div>
-               {store.adminAutorization.value && <Button id = {news.id} className={style.deleteBtn} onClick = {removePost}>Удалить пост</Button>}
+               {store.adminAutorization.value && 
+                  <Button id = {news.id} className={style.deleteBtn} onClick = {removePost}>
+                     {buttonId === news.id? deleteStatus === 'loading'? 'Удаление...' : '' : 'Удалить пост'} 
+                     {buttonId === news.id? deleteStatus === 'resolved'? 'Удалено' : '' : ''} 
+                     {buttonId === news.id? deleteStatus === 'rejected'? <div>{deleteError}</div> : '' : ''}  
+                  </Button>
+               }
             </div>
          )}
          </div>

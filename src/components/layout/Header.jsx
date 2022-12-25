@@ -2,8 +2,6 @@ import React from "react";
 import { CSSTransition } from "react-transition-group";
 import { Link } from 'react-scroll'
 
-import { useSelector } from "react-redux";
-
 import ButtonUp from "../layout/ButtonUp";
 
 function Header() {

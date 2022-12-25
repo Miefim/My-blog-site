@@ -13,3 +13,9 @@
    transition: 0.3s;
    color: #ffffff;
 }
+
+.button:disabled {
+   color: gray;
+   border: 1px solid gray;
+   background-color: #ffffff;
+}
