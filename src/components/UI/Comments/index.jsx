@@ -3,9 +3,11 @@ import { useSelector, useDispatch } from "react-redux"
 
 import { getComments, postComments, deleteComments } from '../../../Redux/slices/commentsSlice'
 
+import LoderComments from '../skeleton/LoaderComments'
+import Loader from "../LoaderCircle"
 import Textarea from "../../UI/Textarea"
 import Button from "../../UI/Button"
-import style from './index.module.css'
+import style from "./index.module.css"
 
 function Comments({url, ...props}) {
    const { commentsArray, getError, postError, deleteError, getStatus, postStatus, deleteStatus } = useSelector(state => state.comments)
@@ -19,8 +21,6 @@ function Comments({url, ...props}) {
    const [comment, setComment] = useState('')
 
    const addNewComment = async () => {
-      setComment('')
-
       const obj = {
          name: 'admin',
          comment: comment,
@@ -29,25 +29,27 @@ function Comments({url, ...props}) {
 
       await dispatch(postComments([obj, url]))
       dispatch(getComments(url))
+      setComment('')
    }
 
    const deleteComment = async (e) => {
       setBtnId(e.target.id)
       await dispatch(deleteComments([ e.target.id, url ]))
       dispatch(getComments(url))
+      
    }
 
    const [btnId, setBtnId] = useState(0)
 
-   console.log(postStatus)
-
    return(
-      <div className={style.commentBlock}>
+      <div id='comments' className={style.commentBlock}>
             <p className={style.commentBlockTitle}>Комментарии</p>
             {getStatus === "rejected" && <h3>{getError}</h3> }
-            {getStatus === "loading" && <h3>Загрузка...</h3> }
-            {getStatus === "resolved" &&
-               commentsArray.map((comments) => 
+            {commentsArray.map((comments) =>
+               getStatus === "loading"
+               ?
+                  <LoderComments key = {comments.id}/> 
+               : 
                   <div className={style.commentUnit} key={comments.id}>
                      <p className={style.commentName}>
                         {comments.name}:
@@ -56,26 +58,25 @@ function Comments({url, ...props}) {
                         {comments.comment}
                      </p> 
                      <div className={style.commentInfoLine}>
-                     {
-                           autorizations?
-                           <div 
-                              id = {comments.id} 
-                              className={style.deleteBtn} 
-                              onClick = {deleteComment} 
-                           >
-                              {btnId === comments.id? deleteStatus === "loading"? "Удаление" : "" : "Удалить"}
-                              {btnId === comments.id? deleteStatus === "rejected"? <div>{deleteError}</div> : "" : ""}
-                           </div>
+                        {autorizations
+                           ?
+                              <div 
+                                 id = {comments.id} 
+                                 className={style.deleteBtn} 
+                                 onClick = {deleteComment} 
+                              >
+                                 {btnId === comments.id && deleteStatus === "loading"? <Loader className={style.loaderDelete} /> : "Удалить"}
+                                 {btnId === comments.id? deleteStatus === "rejected"? <div>{deleteError}</div> : "" : ""}
+                              </div>
                            :
-                           ''
-                     }
+                              ''
+                        }
                         <p className={style.date}>
                            {comments.date}
                         </p>
                      </div>
                   </div>
-               )
-            }
+            )}
             {
                autorizations? 
                   <div className={style.inputBlock}>
@@ -91,7 +92,7 @@ function Comments({url, ...props}) {
                         onClick = { addNewComment }
                      >
                         {postStatus !== "loading" && postStatus !== "rejected"? "Отправить" : ""}
-                        {postStatus === "loading"? "Загрузка" : ""}
+                        {postStatus === "loading"? <Loader className={style.loaderBtn}/> : ""}
                         {postStatus === "rejected"? "Ошибка" : ""}
                      </Button>
                   </div>

@@ -4,10 +4,13 @@ import { useEffect, useState } from 'react'
 
 import { fetchBlogList, deleteBlogList } from '../../../Redux/slices/blogListSlice'
 
+import LoaderBlogList from '../../UI/skeleton/LoaderBlogList'
 import Button from '../../UI/Button'
 import style from './index.module.css'
 
 function BlogListBlock() {
+   window.scrollTo(0, 0)
+
    const store = useSelector(state => state)
    const {deleteStatus, deleteError} = useSelector (state => state.blogList)
    const dispatch = useDispatch()
@@ -29,7 +32,6 @@ function BlogListBlock() {
 
    return (
       <div className={style.root}>
-         {store.blogList.status === 'loading'&& <h1>Загрузка...</h1> }
          {store.blogList.error && <h1>{store.blogList.error}</h1>}
          <div className={style.container}>
          {store.adminAutorization.value && 
@@ -37,7 +39,11 @@ function BlogListBlock() {
                Создать пост +
             </Button>
          }
-         {store.blogList.blogList.map((news) => 
+         {store.blogList.blogList.map((news) =>
+            store.blogList.status === 'loading'
+            ? 
+            <LoaderBlogList key = {news.id}/>
+            :
             <div className={style.blogUnit} key={news.id}>
                <div className={style.imageBlock}>
                   <img className={style.image} src={news.img} alt="" />
@@ -48,7 +54,15 @@ function BlogListBlock() {
                   <p>{news.text}</p>
                   <div className={style.infoLine}>
                      <div className={style.date}>{news.date}</div>
-                     <div className={style.comment}>
+                     <div className={style.comment}
+                     onClick={() => {
+                        navigate(`${news.id}`)
+                        setTimeout(() => {
+                           document.querySelector(`#comments`)?.scrollIntoView({
+                              behavior: 'smooth'
+                           })
+                        }, 500)
+                     }}>
                         <img className={style.commentIcon} src="images/blog-unit-info-line-comment-icon.png" alt="" />
                         Комментарии({news.comments.length})
                      </div>
@@ -69,6 +83,7 @@ function BlogListBlock() {
          )}
          </div>
       </div>
+      
    )}
 
    export default BlogListBlock

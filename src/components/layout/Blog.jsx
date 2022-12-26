@@ -28,7 +28,16 @@ function Blog() {
                   <div className="blog-unit-title">{news.title}</div>
                   <div className="blog-unit-info-line">
                      <div className="blog-unit-info-line-date">{news.date}</div>
-                     <div className="blog-unit-info-line-comment">
+                     <div 
+                        className="blog-unit-info-line-comment" 
+                        onClick={() => {
+                           navigate(`${news.id}`)
+                           setTimeout(() => {
+                              document.querySelector(`#comments`)?.scrollIntoView({
+                                 behavior: 'smooth'
+                              })
+                           }, 500)
+                        }}>
                         <img
                            className="blog-unit-info-line-comment-icon"
                            src="images/blog-unit-info-line-comment-icon.png"

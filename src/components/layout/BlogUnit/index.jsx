@@ -23,14 +23,20 @@ function BlogUnit() {
    
    return (
       <div className={style.root}>
-         {status === 'loading' && <h1>Загрузка...</h1> }
          {error && <h1>{error}</h1> }
+         {status === 'loading'
+         ? 
+         <h1>Загрузка...</h1> 
+         :
+         <>  
          <h1 className={style.title}>{blogUnit[0]?.title}</h1>
          <p className={style.text}>
             <img className={style.img} src={blogUnit[0]?.img} alt="" />
             {blogUnit[0]?.text}
          </p>
          <Comments url = {`https://639ef68b7aaf11ceb88f020b.mockapi.io/blog-items/${params.id}/comments`}/>
+         </>
+         }  
       </div>
    )
 }

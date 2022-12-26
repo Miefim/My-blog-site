@@ -9,7 +9,10 @@
 }
 
 .btn {
-   width: fit-content;
+   width: 160px;
+   height: 40px;
+   display: flex;
+   justify-content: center;
 }
 
 .textarea {
@@ -47,11 +50,13 @@
 .commentInfoLine {
    display: flex;
    flex-direction: row;
-   align-items: baseline;
+   align-items: center;
    justify-content: right;
 }
 
 .deleteBtn {
+   display: flex;
+   width: 46px;
    margin-right: 20px;
    font-size: 12px;
    cursor: pointer;
@@ -61,4 +66,13 @@
    color: red;
    transition: 0.3s;
    text-decoration: underline;
+}
+
+.loaderBtn {
+   height: 18px;
+   width: 18px;
+}
+
+.loaderDelete {
+   margin: auto;
 }
