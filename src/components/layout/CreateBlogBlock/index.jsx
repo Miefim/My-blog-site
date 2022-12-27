@@ -27,7 +27,7 @@ function CreateBlog() {
       setItem('')
 
       const obj = {
-         img: "images/blog-image-news1.jpg",
+         img: "/images/blog-image-news1.jpg",
          title: title,
          date: new Intl.DateTimeFormat("ru", {day: "numeric", month: "long", year: "numeric"}).format(new Date()).replace(/(\s?\г\.?)/, ""),
          text: item
@@ -61,7 +61,7 @@ function CreateBlog() {
          {status === null && 
             <>
                <Input placeholder={'Название статьи'} value = {title} onChange = { e => setTitle(e.target.value) }/>
-               <Textarea placeholder={'Статья'} value = {item} onChange = { e => setItem(e.target.value) }/>
+               <Textarea className={style.textarea} placeholder={'Статья'} value = {item} onChange = { e => setItem(e.target.value) }/>
                <Button disabled = {!title && !item} onClick = { addNewPost } className={style.btn}>Создать пост</Button>
             </>
          }      

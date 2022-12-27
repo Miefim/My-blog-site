@@ -108,6 +108,29 @@ body {
     position: relative;
 }
 
+.header-admin-info {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    color: #ffffff;
+    
+}
+
+.header-admin-info-message-icon {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+}
+
+.header-admin-info-button {
+    display: flex;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
 .mobile-menu-line {
     position: relative;
     background-color: #ffffff;
@@ -757,6 +780,19 @@ body {
     margin: 80px 50px 80px 50px;
 }
 
+.input-block {
+    position: relative;
+}
+
+.input-error-message {
+    position: absolute;
+    margin: auto;
+    top: 14px;
+    right: 20px;
+    font-size: 15px;
+    color: rgb(181, 0, 0);
+}
+
 .small-input {
     border: none;
     margin-bottom: 15px;
@@ -780,6 +816,10 @@ body {
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+.input-error {
+    background-color: #ff9999;
 }
 
 .big-input::-webkit-scrollbar {
@@ -1077,11 +1117,11 @@ li:before {
     }
 
     .small-input {
-        width: auto;
+        width: -webkit-fill-available;
     }
 
     .big-input {
-        width: auto;
+        width: -webkit-fill-available;
     }
 }
 

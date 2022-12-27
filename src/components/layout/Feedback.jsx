@@ -1,22 +1,17 @@
-import React from 'react';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
+import { useState, useRef, useMemo} from 'react';
+import { useFetching } from '../../hooks/useFetching';
 
 function Feedback() {
-
-   const [feedbackElement, setFeedbackElement] = React.useState()
-   const sensPlate = React.useRef()
-   React.useEffect(() => {
-      setFeedbackElement(sensPlate.current)
-   })
-
-   let [flag, setFlag] = React.useState(false)
+   const sensPlateRef = useRef()
+   let [flag, setFlag] = useState(false)
 
    const checkCtrlButton = (e) => {
       if(e.code === "ControlLeft" && e._reactName === "onKeyDown") {
-         setFlag(flag = true)
+         setFlag(true)
       }
       else if (e.code === "ControlLeft" && e._reactName === "onKeyUp") {
-         setFlag(flag = false)
+         setFlag(false)
       } 
    }
 
@@ -28,6 +23,87 @@ function Feedback() {
 
    const modules = ["control.ZoomControl", "control.FullscreenControl"]
 
+   const [postMessage, loading, error] = useFetching(async() => {
+      const response = await fetch(`shttps://639ef68b7aaf11ceb88f020b.mockapi.io/feedback-message`, {
+         method: "POST",
+         headers: {
+            "Content-type": "application/json" 
+         },
+         body: JSON.stringify({
+            name,
+            tel,
+            email,
+            message
+         })
+      })
+   })
+
+   const [name, setName] = useState('')
+   const [tel, setTel] = useState('')
+   const [email, setEmail] = useState('')
+   const [message, setMessage] = useState('')
+
+   const [nameError, setNameError] = useState('')
+   const [telError, setTelError] = useState('')
+   const [emailError, setEmailError] = useState('')
+   const [messageError, setMessageError] = useState('')
+
+   const validationName = (e) => {
+      const value = e.target.value
+      setName(value)
+      if(value.length < 2){
+         setNameError('Слишком короткое имя')
+      }
+      else{
+         setNameError('')
+      }
+   }
+
+   const validationTel = (e) => {
+      const value = e.target.value.replace(/\s+/g, '')
+      setTel(e.target.value)
+      
+      if(value.length < 10){
+         setTelError('Слишком короткий номер')
+      }
+      else if (!value.match(/^[+0-9]{1}[0-9]*$/)){
+         setTelError('Неверно введен номер')
+      }
+      else{
+         setTelError('')
+      }
+   }
+
+   
+
+   const sendMessage = async() => {
+      // setNameError('')
+      // setTelError('')
+      // setEmailError('')
+      // setMessageError('')
+
+      if(name && tel && email && message) {
+         await postMessage()
+         setName('')
+         setTel('')
+         setEmail('')
+         setMessage('')
+      }
+      if(!name){
+         setNameError('введи имя лох')
+      }
+      if(!tel){
+         setTelError('телефон я буду вводить?')
+      }
+      if(!email){
+         setEmailError('введи мыло')
+      }
+      if(!message){
+         setMessageError('ну а что сообщение не написал?')
+      }
+      
+   }
+
    return (
       <YMaps>
          <section className="feedback" name="feedback">
@@ -38,12 +114,12 @@ function Feedback() {
                tabIndex="6" 
                onKeyDown = {checkCtrlButton}
                onKeyUp = {checkCtrlButton}
-               onMouseMove = {() => feedbackElement.focus()} 
+               onMouseMove = {() => sensPlateRef.current.focus({ preventScroll: true })} 
                onMouseLeave = {() => {
-                  feedbackElement.blur()
+                  sensPlateRef.current.blur()
                   setFlag(flag = false)
                }}
-               ref={sensPlate}
+               ref={sensPlateRef}
             >
                <div className='feedback-map' style={!flag? {pointerEvents: "none"} : {pointerEvents: ""}}>
                   <Map className='map' defaultState={defaultState} modules = {modules}>
@@ -56,11 +132,23 @@ function Feedback() {
                   <div className='feedback-form-content'>
                      <div className="line-title"></div>
                      <div className="title-feedback">Задайте свой вопрос</div>
-                     <input className="small-input" type="text" placeholder="Имя" />
-                     <input className="small-input" type="text" placeholder="Телефон" />
-                     <input className="small-input" type="text" placeholder="Email" />
-                     <textarea className="big-input" type="text" placeholder="Ваш вопрос"></textarea>
-                     <div className="feedback-button-box">
+                     <div className="input-block">
+                        {nameError && <p className="input-error-message">{nameError}</p>}
+                        <input className={!nameError? "small-input" : "small-input input-error"} type="text" placeholder="Имя" value={name} onChange={validationName} />
+                     </div>
+                     <div className="input-block">
+                        {telError && <p className="input-error-message">{telError}</p>} 
+                        <input className={!telError? "small-input" : "small-input input-error"} type="text" placeholder="Телефон" value={tel} onChange={validationTel} />
+                     </div>
+                     <div className="input-block">
+                        {emailError && <p className="input-error-message">{emailError}</p>}   
+                        <input className={!emailError? "small-input" : "small-input input-error"} type="text" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+                     </div>
+                     <div className="input-block">
+                        {messageError && <p className="input-error-message">{messageError}</p>}
+                        <textarea className={!messageError? "big-input" : "big-input input-error"} type="text" placeholder="Ваш вопрос" value={message} onChange={e => setMessage(e.target.value)}/>
+                     </div>
+                     <div className="feedback-button-box" onClick={sendMessage}>
                         <div className="header-banner-button">
                            <p className="header-banner-button-text">Отправить</p>
                         </div>

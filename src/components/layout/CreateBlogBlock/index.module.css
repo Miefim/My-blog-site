@@ -8,14 +8,13 @@
    margin: auto;
    padding: 50px;
    min-height: 264px;
-   /* height: 264px; */
 }
 
 .btn {
    width: fit-content;
 }
 
-textarea {
+.textarea {
    margin: 20px;
 }
 

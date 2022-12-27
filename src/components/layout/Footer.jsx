@@ -5,7 +5,7 @@ function Footer() {
          <div className="footer-social-network-line-unit">
             <img
                className="footer-social-network-line-unit-image"
-               src="images/vk-logo-black.png"
+               src="/images/vk-logo-black.png"
                alt=""
             />
             Вконтакте
@@ -13,7 +13,7 @@ function Footer() {
          <div className="footer-social-network-line-unit">
             <img
                className="footer-social-network-line-unit-image"
-               src="images/instagram-logo-black.png"
+               src="/images/instagram-logo-black.png"
                alt=""
             />
             Instagram
@@ -21,7 +21,7 @@ function Footer() {
          <div className="footer-social-network-line-unit">
             <img
                className="footer-social-network-line-unit-image"
-               src="images/hh-logo-black.png"
+               src="/images/hh-logo-black.png"
                alt=""
             />
             HeadHunter
@@ -29,7 +29,7 @@ function Footer() {
          <div className="footer-social-network-line-unit">
             <img
                className="footer-social-network-line-unit-image"
-               src="images/linkedin-logo-black.png"
+               src="/images/linkedin-logo-black.png"
                alt=""
             />
             Linkedin

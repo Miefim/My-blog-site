@@ -1,10 +1,13 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 import { Link } from 'react-scroll'
+import { useSelector } from "react-redux";
 
 import ButtonUp from "../layout/ButtonUp";
 
 function Header() {
+   const isAdminAutorization = useSelector(state => state.adminAutorization.value)
+
    let [activeHeaderLine, setActiveHeaderLine] = React.useState(false)
 
    window.addEventListener("scroll", () => {
@@ -23,6 +26,16 @@ function Header() {
    return (
       <>
       <section className="header" name="header">
+         {isAdminAutorization && <div className="header-admin-info">
+            <div className="header-admin-info-button">
+               <img className="header-admin-info-message-icon" src="/images/blog-icon.png" alt="" />
+               Cообщения
+            </div>
+            <div className="header-admin-info-button">
+               <img className="header-admin-info-message-icon" src="/images/logout.png" alt="" />
+               Выйти
+            </div>
+         </div>}
          <div className="header-banner" style = {activeHeaderLine? {height: `${(headerHeight)}px`} : {}}>
             <div className="container">
                <div className="header-banner-content-top">
