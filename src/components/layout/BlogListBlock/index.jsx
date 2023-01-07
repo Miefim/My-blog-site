@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { getAuth } from "firebase/auth"
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { fetchBlogList, deleteBlogList } from '../../../Redux/slices/blogListSlice'
 
@@ -10,6 +12,9 @@ import style from './index.module.css'
 
 function BlogListBlock() {
    window.scrollTo(0, 0)
+
+   const auth = getAuth()
+   const [user] = useAuthState(auth);
 
    const store = useSelector(state => state)
    const {deleteStatus, deleteError} = useSelector (state => state.blogList)
@@ -34,10 +39,11 @@ function BlogListBlock() {
       <div className={style.root}>
          {store.blogList.error && <h1>{store.blogList.error}</h1>}
          <div className={style.container}>
-         {store.adminAutorization.value && 
-            <Button className={style.createPost} onClick = {() => navigate('/create_blog')}>
-               Создать пост +
-            </Button>
+         {
+            user?.uid === "bqn4tboccsbVpUGKBxtly1GuOQF3" && 
+               <Button className={style.createPost} onClick = {() => navigate('/create_blog')}>
+                  Создать пост +
+               </Button>
          }
          {store.blogList.blogList.map((news) =>
             store.blogList.status === 'loading'
@@ -64,7 +70,7 @@ function BlogListBlock() {
                         }, 500)
                      }}>
                         <img className={style.commentIcon} src="images/blog-unit-info-line-comment-icon.png" alt="" />
-                        Комментарии({news.comments.length})
+                        Комментарии ({news.comments.length})
                      </div>
                      <div className={style.more} onClick = { () => navigate(`${news.id}`) }>
                         Читать дальше
@@ -72,12 +78,13 @@ function BlogListBlock() {
                      </div>
                   </div>
                </div>
-               {store.adminAutorization.value && 
-                  <Button id = {news.id} className={style.deleteBtn} onClick = {removePost}>
-                     {buttonId === news.id? deleteStatus === 'loading'? 'Удаление...' : '' : 'Удалить пост'} 
-                     {buttonId === news.id? deleteStatus === 'resolved'? 'Удалено' : '' : ''} 
-                     {buttonId === news.id? deleteStatus === 'rejected'? <div>{deleteError}</div> : '' : ''}  
-                  </Button>
+               {
+                  user?.uid === "bqn4tboccsbVpUGKBxtly1GuOQF3" && 
+                     <Button id = {news.id} className={style.deleteBtn} onClick = {removePost}>
+                        {buttonId === news.id? deleteStatus === 'loading'? 'Удаление...' : '' : 'Удалить пост'} 
+                        {buttonId === news.id? deleteStatus === 'resolved'? 'Удалено' : '' : ''} 
+                        {buttonId === news.id? deleteStatus === 'rejected'? <div>{deleteError}</div> : '' : ''}  
+                     </Button>
                }
             </div>
          )}

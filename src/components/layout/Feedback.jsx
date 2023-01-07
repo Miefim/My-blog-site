@@ -1,6 +1,8 @@
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
-import { useState, useRef, useMemo} from 'react';
+import { useState, useRef} from 'react';
 import { useFetching } from '../../hooks/useFetching';
+
+import LoaderCircle from '../UI/LoaderCircle'
 
 function Feedback() {
    const sensPlateRef = useRef()
@@ -23,8 +25,8 @@ function Feedback() {
 
    const modules = ["control.ZoomControl", "control.FullscreenControl"]
 
-   const [postMessage, loading, error] = useFetching(async() => {
-      const response = await fetch(`shttps://639ef68b7aaf11ceb88f020b.mockapi.io/feedback-message`, {
+   const [postFetchMessage, postFetchLoading, postFetchError] = useFetching(async() => {
+      const response = await fetch(`https://639ef68b7aaf11ceb88f020b.mockapi.io/feedback-message`, {
          method: "POST",
          headers: {
             "Content-type": "application/json" 
@@ -33,7 +35,8 @@ function Feedback() {
             name,
             tel,
             email,
-            message
+            message,
+            date: new Intl.DateTimeFormat("ru", {day: "numeric", month: "long", year: "numeric"}).format(new Date()).replace(/(\s?\г\.?)/, ""),
          })
       })
    })
@@ -49,8 +52,8 @@ function Feedback() {
    const [messageError, setMessageError] = useState('')
 
    const validationName = (e) => {
-      const value = e.target.value
-      setName(value)
+      const value = e.target.value.replace(/\s+/g, '')
+      setName(e.target.value)
       if(value.length < 2){
          setNameError('Слишком короткое имя')
       }
@@ -74,34 +77,48 @@ function Feedback() {
       }
    }
 
-   
+   const validationEmail = (e) => {
+      const value = e.target.value.replace(/\s+/g, '')
+      setEmail(e.target.value)
+      if(!value.match(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)){
+         setEmailError('Неверно введен Email')
+      }
+      else{
+         setEmailError('') 
+      }
+   }
+
+   const validationMessage = (e) => {
+      const value = e.target.value.replace(/\s+/g, '')
+      setMessage(e.target.value)
+      if(!value){
+         setMessageError('Введите сообщение')
+      }
+      else{
+         setMessageError('') 
+      }
+   }
 
    const sendMessage = async() => {
-      // setNameError('')
-      // setTelError('')
-      // setEmailError('')
-      // setMessageError('')
-
       if(name && tel && email && message) {
-         await postMessage()
+         await postFetchMessage()
          setName('')
          setTel('')
          setEmail('')
          setMessage('')
       }
       if(!name){
-         setNameError('введи имя лох')
+         setNameError('Введите имя')
       }
       if(!tel){
-         setTelError('телефон я буду вводить?')
+         setTelError('Введите телефон')
       }
       if(!email){
-         setEmailError('введи мыло')
+         setEmailError('Введите Email')
       }
       if(!message){
-         setMessageError('ну а что сообщение не написал?')
-      }
-      
+         setMessageError('Введите сообщение')
+      } 
    }
 
    return (
@@ -142,16 +159,20 @@ function Feedback() {
                      </div>
                      <div className="input-block">
                         {emailError && <p className="input-error-message">{emailError}</p>}   
-                        <input className={!emailError? "small-input" : "small-input input-error"} type="text" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
+                        <input className={!emailError? "small-input" : "small-input input-error"} type="text" placeholder="Email" value={email} onChange={validationEmail} />
                      </div>
                      <div className="input-block">
                         {messageError && <p className="input-error-message">{messageError}</p>}
-                        <textarea className={!messageError? "big-input" : "big-input input-error"} type="text" placeholder="Ваш вопрос" value={message} onChange={e => setMessage(e.target.value)}/>
+                        <textarea className={!messageError? "big-input" : "big-input input-error"} type="text" placeholder="Ваш вопрос" value={message} onChange={validationMessage}/>
                      </div>
-                     <div className="feedback-button-box" onClick={sendMessage}>
-                        <div className="header-banner-button">
-                           <p className="header-banner-button-text">Отправить</p>
-                        </div>
+                     <div className="feedback-button-box">
+                        <button className="header-banner-button" disabled={nameError || telError || emailError || messageError} onClick={sendMessage}>
+                           {!postFetchError
+                           ?  postFetchLoading
+                           ?  <LoaderCircle />
+                           :  <p className="header-banner-button-text">Отправить</p>
+                           :  'Ошибка'}
+                        </button>
                      </div>
                   </div>
                </div>

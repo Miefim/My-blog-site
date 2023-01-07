@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
+import {useEffect, useState} from "react"
+import {useSelector, useDispatch} from "react-redux"
+import { getAuth } from "firebase/auth"
+import { useAuthState } from 'react-firebase-hooks/auth';
 
-import { getComments, postComments, deleteComments } from '../../../Redux/slices/commentsSlice'
+import {getComments, postComments, deleteComments} from '../../../Redux/slices/commentsSlice'
 
+import Login from "../../layout/Login"
+import ModalWin from '../ModalWin'
 import LoderComments from '../skeleton/LoaderComments'
 import Loader from "../LoaderCircle"
 import Textarea from "../../UI/Textarea"
@@ -10,8 +14,10 @@ import Button from "../../UI/Button"
 import style from "./index.module.css"
 
 function Comments({url, ...props}) {
-   const { commentsArray, getError, postError, deleteError, getStatus, postStatus, deleteStatus } = useSelector(state => state.comments)
-   const autorizations = useSelector(state => state.adminAutorization.value)
+   const auth = getAuth()
+   const [user] = useAuthState(auth);
+
+   const {commentsArray, getError, postError, deleteError, getStatus, postStatus, deleteStatus} = useSelector(state => state.comments)
    const dispatch = useDispatch()
 
    useEffect(() => {
@@ -22,9 +28,16 @@ function Comments({url, ...props}) {
 
    const addNewComment = async () => {
       const obj = {
-         name: 'admin',
+         name: `${
+            user?.uid === 'bqn4tboccsbVpUGKBxtly1GuOQF3'
+            ?  'Admin' 
+            :  user.displayName
+               ?  user.displayName
+               :  user.email
+         }`,
          comment: comment,
          date: new Intl.DateTimeFormat("ru", {day: "numeric", month: "long", year: "numeric"}).format(new Date()).replace(/(\s?\г\.?)/, ""),
+         uid: user?.uid
       }
 
       await dispatch(postComments([obj, url]))
@@ -35,13 +48,14 @@ function Comments({url, ...props}) {
    const deleteComment = async (e) => {
       setBtnId(e.target.id)
       await dispatch(deleteComments([ e.target.id, url ]))
-      dispatch(getComments(url))
-      
+      dispatch(getComments(url))    
    }
 
    const [btnId, setBtnId] = useState(0)
+   const [modalWinActive, setModalWinActive] = useState(false)
 
    return(
+      <>
       <div id='comments' className={style.commentBlock}>
             <p className={style.commentBlockTitle}>Комментарии</p>
             {getStatus === "rejected" && <h3>{getError}</h3> }
@@ -58,7 +72,8 @@ function Comments({url, ...props}) {
                         {comments.comment}
                      </p> 
                      <div className={style.commentInfoLine}>
-                        {autorizations
+                        {
+                           user?.uid === 'bqn4tboccsbVpUGKBxtly1GuOQF3' || comments.uid === user?.uid
                            ?
                               <div 
                                  id = {comments.id} 
@@ -78,7 +93,8 @@ function Comments({url, ...props}) {
                   </div>
             )}
             {
-               autorizations? 
+               user
+               ? 
                   <div className={style.inputBlock}>
                      <Textarea 
                         className={style.textarea} 
@@ -97,9 +113,28 @@ function Comments({url, ...props}) {
                      </Button>
                   </div>
                :
-                  <p>Чтобы написать комментарий, необходимо авторизоваться</p>
+                  <p>
+                     Чтобы написать комментарий, необходимо   
+                     <a 
+                        className = {style.auth_link}
+                        onClick = {() => setModalWinActive(true)}
+                     >
+                        авторизоваться
+                     </a>
+                  </p>
             }
       </div>
+      <ModalWin
+         visible = {
+            modalWinActive
+         }
+         setVisible = {
+            setModalWinActive
+         }
+      >
+         <Login successAction = {() => setModalWinActive(false)}/>
+      </ModalWin>
+      </>
    )
 }
 

@@ -23,7 +23,10 @@ function Blog() {
          </div>
          <div className="blog-content">
             {blogList.slice(-3).reverse().map((news) => 
-               <div className="blog-unit" key={news.id}>
+               <div 
+                  className="blog-unit" 
+                  key={news.id}
+               >
                   <img className="blog-unit-image" src={news.img} alt="" />
                   <div className="blog-unit-title">{news.title}</div>
                   <div className="blog-unit-info-line">

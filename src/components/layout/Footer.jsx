@@ -1,6 +1,6 @@
-function Footer() {
+function Footer({className, ...props}) {
    return (
-      <section className="footer">
+      <section className={["footer", className].join(' ')}>
       <div className="footer-social-network-line">
          <div className="footer-social-network-line-unit">
             <img

@@ -76,3 +76,10 @@
 .loaderDelete {
    margin: auto;
 }
+
+.auth_link {
+   text-decoration: underline;
+   color: #499ad6;
+   cursor: pointer;
+   margin-left: 5px;
+}

@@ -10,6 +10,7 @@ import Button from "../../UI/Button"
 import style from "./index.module.css"
 
 function CreateBlog() {
+   const {id} = useSelector(state => state.user)
    const {status, error} = useSelector(state => state.blogList)
    const dispatch = useDispatch()
 
@@ -19,7 +20,10 @@ function CreateBlog() {
    const [item, setItem] = useState('')
    
    useEffect(() => {
-      dispatch(resetStatus(null))   
+      if(id !== 'bqn4tboccsbVpUGKBxtly1GuOQF3'){
+         navigate('/')
+      }
+      dispatch(resetStatus(null)) 
    }, [])
 
    const addNewPost = () => {

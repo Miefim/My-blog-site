@@ -1,41 +1,29 @@
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setAdminAutorization } from '../../Redux/slices/adminAuthorizationSlice'
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom"
+import { getAuth } from "firebase/auth";
+import { useAuthState } from 'react-firebase-hooks/auth'
 
-import Input from "../../components/UI/Input";
-import Button from "../../components/UI/Button";
+import Login from "../../components/layout/Login";
 import style from "./index.module.css"
 
 function AdminAutorizationPage() {
-   const isAdminAutorization = useSelector(state => state.adminAutorization.value)
-   const dispatch = useDispatch()
+   const auth = getAuth()
+   const [user] = useAuthState(auth)
 
    const navigate = useNavigate()
 
-   const [login, setLogin] = useState('')
-   const [password, setPassword] = useState('')
-
-   const checkInputValue = () => {
-      if(isAdminAutorization){
-         return
+   useEffect(() => {
+      if(user?.uid === 'bqn4tboccsbVpUGKBxtly1GuOQF3'){
+         navigate('/admin/account')
       }
-       if(login === '1' && password === '123') {
-         dispatch(setAdminAutorization(true))
-         setLogin('')
-         setPassword('')
+      else if(user){
          navigate('/')
       }
-      else {
-         dispatch(setAdminAutorization(false))
-      }
-   }
+   },[user])
 
    return (
-      <div className={style.root}>
-         <Input placeholder = {"Login"} value = { login } onChange = { e => setLogin(e.target.value) }/>
-         <Input placeholder = {"Password"} value = { password } onChange = { e => setPassword(e.target.value) } />
-         <Button onClick = { checkInputValue }>Вход</Button>
+      <div className = {style.root}>
+         <Login successAction = {() => navigate('/admin/account')}/>
       </div>
    );
  }

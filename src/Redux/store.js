@@ -3,7 +3,7 @@ import projectList from './slices/projectListSlice'
 import blogList from './slices/blogListSlice'
 import adminAutorization from './slices/adminAuthorizationSlice'
 import comments from './slices/commentsSlice'
-import fetching from './slices/fetchingSlice'
+import user from './slices/userSlice'
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +11,6 @@ export const store = configureStore({
    blogList,
    adminAutorization,
    comments,
-   fetching,
+   user
 },
 })

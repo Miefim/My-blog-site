@@ -1,14 +1,19 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
 import { Link } from 'react-scroll'
-import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getAuth } from "firebase/auth"
+import { useAuthState } from 'react-firebase-hooks/auth';
+
+import { useFetching } from "../../hooks/useFetching"
 
 import ButtonUp from "../layout/ButtonUp";
 
 function Header() {
-   const isAdminAutorization = useSelector(state => state.adminAutorization.value)
+   const auth = getAuth()
+   const [user] = useAuthState(auth);
 
-   let [activeHeaderLine, setActiveHeaderLine] = React.useState(false)
+   let [activeHeaderLine, setActiveHeaderLine] = useState(false)
 
    window.addEventListener("scroll", () => {
       if(window.pageYOffset >= `${620}`){
@@ -23,19 +28,50 @@ function Header() {
 
    let headerHeight = document.querySelector(".header")?.clientHeight
 
+   const navigate = useNavigate()
+   const [message, setMessage] = useState([])
+   const [getMessageCount] = useFetching(async() => {
+      const response = await fetch(`https://639ef68b7aaf11ceb88f020b.mockapi.io/feedback-message`)
+      const result = await response.json() 
+      setMessage(result)
+   })
+
+   useEffect(() => {
+      getMessageCount()
+   },[])
+
+   const logDown = () => {
+      auth.signOut()
+   }
+
+   const toMessage = () => {
+      navigate('/admin/account')
+   }
+
    return (
       <>
       <section className="header" name="header">
-         {isAdminAutorization && <div className="header-admin-info">
-            <div className="header-admin-info-button">
-               <img className="header-admin-info-message-icon" src="/images/blog-icon.png" alt="" />
-               Cообщения
+         {
+            user && <div className="header-admin-info">
+               {
+                  user.uid === 'bqn4tboccsbVpUGKBxtly1GuOQF3'
+                  ?
+                     <>
+                        <div>Привет Админ!</div>
+                        <div className="header-admin-info-button" onClick={toMessage}>
+                           <img className="header-admin-info-message-icon" src="/images/blog-icon.png" alt="" />
+                           Cообщения ({message.length})
+                        </div>
+                     </>
+                  :
+                     `Привет ${user.displayName || user.email}!`
+               }
+               <div className="header-admin-info-button" onClick={logDown}>
+                  <img className="header-admin-info-message-icon" src="/images/logout.png" alt="" />
+                  Выйти
+               </div>
             </div>
-            <div className="header-admin-info-button">
-               <img className="header-admin-info-message-icon" src="/images/logout.png" alt="" />
-               Выйти
-            </div>
-         </div>}
+         }
          <div className="header-banner" style = {activeHeaderLine? {height: `${(headerHeight)}px`} : {}}>
             <div className="container">
                <div className="header-banner-content-top">
