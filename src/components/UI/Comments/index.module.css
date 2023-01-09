@@ -1,0 +1,85 @@
+.commentBlock {
+   display: flex;
+   flex-direction: column;
+   margin-top: 80px;
+}
+
+.commentBlockTitle {
+   font-size: 20px;
+}
+
+.btn {
+   width: 160px;
+   height: 40px;
+   display: flex;
+   justify-content: center;
+}
+
+.textarea {
+   margin: 30px 0 30px;
+   padding: 15px;
+   width: 490px;
+   height: 100px;
+   font-family: 'Open Sans', sans-serif;
+   resize: none;
+   overflow: auto;
+}
+
+.commentUnit {
+   border: 1px solid #ebebeb;
+   margin: 10px 0;
+   padding: 10px;
+   width: 500px;
+}
+
+.commentName {
+   font-size: large;
+}
+
+.date {
+   display: flex;
+   justify-content: flex-end;
+   font-size: 10px;
+}
+
+.inputBlock {
+   display: flex;
+   flex-direction: column;
+}
+
+.commentInfoLine {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: right;
+}
+
+.deleteBtn {
+   display: flex;
+   width: 46px;
+   margin-right: 20px;
+   font-size: 12px;
+   cursor: pointer;
+}
+
+.deleteBtn:hover {
+   color: red;
+   transition: 0.3s;
+   text-decoration: underline;
+}
+
+.loaderBtn {
+   height: 18px;
+   width: 18px;
+}
+
+.loaderDelete {
+   margin: auto;
+}
+
+.auth_link {
+   text-decoration: underline;
+   color: #499ad6;
+   cursor: pointer;
+   margin-left: 5px;
+}
