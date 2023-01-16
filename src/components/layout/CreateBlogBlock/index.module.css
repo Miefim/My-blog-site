@@ -3,7 +3,6 @@
    flex-direction: column;
    align-items: center;
    justify-content: center;
-   border: 1px solid #f1f1f1;
    width: 700px;
    margin: auto;
    padding: 50px;
@@ -11,25 +10,15 @@
 }
 
 .btn {
-   width: fit-content;
+   width: 181px;
+   height: 41px;
 }
 
 .textarea {
    margin: 20px;
 }
 
-.resolvedBlock {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-}
-
-.resolvedBlock_addBtn {
-   width: fit-content;
-   margin: 10px;
-}
-
-.resolvedBlock_toBlogListBtn {
-   width: fit-content;
-   margin: 10px;
+.title {
+   margin-bottom: 20px;
+   font-weight: 200;
 }

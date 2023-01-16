@@ -1,18 +1,36 @@
-import React from "react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchBlogList } from "../../Redux/slices/blogListSlice";
 import { useNavigate } from "react-router-dom";
+import { useCollection } from 'react-firebase-hooks/firestore';
+import { collection } from "firebase/firestore";
+
+import { database } from "../../firebase";
 
 function Blog() {
-   const {blogList, status, error} = useSelector(state => state.blogList)  
-   const dispatch = useDispatch()
+   const [collectionBlog, isLoadingCollection, collectionError] = useCollection(
+      collection(database, "posts")
+   )
+
+   const blogs = useMemo(() => {
+      let blogs = []
+      collectionBlog?.forEach(el => {   
+         const time = el.data().date?.seconds? (el.data().date.seconds)*1000 : 0
+         blogs.push({
+            id: el.id, 
+            data: el.data(),
+            date: new Intl.DateTimeFormat("ru", {
+               day: "numeric", 
+               month: "long", 
+               year: "numeric",
+            }).format(new Date(time)).replace(/(\s?\г\.?)/, "")
+         })
+         blogs.sort((a, b) => a.data.date?.seconds > b.data.date?.seconds ? -1 : 1)
+         blogs = blogs.slice(0, 3)  
+      })
+      return blogs
+   },[collectionBlog])
 
    const navigate = useNavigate()
-
-   React.useEffect(() => {
-      dispatch(fetchBlogList())
-   }, [])
 
    return (
       <section className="blog" name="blog">
@@ -22,13 +40,13 @@ function Blog() {
             <div className="title">Блог</div>
          </div>
          <div className="blog-content">
-            {blogList.slice(-3).reverse().map((news) => 
+            {blogs.map((news) => 
                <div 
                   className="blog-unit" 
                   key={news.id}
                >
-                  <img className="blog-unit-image" src={news.img} alt="" />
-                  <div className="blog-unit-title">{news.title}</div>
+                  <img className="blog-unit-image" src={news.data.img} alt="" />
+                  <div className="blog-unit-title">{news.data.title}</div>
                   <div className="blog-unit-info-line">
                      <div className="blog-unit-info-line-date">{news.date}</div>
                      <div 
@@ -46,11 +64,11 @@ function Blog() {
                            src="images/blog-unit-info-line-comment-icon.png"
                            alt=""
                         />
-                        Комментарии ({news.comments.length})
+                        Комментарии ({news.data.commentCount || 0})
                      </div>
                   </div>
                   <div className="blog-unit-news">
-                    {news.text}
+                    {news.data.text}
                   </div>
                   <div className="blog-unit-read-more" onClick={ () => navigate(`${news.id}`)}>
                      Читать далее
@@ -59,8 +77,8 @@ function Blog() {
                </div>
             )}
          </div>
-         {status === 'loading' && <h1>Загрузка...</h1>}
-         {error && <h1>{error}</h1> }
+         {isLoadingCollection && <h1>Загрузка...</h1>}
+         {collectionError && <h1>Ошибка сервера :(</h1> }
          <Link to ="/blog_list" className="blog-button">Читать все новости</Link>
       </div>
    </section>

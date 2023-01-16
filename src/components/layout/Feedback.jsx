@@ -1,7 +1,11 @@
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
-import { useState, useRef} from 'react';
+import { useState, useRef, useEffect} from 'react';
 import { useFetching } from '../../hooks/useFetching';
+import { getAuth } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { collection, addDoc, serverTimestamp  } from "firebase/firestore"; 
 
+import { database } from '../../firebase';
 import LoaderCircle from '../UI/LoaderCircle'
 
 function Feedback() {
@@ -26,25 +30,30 @@ function Feedback() {
    const modules = ["control.ZoomControl", "control.FullscreenControl"]
 
    const [postFetchMessage, postFetchLoading, postFetchError] = useFetching(async() => {
-      const response = await fetch(`https://639ef68b7aaf11ceb88f020b.mockapi.io/feedback-message`, {
-         method: "POST",
-         headers: {
-            "Content-type": "application/json" 
-         },
-         body: JSON.stringify({
-            name,
-            tel,
-            email,
-            message,
-            date: new Intl.DateTimeFormat("ru", {day: "numeric", month: "long", year: "numeric"}).format(new Date()).replace(/(\s?\г\.?)/, ""),
-         })
-      })
+      await addDoc(collection(database, "feedback-message"), {
+         name,
+         tel,
+         email,
+         message,
+         date: serverTimestamp(),
+         uid: user?.uid? user.uid : '',
+         read: false
+       });
    })
 
    const [name, setName] = useState('')
    const [tel, setTel] = useState('')
    const [email, setEmail] = useState('')
    const [message, setMessage] = useState('')
+
+   const auth = getAuth()
+   const [user] = useAuthState(auth)
+
+   useEffect(() => {
+         setName(user?.displayName? user.displayName : '')
+         setTel(user?.phoneNumber? user.phoneNumber : '')
+         setEmail(user?.email? user.email : '')
+   },[user])
 
    const [nameError, setNameError] = useState('')
    const [telError, setTelError] = useState('')
@@ -166,7 +175,12 @@ function Feedback() {
                         <textarea className={!messageError? "big-input" : "big-input input-error"} type="text" placeholder="Ваш вопрос" value={message} onChange={validationMessage}/>
                      </div>
                      <div className="feedback-button-box">
-                        <button className="header-banner-button" disabled={nameError || telError || emailError || messageError} onClick={sendMessage}>
+                        <button 
+                           className="header-banner-button" 
+                           disabled={nameError || telError || emailError || messageError} 
+                           onClick={sendMessage}
+                           style = {{height: '43px', width: '160px'}}
+                        >
                            {!postFetchError
                            ?  postFetchLoading
                            ?  <LoaderCircle />

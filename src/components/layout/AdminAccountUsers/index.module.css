@@ -1,0 +1,120 @@
+.user_unit {
+   padding: 10px;
+   box-sizing: border-box;
+   border: 1px solid #e0e0e0;
+   margin: 30px;
+   position: relative;
+}
+
+.user_unit_header {
+   display: flex;
+   cursor: pointer;
+}
+
+.user_unit_header_iconArrow {
+   width: 10px;
+   transform: rotate(-90deg);
+   position: absolute;
+   right: 20px;
+   top: 17px;
+   opacity: .5;
+   transition: 0.3s;
+}
+
+.user_unit_header:hover .user_unit_header_iconArrow {
+   opacity: 1;
+}
+
+.user_string {
+   margin: 5px 10px 5px 0;
+}
+
+.user_string_comments {
+   margin: 5px 10px 5px 0;
+   display: flex;
+   position: relative;
+   cursor: pointer;
+}
+
+.user_string_comments:hover .user_unit_header_iconArrow {
+   opacity: 1;
+}
+
+.user_unit_body {
+   display: flex;
+   flex-direction: column;
+   margin-top: 10px;
+   border-top: 1px solid #e0e0e0;
+   padding: 10px;
+}
+
+.user_unit_body_comments {
+   display: flex;
+   flex-direction: column;
+}
+
+.message_unit {
+   width: 60%;
+   background-color: #d2d2d2;
+   border: 1px solid #d2d2d2;
+   margin: 5px 30px;
+   border-radius: 10px;
+   padding: 10px;
+}
+
+.message_unit_header {
+   display: flex;
+   margin-bottom: 5px;
+   font-size: 14px;
+}
+
+.message_unit_header p {
+   margin-right: 10px;
+}
+
+.message_unit_footer {
+   display: flex;
+   justify-content: space-between;
+   margin-top: 5px;
+   font-size: 12px;
+   align-items: center;
+}
+
+.message_unit_footer p:last-child {
+   background-color: #499ad6;
+   padding: 5px 10px;
+   border-radius: 15px;
+   margin-left: 20px;
+   cursor: pointer;
+   width: 45px;
+   height: 15px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.message_unit_footer p:last-child:hover {
+   color: rgb(185, 0, 0);
+   transition: 0.3s;
+   text-decoration: underline;
+}
+
+.delete_all {
+   border: none;
+   background-color: #499ad6;
+   padding: 15px 25px;
+   border-radius: 15px;
+   margin-left: 480px;
+   cursor: pointer;
+   width: fit-content;
+   height: 15px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.delete_all:hover {
+   color: rgb(185, 0, 0);
+   transition: 0.3s;
+   text-decoration: underline;
+}

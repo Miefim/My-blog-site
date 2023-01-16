@@ -1,10 +1,12 @@
-import {useEffect, useState} from "react"
-import {useSelector, useDispatch} from "react-redux"
+import { useMemo, useState} from "react"
 import { getAuth } from "firebase/auth"
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { collection, addDoc, serverTimestamp, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { useCollection } from 'react-firebase-hooks/firestore'; 
+import { useParams } from "react-router-dom";
 
-import {getComments, postComments, deleteComments} from '../../../Redux/slices/commentsSlice'
-
+import { database } from '../../../firebase';
+import { useFetching } from '../../../hooks/useFetching';
 import Login from "../../layout/Login"
 import ModalWin from '../ModalWin'
 import LoderComments from '../skeleton/LoaderComments'
@@ -13,75 +15,117 @@ import Textarea from "../../UI/Textarea"
 import Button from "../../UI/Button"
 import style from "./index.module.css"
 
-function Comments({url, ...props}) {
+
+function Comments({url}) {
    const auth = getAuth()
    const [user] = useAuthState(auth);
-
-   const {commentsArray, getError, postError, deleteError, getStatus, postStatus, deleteStatus} = useSelector(state => state.comments)
-   const dispatch = useDispatch()
-
-   useEffect(() => {
-      dispatch(getComments(url))
-   },[])
+   
+   const params = useParams()
 
    const [comment, setComment] = useState('')
+   const [btnId, setBtnId] = useState(0)
+   const [modalWinActive, setModalWinActive] = useState(false)
+
+   const [commentsCollection, getCollectionLoading, getCollectionError] = useCollection(
+      collection(database, url)
+   )
+   
+   const comments = useMemo(() => {
+      let arr = []
+      commentsCollection?.forEach(el => {   
+         const time = el.data().date?.seconds? (el.data().date.seconds)*1000 : 0
+         arr.push({
+            id: el.id, 
+            data: el.data(),
+            date: new Intl.DateTimeFormat("ru", {
+               day: "numeric", 
+               month: "long", 
+               year: "numeric",
+               minute: "numeric",
+               hour: "numeric"
+            }).format(new Date(time)).replace(/(\s?\г\.?)/, "")
+         })
+         arr.sort((a, b) => a.data.date?.seconds > b.data.date?.seconds ? 1 : -1)
+      })
+      return arr
+   },[commentsCollection])
+   
+   const [postFetchComment, isPostFetchLoading, postFetchError] = useFetching(async() => {
+      await addDoc(collection(database, url), {
+         name: 
+               user?.uid === process.env.REACT_APP_ADMIN_UID
+               ?  'Admin' 
+               :  user.displayName
+                  ?  user.displayName
+                  :  user.email
+               ,
+               comment,
+         date: serverTimestamp(),
+         userId: user?.uid,
+         postId: params.id
+       });
+   })
 
    const addNewComment = async () => {
-      const obj = {
-         name: `${
-            user?.uid === 'bqn4tboccsbVpUGKBxtly1GuOQF3'
-            ?  'Admin' 
-            :  user.displayName
-               ?  user.displayName
-               :  user.email
-         }`,
-         comment: comment,
-         date: new Intl.DateTimeFormat("ru", {day: "numeric", month: "long", year: "numeric"}).format(new Date()).replace(/(\s?\г\.?)/, ""),
-         uid: user?.uid
-      }
-
-      await dispatch(postComments([obj, url]))
-      dispatch(getComments(url))
+      await postFetchComment()
+      await updateDoc(doc(database, "posts", params.id), {
+         commentCount: comments.length + 1 
+      });
       setComment('')
    }
 
+   const [deleteFetchMessage, deleteLoading, deleteError] = useFetching(async(props) => {
+      await deleteDoc(doc(database, url, `${props}`));
+   })
+   
    const deleteComment = async (e) => {
       setBtnId(e.target.id)
-      await dispatch(deleteComments([ e.target.id, url ]))
-      dispatch(getComments(url))    
+      await deleteFetchMessage(e.target.id)
+      await updateDoc(doc(database, "posts", params.id), {
+         commentCount: comments.length - 1 
+      });     
    }
 
-   const [btnId, setBtnId] = useState(0)
-   const [modalWinActive, setModalWinActive] = useState(false)
+   // const [commentsCollection, getCollectionLoading, getCollectionError] = useCollection(
+   //    query(collection(database, "comments"), where("postId", "==", params.id))
+   // )
+
+   // const [test] = useCollection(
+   //    collectionGroup(database, "comments")
+   // )
+
+   // test?.forEach(el =>  console.log(el.data()))
 
    return(
       <>
       <div id='comments' className={style.commentBlock}>
             <p className={style.commentBlockTitle}>Комментарии</p>
-            {getStatus === "rejected" && <h3>{getError}</h3> }
-            {commentsArray.map((comments) =>
-               getStatus === "loading"
-               ?
-                  <LoderComments key = {comments.id}/> 
-               : 
+            {comments.length === 0 && !getCollectionLoading? <div>Пока здесь нет ни одного комментария</div> : ''}
+            {getCollectionError && <h3>Ошибка сервера :(</h3> }
+            {getCollectionLoading
+            ?
+               [...new Array(5)].map((_, index) =>
+                  <LoderComments key = {index}/> 
+               )
+            :
+               comments.map((comments) =>
                   <div className={style.commentUnit} key={comments.id}>
                      <p className={style.commentName}>
-                        {comments.name}:
+                        {comments.data.name}:
                      </p>
                      <p>
-                        {comments.comment}
+                        {comments.data.comment}
                      </p> 
                      <div className={style.commentInfoLine}>
                         {
-                           user?.uid === 'bqn4tboccsbVpUGKBxtly1GuOQF3' || comments.uid === user?.uid
+                           user?.uid === process.env.REACT_APP_ADMIN_UID || comments.data.userId === user?.uid
                            ?
                               <div 
                                  id = {comments.id} 
                                  className={style.deleteBtn} 
                                  onClick = {deleteComment} 
                               >
-                                 {btnId === comments.id && deleteStatus === "loading"? <Loader className={style.loaderDelete} /> : "Удалить"}
-                                 {btnId === comments.id? deleteStatus === "rejected"? <div>{deleteError}</div> : "" : ""}
+                                 {btnId === comments.id && deleteLoading? <Loader className={style.loaderDelete} /> : "Удалить"}
                               </div>
                            :
                               ''
@@ -91,37 +135,35 @@ function Comments({url, ...props}) {
                         </p>
                      </div>
                   </div>
-            )}
-            {
-               user
-               ? 
-                  <div className={style.inputBlock}>
-                     <Textarea 
-                        className={style.textarea} 
-                        type="text" placeholder="Ваш комментарий" 
-                        value = {comment} 
-                        onChange = { e => setComment(e.target.value) }
-                     />
-                     <Button 
-                        className={style.btn} 
-                        disabled = {!comment} 
-                        onClick = { addNewComment }
-                     >
-                        {postStatus !== "loading" && postStatus !== "rejected"? "Отправить" : ""}
-                        {postStatus === "loading"? <Loader className={style.loaderBtn}/> : ""}
-                        {postStatus === "rejected"? "Ошибка" : ""}
-                     </Button>
-                  </div>
-               :
-                  <p>
-                     Чтобы написать комментарий, необходимо   
-                     <a 
-                        className = {style.auth_link}
-                        onClick = {() => setModalWinActive(true)}
-                     >
-                        авторизоваться
-                     </a>
-                  </p>
+               )
+            }
+            {user
+            ? 
+               <div className={style.inputBlock}>
+                  <Textarea 
+                     className={style.textarea} 
+                     type="text" placeholder="Ваш комментарий" 
+                     value = {comment} 
+                     onChange = { e => setComment(e.target.value) }
+                  />
+                  <Button 
+                     className={style.btn} 
+                     disabled = {!comment} 
+                     onClick = { addNewComment }
+                  >
+                     {isPostFetchLoading? <Loader className={style.loaderBtn}/> : "Отправить"}
+                  </Button>
+               </div>
+            :
+               <p>
+                  Чтобы написать комментарий, необходимо   
+                  <a 
+                     className = {style.auth_link}
+                     onClick = {() => setModalWinActive(true)}
+                  >
+                     авторизоваться
+                  </a>
+               </p>
             }
       </div>
       <ModalWin

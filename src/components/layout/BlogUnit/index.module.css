@@ -1,9 +1,8 @@
 .root {
-   margin: auto;
-   max-width: 1200px;
+   width: 1200px;
    display: flex;
    flex-direction: column;
-   margin-top: 80px;
+   margin: 80px auto auto auto;
 }
 
 .title {
@@ -19,67 +18,8 @@
    padding: 0 10px 10px 0;
 }
 
-.commentBlock {
-   display: flex;
-   flex-direction: column;
-   margin-top: 80px;
-}
-
-.commentBlockTitle {
-   font-size: 20px;
-}
-
-.btn {
-   width: fit-content;
-}
-
-.textarea {
-   margin: 30px 0 30px;
-   padding: 15px;
-   width: 490px;
+.loader {
    height: 100px;
-   font-family: 'Open Sans', sans-serif;
-   resize: none;
-   overflow: auto;
-}
-
-.commentUnit {
-   border: 1px solid #ebebeb;
-   margin: 10px 0;
-   padding: 10px;
-   width: 500px;
-}
-
-.commentName {
-   font-size: large;
-}
-
-.date {
-   display: flex;
-   justify-content: flex-end;
-   font-size: 10px;
-}
-
-.inputBlock {
-   display: flex;
-   flex-direction: column;
-}
-
-.commentInfoLine {
-   display: flex;
-   flex-direction: row;
-   align-items: baseline;
-   justify-content: right;
-}
-
-.deleteBtn {
-   margin-right: 20px;
-   font-size: 12px;
-   cursor: pointer;
-}
-
-.deleteBtn:hover {
-   color: red;
-   transition: 0.3s;
-   text-decoration: underline;
+   width: 100px;
+   margin: auto;
 }

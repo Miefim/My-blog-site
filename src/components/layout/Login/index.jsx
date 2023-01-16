@@ -1,24 +1,103 @@
 import { useState } from "react"
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from "firebase/auth"
+import { setDoc, doc, collection, serverTimestamp, updateDoc } from "firebase/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
 
+import {useFetching} from '../../../hooks/useFetching'
+import {database} from '../../../firebase'
 import Input from "../../UI/Input";
 import Button from "../../UI/Button";
 import style from "./index.module.css"
 
 function Login({successAction}) {
+   const auth = getAuth()
+
    const [typeForm, setTypeForm] = useState('login')
 
    const [login, setLogin] = useState('')
    const [password, setPassword] = useState('')
    const [loginError, setLoginError] = useState('')
+   
+   const [name, setName] = useState('')
+   const [email, setEmail] = useState('')
+   const [createPassword, setCreatePassword] = useState('')
+   const [registerError, setRegisterError] = useState('')
 
-   const auth = getAuth()
-  
+   let users = []
+
+   const [usersCollection] = useCollection(
+      collection(database, "users")
+   )
+
+   usersCollection?.forEach(el => users.push(el.id))
+
+   const [setUserInDb, isSetUserInDbLoading] = useFetching(async({user, name}) => {  
+      await setDoc(doc(database, 'users', user.uid), {
+         uid: user.uid,
+         displayName: name
+            ? name 
+            : user.displayName
+               ? user.displayName
+               : '',
+         email: user.email? user.email : '',
+         provider: user.providerData[0]?.providerId? user.providerData[0].providerId : '',
+         regDate: serverTimestamp()
+      });
+   })
+
+   const [updateSignInDate] = useFetching(async(user) => {
+      await updateDoc(doc(database, "users", user.uid), {
+         signInDate: serverTimestamp()
+      });
+   })
+
+   const signUp = () => {
+      setRegisterError('')
+      createUserWithEmailAndPassword(auth, email, createPassword)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            setTypeForm('login')
+            setUserInDb({user, name})
+            setName('')
+            setEmail('')
+            setCreatePassword('')
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setRegisterError(errorMessage)
+        }); 
+   }
+
+   const checkUser = (user) => {
+      let isSignUp = users.filter(el => el === user.uid)
+      if(isSignUp.length === 0){
+         setUserInDb({user})
+      }
+   }
+
+   const signInGoogle = async() => {
+      const provider = new GoogleAuthProvider()
+      const {user} = await signInWithPopup(auth, provider)
+      await checkUser(user)
+      updateSignInDate(user)
+      successAction()
+   }
+
+   const signInGitHub = async() => {
+      const provider = new GithubAuthProvider()
+      const {user} = await signInWithPopup(auth, provider)
+      await checkUser(user)
+      updateSignInDate(user)
+      successAction()
+   }
+
    const signInEmail = () => {
       setLoginError('')
       signInWithEmailAndPassword(auth, login, password)
          .then((userCredential) => {
             const user = userCredential.user
+            updateSignInDate(user)
             setLogin('')
             setPassword('')
             successAction()
@@ -28,40 +107,6 @@ function Login({successAction}) {
             const errorMessage = error.message
             setLoginError(errorMessage)
          });
-   }
-
-   // const [name, setName] = useState('')
-   const [email, setEmail] = useState('')
-   const [createPassword, setCreatePassword] = useState('')
-   const [registerError, setRegisterError] = useState('')
-   
-   const signUp = () => {
-      setRegisterError('')
-      createUserWithEmailAndPassword(auth, email, createPassword)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            // setName('')
-            setEmail('')
-            setCreatePassword('')
-            setTypeForm('login')
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            setRegisterError(errorMessage)
-        }); 
-   }
-
-   const signInGoogle = async() => {
-      const provider = new GoogleAuthProvider()
-      const {user} = await signInWithPopup(auth, provider)
-      successAction()
-   }
-
-   const signInGitHub = async() => {
-      const provider = new GithubAuthProvider()
-      const {user} = await signInWithPopup(auth, provider)
-      successAction()
    }
 
    return (
@@ -97,8 +142,21 @@ function Login({successAction}) {
             }  
          >
             <h1 className = {style.title}>Войти в аккаунт</h1>
-            <div onClick={signInGoogle}>войти с помощью гугла</div>
-            <div onClick={signInGitHub}>войти с помощью гитхаба</div>
+            <div className = {style.auth_line}>
+               Авторизоваться с помощью:
+               <div className = {style.auth_providers}>
+                  <img 
+                     className = {style.google_provider} 
+                     src="/images/googleIcon.png" 
+                     onClick={signInGoogle} 
+                  />
+                  <img 
+                     className = {style.google_provider} 
+                     src="/images/githubIcon.png" 
+                     onClick={signInGitHub} 
+                  />
+               </div>
+            </div>
             {
                loginError
                ?
@@ -148,12 +206,12 @@ function Login({successAction}) {
                :
                   ''
             }
-            {/* <Input
+            <Input
                className = {style.input}
                placeholder = 'Введите имя'
                value = {name}
                onChange = {e => setName(e.target.value)}
-            /> */}
+            />
             <Input
                className = {style.input}
                placeholder = 'Введите почту'

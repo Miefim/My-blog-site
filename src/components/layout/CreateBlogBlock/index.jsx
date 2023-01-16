@@ -1,74 +1,66 @@
-import { useState, useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useState } from "react"
+import { getAuth } from "firebase/auth"
+import { useAuthState } from "react-firebase-hooks/auth"
+import { collection, addDoc, serverTimestamp  } from "firebase/firestore"; 
 
-import { postBlogList, resetStatus } from "../../../Redux/slices/blogListSlice"
-
+import { database } from "../../../firebase"
+import { useFetching } from "../../../hooks/useFetching"
+import LoaderCircle from "../../UI/LoaderCircle";
 import Input from "../../UI/Input"
 import Textarea from "../../UI/Textarea"
 import Button from "../../UI/Button"
 import style from "./index.module.css"
 
-function CreateBlog() {
-   const {id} = useSelector(state => state.user)
-   const {status, error} = useSelector(state => state.blogList)
-   const dispatch = useDispatch()
-
-   const navigate = useNavigate()
+function CreateBlog({callback}) {
+   const auth = getAuth()
+   const [user] = useAuthState(auth)
 
    const [title, setTitle] = useState('')
    const [item, setItem] = useState('')
-   
-   useEffect(() => {
-      if(id !== 'bqn4tboccsbVpUGKBxtly1GuOQF3'){
-         navigate('/')
-      }
-      dispatch(resetStatus(null)) 
-   }, [])
 
-   const addNewPost = () => {
+   const [addNewPost, isPostLoading, postError] = useFetching(async() => {
+      await addDoc(collection(database, "posts"), {
+         img: "/images/blog-image-news1.jpg",
+         title,
+         text: item,
+         date: serverTimestamp(),
+       });
       setTitle('')
       setItem('')
-
-      const obj = {
-         img: "/images/blog-image-news1.jpg",
-         title: title,
-         date: new Intl.DateTimeFormat("ru", {day: "numeric", month: "long", year: "numeric"}).format(new Date()).replace(/(\s?\г\.?)/, ""),
-         text: item
-      }
-
-      dispatch(postBlogList([obj]))
-   }
+      if(callback){
+         callback() 
+      } 
+   })
    
    return(
       <div className={style.root}>
-         {status === "loading" && <h1 style={{position: "absolute"}}>Загрузка...</h1> }
-         {error && <h1>{error} :(</h1>}
-         {status === 'resolved' && 
-         <div className={style.resolvedBlock}>
-            <h1>Пост успешно добавлен &#10003;</h1>
-            <div>
-               <Button 
-                  className={style.resolvedBlock_addBtn} 
-                  onClick = { () => dispatch(resetStatus(null)) }
-               >
-                  Добавить еще пост
-               </Button>
-               <Button 
-                  className={style.resolvedBlock_toBlogListBtn}
-                  onClick = { () => navigate('/blog_list') }
-               >
-                  Перейти к списку постов
-               </Button>
-            </div>
-         </div>}
-         {status === null && 
+         {user?.uid === process.env.REACT_APP_ADMIN_UID
+         ? 
             <>
-               <Input placeholder={'Название статьи'} value = {title} onChange = { e => setTitle(e.target.value) }/>
-               <Textarea className={style.textarea} placeholder={'Статья'} value = {item} onChange = { e => setItem(e.target.value) }/>
-               <Button disabled = {!title && !item} onClick = { addNewPost } className={style.btn}>Создать пост</Button>
+            <h1 className={style.title}>Добавление поста</h1>
+            <Input 
+               placeholder={'Название статьи'} 
+               value = {title} 
+               onChange = { e => setTitle(e.target.value) }
+            />
+            <Textarea 
+               className={style.textarea} 
+               placeholder={'Статья'} 
+               value = {item} 
+               onChange = { e => setItem(e.target.value) }
+            />
+            <Button 
+               disabled = {!title && !item} 
+               onClick = { addNewPost } 
+               className={style.btn}
+            >
+               {isPostLoading ? <LoaderCircle/> : 'Создать пост'}
+               {postError? "Ошибка" : ''}
+            </Button>
             </>
-         }      
+         :
+            <h1>Ах ты хитруша какая, это только для одмена</h1>
+         }  
       </div>
    )
 }

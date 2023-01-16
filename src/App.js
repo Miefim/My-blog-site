@@ -23,7 +23,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<HomePage />} />
     <Route path="/blog_list" element={<BlogListPage />} />
     <Route path="/blog_list/:id" element={<BlogUnitPage />} />
-    <Route path="/:id" element={<BlogUnitPage />} />
+    <Route exact path="/:id" element={<BlogUnitPage />} />
     <Route path="/create_blog" element={<CreateBlogPage />} />
     <Route path="/project_list" element={<ProjectListPage />} />
     <Route path="/project_nasa_api" element={<ProjectNasaApiPage />} />

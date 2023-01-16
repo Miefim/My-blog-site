@@ -4,7 +4,7 @@ import style from "./index.module.css"
 
 function LoaderCircle({className, ...props}) {
    return(
-      <img className={[style.img, className].join(' ')} src={img} alt="" />
+      <img {...props} className={[style.img, className].join(' ')} src={img} alt="" />
    )
 }
 

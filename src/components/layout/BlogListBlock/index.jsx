@@ -1,94 +1,125 @@
-import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { getAuth } from "firebase/auth"
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import { useCollection } from 'react-firebase-hooks/firestore';
 
-import { fetchBlogList, deleteBlogList } from '../../../Redux/slices/blogListSlice'
-
+import { useFetching } from '../../../hooks/useFetching';
+import { database } from "../../../firebase";
+import CreateBlog from '../CreateBlogBlock';
+import ModalWin from '../../UI/ModalWin';
 import LoaderBlogList from '../../UI/skeleton/LoaderBlogList'
 import Button from '../../UI/Button'
 import style from './index.module.css'
+import LoaderCircle from '../../UI/LoaderCircle';
 
 function BlogListBlock() {
    window.scrollTo(0, 0)
 
    const auth = getAuth()
    const [user] = useAuthState(auth);
+   
+   const [buttonId, setButtonId] = useState(0)
+   const [modalVisible, setModalVisible] = useState(false)
 
-   const store = useSelector(state => state)
-   const {deleteStatus, deleteError} = useSelector (state => state.blogList)
-   const dispatch = useDispatch()
    const navigate = useNavigate()
 
-   const [buttonId, setButtonId] = useState(0)
+   const [collectionBlog, isLoadingCollection, collectionError] = useCollection(
+      collection(database, "posts")
+   )
+   
+   const blogs = useMemo(() => {
+      let blogs = []
+      collectionBlog?.forEach(el => {   
+         const time = el.data().date?.seconds? (el.data().date.seconds)*1000 : 0
+         blogs.push({
+            id: el.id, 
+            data: el.data(),
+            date: new Intl.DateTimeFormat("ru", {
+               day: "numeric", 
+               month: "long", 
+               year: "numeric",
+            }).format(new Date(time)).replace(/(\s?\г\.?)/, "")
+         })
+         blogs.sort((a, b) => a.data.date?.seconds > b.data.date?.seconds ? -1 : 1)  
+      })
+      return blogs
+   },[collectionBlog])
 
-   useEffect(() => {
-      dispatch(fetchBlogList('?sortBy=id&order=desc'))
-   }, [])
-
-   const removePost = async(e) => {
-      setButtonId(e.target.id)
-      await dispatch(deleteBlogList([e.target.id]))
-      setTimeout(() => {
-         dispatch(fetchBlogList('?sortBy=id&order=desc'))
-      }, 1000)  
-   } 
+   const [removePost, isRemoveLoad, removeError] = useFetching(async(props) => {
+      setButtonId(props)
+      const collectionComm = await getDocs(collection(database, `posts/${props}/comments`))
+      collectionComm.forEach(async(el) => {
+         await deleteDoc(doc(database, `posts/${props}/comments`, el.id));
+      })
+      await deleteDoc(doc(database, "posts", `${props}`));
+   }) 
 
    return (
       <div className={style.root}>
-         {store.blogList.error && <h1>{store.blogList.error}</h1>}
+         {collectionError && <h1>Ошибка сервера :(</h1>}
+         {blogs?.length === 0 && !isLoadingCollection? <h1>Пока нет ни одного поста</h1> : ''}
          <div className={style.container}>
-         {
-            user?.uid === "bqn4tboccsbVpUGKBxtly1GuOQF3" && 
-               <Button className={style.createPost} onClick = {() => navigate('/create_blog')}>
-                  Создать пост +
-               </Button>
+         {user?.uid === "bqn4tboccsbVpUGKBxtly1GuOQF3" && 
+            <Button className={style.createPost} onClick = {() => setModalVisible(true)}>
+               Создать пост +
+            </Button>
          }
-         {store.blogList.blogList.map((news) =>
-            store.blogList.status === 'loading'
-            ? 
-            <LoaderBlogList key = {news.id}/>
+         {isLoadingCollection
+            ?  
+               [...new Array(5)].map((_, index) =>
+                  <LoaderBlogList key = {index}/>
+               ) 
             :
-            <div className={style.blogUnit} key={news.id}>
-               <div className={style.imageBlock}>
-                  <img className={style.image} src={news.img} alt="" />
-                  <div className={style.type}>{news.type}</div>
-               </div>
-               <div className={style.description}>
-                  <h1>{news.title}</h1>
-                  <p>{news.text}</p>
-                  <div className={style.infoLine}>
-                     <div className={style.date}>{news.date}</div>
-                     <div className={style.comment}
-                     onClick={() => {
-                        navigate(`${news.id}`)
-                        setTimeout(() => {
-                           document.querySelector(`#comments`)?.scrollIntoView({
-                              behavior: 'smooth'
-                           })
-                        }, 500)
-                     }}>
-                        <img className={style.commentIcon} src="images/blog-unit-info-line-comment-icon.png" alt="" />
-                        Комментарии ({news.comments.length})
+               blogs.map((news) =>
+                  <div className={style.blogUnit} key={news.id}>
+                     <div className={style.imageBlock}>
+                        <img className={style.image} src={news.data.img} alt="" />
+                        <div className={style.type}>{news.type}</div>
                      </div>
-                     <div className={style.more} onClick = { () => navigate(`${news.id}`) }>
-                        Читать дальше
-                        <img className={style.arrow} src='images/right-arrow.png' alt="" />
+                     <div className={style.description}>
+                        <h1>{news.data.title}</h1>
+                        <p>{news.data.text}</p>
+                        <div className={style.infoLine}>
+                           <div className={style.date}>{news.date}</div>
+                           <div 
+                              className={style.comment}
+                              onClick={() => {
+                                 navigate(`${news.id}`)
+                                 setTimeout(() => {
+                                    document.querySelector(`#comments`)?.scrollIntoView({
+                                       behavior: 'smooth'
+                                    })
+                                 }, 500)
+                              }}
+                           >
+                              <img className={style.commentIcon} src="images/blog-unit-info-line-comment-icon.png" alt="" />
+                              Комментарии ({news.data.commentCount || 0})
+                           </div>
+                           <div className={style.more} onClick = { () => navigate(`${news.id}`) }>
+                              Читать дальше
+                              <img className={style.arrow} src='images/right-arrow.png' alt="" />
+                           </div>
+                        </div>
                      </div>
+                     {
+                        user?.uid === "bqn4tboccsbVpUGKBxtly1GuOQF3" && 
+                           <Button 
+                              id = {news.id} 
+                              className={style.deleteBtn} 
+                              onClick = {e => removePost(e.target.id)}
+                           >
+                              {isRemoveLoad && buttonId === news.id? <LoaderCircle/> : 'Удалить пост'}
+                           </Button>
+                     }
                   </div>
-               </div>
-               {
-                  user?.uid === "bqn4tboccsbVpUGKBxtly1GuOQF3" && 
-                     <Button id = {news.id} className={style.deleteBtn} onClick = {removePost}>
-                        {buttonId === news.id? deleteStatus === 'loading'? 'Удаление...' : '' : 'Удалить пост'} 
-                        {buttonId === news.id? deleteStatus === 'resolved'? 'Удалено' : '' : ''} 
-                        {buttonId === news.id? deleteStatus === 'rejected'? <div>{deleteError}</div> : '' : ''}  
-                     </Button>
-               }
-            </div>
-         )}
+               )
+         }
          </div>
+         <ModalWin visible={modalVisible} setVisible={setModalVisible}>
+            <CreateBlog callback={() => setModalVisible(false)}/>
+         </ModalWin>
       </div>
       
    )}

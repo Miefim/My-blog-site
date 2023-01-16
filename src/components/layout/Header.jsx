@@ -1,17 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { Link } from 'react-scroll'
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth"
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { collection, query, where } from "firebase/firestore";
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-import { useFetching } from "../../hooks/useFetching"
-
+import { database } from "../../firebase";
 import ButtonUp from "../layout/ButtonUp";
+import LoaderCircle from "../UI/LoaderCircle";
 
 function Header() {
    const auth = getAuth()
    const [user] = useAuthState(auth);
+
+   const [feedbackMessages, isLoadingFeedbackMessages] = useCollectionData(
+      query(collection(database, "feedback-message"), where('read', '==', false))
+   )
 
    let [activeHeaderLine, setActiveHeaderLine] = useState(false)
 
@@ -29,16 +35,6 @@ function Header() {
    let headerHeight = document.querySelector(".header")?.clientHeight
 
    const navigate = useNavigate()
-   const [message, setMessage] = useState([])
-   const [getMessageCount] = useFetching(async() => {
-      const response = await fetch(`https://639ef68b7aaf11ceb88f020b.mockapi.io/feedback-message`)
-      const result = await response.json() 
-      setMessage(result)
-   })
-
-   useEffect(() => {
-      getMessageCount()
-   },[])
 
    const logDown = () => {
       auth.signOut()
@@ -52,24 +48,28 @@ function Header() {
       <>
       <section className="header" name="header">
          {
-            user && <div className="header-admin-info">
+            user && <div className="header-admin-info">          
                {
-                  user.uid === 'bqn4tboccsbVpUGKBxtly1GuOQF3'
+                  user?.uid === 'bqn4tboccsbVpUGKBxtly1GuOQF3'
                   ?
                      <>
                         <div>Привет Админ!</div>
                         <div className="header-admin-info-button" onClick={toMessage}>
                            <img className="header-admin-info-message-icon" src="/images/blog-icon.png" alt="" />
-                           Cообщения ({message.length})
+                           Cообщения ({
+                              isLoadingFeedbackMessages
+                              ?  <LoaderCircle /> 
+                              :  feedbackMessages?.length
+                           })
                         </div>
                      </>
                   :
-                     `Привет ${user.displayName || user.email}!`
+                     `Привет ${user?.displayName || user?.email}!`
                }
                <div className="header-admin-info-button" onClick={logDown}>
                   <img className="header-admin-info-message-icon" src="/images/logout.png" alt="" />
                   Выйти
-               </div>
+               </div>    
             </div>
          }
          <div className="header-banner" style = {activeHeaderLine? {height: `${(headerHeight)}px`} : {}}>
