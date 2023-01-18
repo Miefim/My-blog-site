@@ -1,0 +1,174 @@
+.root {
+   display: flex;
+   flex-direction: column;
+   margin: 80px auto auto auto;
+}
+
+.container {
+   margin: auto;
+   display: flex;
+   flex-direction: column;
+   width: 1250px;
+   position: relative;
+}
+
+.blogUnit {
+   margin: 10px;
+   border: 1px solid #e8e8e8;
+   height: 400px;
+   display: flex;
+   width: auto;
+   position: relative;
+}
+
+.imageBlock {
+   display: flex;
+   min-width: 600px;
+   width: 600px;
+   height: 100%;
+}
+
+.image {
+   width: 100%;
+}
+
+.description {
+   padding: 10px 20px 20px 20px;
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+}
+
+.description p {
+   max-height: 194px;
+   overflow: hidden;
+}
+
+.description h1 {
+   margin: auto 0;
+   font-family: 'Open Sans', sans-serif;
+   font-weight: 100;
+}
+
+.infoLine {
+   display: flex;
+   margin-bottom: 10px;
+   margin-top: auto;
+   justify-content: space-between;
+}
+
+.more {
+   color: #499ad6;
+   font-size: 20px;
+   display: flex;
+   align-items: center;
+   width: 188px;
+}
+
+.more:hover {
+   cursor: pointer;
+}
+
+.arrow {
+   height: 12px;
+   margin-left: 10px;
+}
+
+.more:hover .arrow {
+   margin-left: 20px;
+   transition: 0.3s;
+}
+
+.date {
+   display: flex;
+   padding: 10px 20px;
+   background-color: #499ad6;
+   color: #ffffffff;
+   border-radius: 20px;
+   font-size: 16px;
+}
+
+.comment {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 16px;
+   cursor: pointer;
+}
+
+.commentIcon {
+   height: 30px;
+   margin-right: 10px;
+   opacity: .6;
+}
+
+.deleteBtn {
+   position: absolute;
+   top: 10px;
+   right: 10px;
+   border: 1px solid red;
+   color: red;
+   font-size: 13px;
+   width: 200px;
+   height: 38px;
+}
+
+.deleteBtn:hover {
+   background-color: red;
+}
+
+.createPost {
+   position: absolute;
+   right: 20px;
+   top: -50px;
+   width: 200px;
+}
+
+
+@media screen and (max-width: 1250px) {
+   .blogUnit {
+      flex-direction: column;
+      height: auto;
+      width: 600px;
+   }
+
+   .container {
+      width: 100%;
+      align-items: center;
+   }
+
+   .description {
+      width: auto;
+   }
+}
+
+@media screen and (max-width: 670px) {
+   .blogUnit {
+      width: 100%;
+   }
+
+   .imageBlock {
+      width: 100%;
+      min-width: 0;
+   }
+
+   .infoLine {
+      margin-top: 20px;
+      flex-direction: column;
+      align-items: center;
+      height: 150px;
+   }
+
+   .date {
+      width: fit-content;
+   }
+   .comment {
+      width: fit-content;
+   }
+}
+
+@media screen and (max-width: 450px) {
+   .root {
+      font-size: 13px;
+   }
+}

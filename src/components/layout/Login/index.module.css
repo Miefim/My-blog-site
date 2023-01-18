@@ -1,0 +1,114 @@
+.root {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+}
+
+.input {
+   margin: 10px 0;
+}
+
+.title {
+   font-weight: 200;
+   margin-bottom: 20px;
+   margin-top: 40px;
+}
+
+.btn {
+   margin: 20px auto 0;
+   width: fit-content;
+}
+
+.switch_btn_block {
+   display: flex;
+   position: absolute;
+   top: 0;
+   right: 0;
+}
+
+.create_account_btn {
+   border: none;
+   background-color: #ffffff;
+   color: #499ad6;
+   cursor: pointer;
+   padding: 5px 10px;
+   border-radius: 5px;
+}
+
+.create_account_btn:hover {
+   background-color: aliceblue;
+}
+
+.login_btn {
+   border: none;
+   background-color: #ffffff;
+   color: #499ad6;
+   cursor: pointer;
+   padding: 5px 10px;
+   border-radius: 5px;
+}
+
+.login_btn:hover {
+   background-color: aliceblue;
+}
+
+.active_switch_btn {
+   color: #ffffff;
+   background-color: #499ad6;
+}
+
+.active_switch_btn:hover {
+   color: #ffffff;
+   background-color: #499ad6;
+}
+
+.forgot_password {
+   position: absolute;
+   bottom: 25px;
+   right: 0;
+   color: #499ad6;
+   cursor: pointer;
+}
+
+.login {
+   display: flex;
+   flex-direction: column;
+}
+
+.sign_up {
+   display: flex;
+   flex-direction: column;
+}
+
+.alert_error {
+   padding: 5px;
+   background-color: #faebeb;
+   display: flex;
+}
+
+.alert_icon {
+   height: 20px;
+   width: 20px;
+   margin-right: 10px;
+}
+
+.auth_line {
+   display: flex;
+   width: 100%;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 20px;
+}
+
+.auth_providers {
+   display: flex;
+}
+
+.google_provider {
+   width: 30px;
+   height: 30px;
+   margin: 0 10px;
+   cursor: pointer;
+}
