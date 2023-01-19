@@ -37,7 +37,7 @@ function Comments({url}) {
          arr.push({
             id: el.id, 
             data: el.data(),
-            date: new Intl.DateTimeFormat("ru", {
+            date: new Intl.DateTimeFormat("en", {
                day: "numeric", 
                month: "long", 
                year: "numeric",
@@ -86,22 +86,12 @@ function Comments({url}) {
       });     
    }
 
-   // const [commentsCollection, getCollectionLoading, getCollectionError] = useCollection(
-   //    query(collection(database, "comments"), where("postId", "==", params.id))
-   // )
-
-   // const [test] = useCollection(
-   //    collectionGroup(database, "comments")
-   // )
-
-   // test?.forEach(el =>  console.log(el.data()))
-
    return(
       <>
       <div id='comments' className={style.commentBlock}>
-            <p className={style.commentBlockTitle}>Комментарии</p>
-            {comments.length === 0 && !getCollectionLoading? <div>Пока здесь нет ни одного комментария</div> : ''}
-            {getCollectionError && <h3>Ошибка сервера :(</h3> }
+            <p className={style.commentBlockTitle}>Comments</p>
+            {comments.length === 0 && !getCollectionLoading? <div>There are no comments yet</div> : ''}
+            {getCollectionError && <h3>Server Error :(</h3> }
             {getCollectionLoading
             ?
                [...new Array(5)].map((_, index) =>
@@ -117,6 +107,9 @@ function Comments({url}) {
                         {comments.data.comment}
                      </p> 
                      <div className={style.commentInfoLine}>
+                        <p className={style.date}>
+                           {comments.date}
+                        </p>
                         {
                            user?.uid === process.env.REACT_APP_ADMIN_UID || comments.data.userId === user?.uid
                            ?
@@ -125,14 +118,11 @@ function Comments({url}) {
                                  className={style.deleteBtn} 
                                  onClick = {deleteComment} 
                               >
-                                 {btnId === comments.id && deleteLoading? <Loader className={style.loaderDelete} /> : "Удалить"}
+                                 {btnId === comments.id && deleteLoading? <Loader className={style.loaderDelete} /> : "Delete"}
                               </div>
                            :
                               ''
                         }
-                        <p className={style.date}>
-                           {comments.date}
-                        </p>
                      </div>
                   </div>
                )
@@ -142,7 +132,7 @@ function Comments({url}) {
                <div className={style.inputBlock}>
                   <Textarea 
                      className={style.textarea} 
-                     type="text" placeholder="Ваш комментарий" 
+                     type="text" placeholder="Your comment" 
                      value = {comment} 
                      onChange = { e => setComment(e.target.value) }
                   />
@@ -151,18 +141,19 @@ function Comments({url}) {
                      disabled = {!comment} 
                      onClick = { addNewComment }
                   >
-                     {isPostFetchLoading? <Loader className={style.loaderBtn}/> : "Отправить"}
+                     {isPostFetchLoading? <Loader className={style.loaderBtn}/> : "Send"}
                   </Button>
                </div>
             :
                <p>
-                  Чтобы написать комментарий, необходимо   
+                  You must be    
                   <a 
                      className = {style.auth_link}
                      onClick = {() => setModalWinActive(true)}
                   >
-                     авторизоваться
+                     logged
                   </a>
+                  in to leave a comment
                </p>
             }
       </div>

@@ -30,31 +30,31 @@ function HeaderInner () {
          <section className="header" name="header">
             <div className="header-line">
                <Link to ="/" className="header-line-button">
-                  <p className="header-line-button-text">Домой</p>
+                  <p className="header-line-button-text">Home</p>
                   <img className="header-line-button-icon" src="/images/home-icon.png" alt="" />
                </Link>
                <Link to = "/" className="header-line-button" onClick={() => scroller(".about-me")}>
-                  <p className="header-line-button-text">Обо мне</p>
+                  <p className="header-line-button-text">About Me</p>
                   <img className="header-line-button-icon" src="/images/about-icon.png" alt="" />
                </Link>
                <Link to = "/" className="header-line-button" onClick={() => scroller(".resume")}>
-                  <p className="header-line-button-text">Резюме</p>
+                  <p className="header-line-button-text">Resume</p>
                   <img className="header-line-button-icon" src="/images/resume-icon.png" alt="" />
                </Link> 
                <div className="header-line-center">
-                  <p className="header-line-center-title">Михаил Ефимов</p>
+                  <p className="header-line-center-title">Mikhail Efimov</p>
                   <p className="header-line-center-subtitle">Web Developer</p>
                </div>
                <Link to = "/" className="header-line-button" onClick={() => scroller(".project")}>
-                  <p className="header-line-button-text">Мои<br />проекты</p>
+                  <p className="header-line-button-text">My<br />projects</p>
                   <img className="header-line-button-icon" src="/images/project-icon.png" alt="" />
                </Link>
                <Link to = "/" className="header-line-button" onClick={() => scroller(".blog")}>
-                  <p className="header-line-button-text">Блог</p>
+                  <p className="header-line-button-text">Blog</p>
                   <img className="header-line-button-icon" src="/images/blog-icon.png" alt="" />
                </Link>
                <Link to = "/" className="header-line-button" onClick={() => scroller(".feedback")}>
-                  <p className="header-line-button-text">Связаться</p>
+                  <p className="header-line-button-text">Contact</p>
                   <img className="header-line-button-icon" src="/images/feedback-icon.png" alt="" />
                </Link>
             </div>

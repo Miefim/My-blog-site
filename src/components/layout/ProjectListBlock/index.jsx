@@ -1,31 +1,52 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { collection } from "firebase/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { useMemo } from "react";
 
+import LoaderBlogList from '../../UI/skeleton/LoaderBlogList'
+import { database } from "../../../firebase";
 import style from './index.module.css'
 
 function ProjectListBlock() {
-   const projectList = useSelector(state => state.projectList.value)
-
    window.scrollTo(0, 0)
+
+   const [projectCollection, isLoadCollection] = useCollection(
+      collection(database, 'projects')
+   )
+
+   const projects = useMemo(() => {
+      let projects = []
+      projectCollection?.forEach(project => {
+         projects.push({
+            id: project.id,
+            data: project.data()
+         })
+      })
+      return projects
+   },[projectCollection])
+
    return (
       <div className={style.root}>
          <div className={style.container}>
-         {projectList.map((project) => 
-            <div className={style.pojectUnit} key={project.id}>
-               <Link to = {project.href} className={style.imageBlock}>
-                  <img className={style.image} src={project.img} alt="" />
-                  <div className={style.type}>{project.type}</div>
-               </Link>
-               <div className={style.description}>
-                  <h1>{project.title}</h1>
-                  <h3>{project.description}</h3>
-                  <Link to = {project.href} className={style.more}>
-                     Подробнее
-                     <img className={style.arrow} src='images/right-arrow.png' alt="" />
+            {isLoadCollection
+            ?  [... new Array(5)].map((_, index) => <LoaderBlogList key={index}/>)
+            :
+            projects?.map((project) => 
+               <div className={style.pojectUnit} key={project.id}>
+                  <Link to = {project.data.href} className={style.imageBlock}>
+                     <img className={style.image} src={project.data.img} alt="" />
+                     <div className={style.type}>{project.data.type}</div>
                   </Link>
+                  <div className={style.description}>
+                     <h1>{project.data.title}</h1>
+                     <h3>{project.data.description}</h3>
+                     <Link to = {project.data.href} className={style.more}>
+                        More
+                        <img className={style.arrow} src='images/right-arrow.png' alt="" />
+                     </Link>
+                  </div>
                </div>
-            </div>
-         )}
+            )}
          </div>
       </div>
    )}

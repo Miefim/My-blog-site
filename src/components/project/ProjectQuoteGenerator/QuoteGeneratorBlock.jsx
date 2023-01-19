@@ -21,7 +21,7 @@ function QuoteGeneratorBlock () {
             <p className={style.quote} style={quote? {display: "flex"} : {display: "none"}}>"{quote.body}"</p>
             <p className={style.author} style={quote? {display: "flex"} : {display: "none"}}>-<i>{quote.author}</i>-</p>
          </div>
-         <button className={style.button} onClick={getQuote}>Сгенерировать</button>
+         <button className={style.button} onClick={getQuote}>Generate</button>
       </div>
    )
 }

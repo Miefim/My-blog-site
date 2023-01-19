@@ -53,10 +53,10 @@ function Header() {
                   user?.uid === 'bqn4tboccsbVpUGKBxtly1GuOQF3'
                   ?
                      <>
-                        <div>Привет Админ!</div>
+                        <div>Hello Admin!</div>
                         <div className="header-admin-info-button" onClick={toMessage}>
                            <img className="header-admin-info-message-icon" src="/images/blog-icon.png" alt="" />
-                           Cообщения ({
+                           Message ({
                               isLoadingFeedbackMessages
                               ?  <LoaderCircle /> 
                               :  feedbackMessages?.length
@@ -64,42 +64,44 @@ function Header() {
                         </div>
                      </>
                   :
-                     `Привет ${user?.displayName || user?.email}!`
+                     `Hello ${user?.displayName || user?.email}!`
                }
                <div className="header-admin-info-button" onClick={logDown}>
                   <img className="header-admin-info-message-icon" src="/images/logout.png" alt="" />
-                  Выйти
+                  Sign out
                </div>    
             </div>
          }
          <div className="header-banner" style = {activeHeaderLine? {height: `${(headerHeight)}px`} : {}}>
             <div className="container">
                <div className="header-banner-content-top">
-                  <h1 className="header-banner-title">Михаил Ефимов</h1>
+                  <h1 className="header-banner-title">Mikhail Efimov</h1>
                   <p className="header-banner-subtitle">Web Developer</p>
                </div>
                <div className="header-banner-content-bottom">
-                  <div className="header-banner-button">
-                     <img className="header-banner-button-icon" src="images/print-icon.png" alt="" />
-                     <p className="header-banner-button-text">Распечатать резюме</p>
-                  </div>
+                  <a href="/documents/resume.pdf" target='_blank' style={{textDecoration: 'none'}}>
+                     <div className="header-banner-button">
+                        <img className="header-banner-button-icon" src="images/print-icon.png" alt="" />
+                        <p className="header-banner-button-text">Print CV</p>
+                     </div>
+                  </a>
                   <p className="header-banner-email">
-                     У вас есть вопросы? Пишите мне на <a className="header-banner-email-link" href="@">micha_93_93@mail.ru</a>
+                     You have questions? <Link to='feedback' spy={true} smooth={true} duration={500} className="header-banner-email-link" href="@">Write to me</Link>
                   </p>
                </div>
             </div>
          </div>
          <div className="header-line" style = {activeHeaderLine && window.innerWidth >= 670? {position: "fixed", width: "100%", zIndex: "10", top: "0"} : {}}>
             <Link to = "header" className="header-line-button" spy={true} smooth={true} duration={500}>
-               <p className="header-line-button-text">Домой</p>
+               <p className="header-line-button-text">Home</p>
                <img className="header-line-button-icon" src="images/home-icon.png" alt="" />
             </Link>
             <Link to = "about-me" className="header-line-button" offset={-80} spy={true} smooth={true} duration={500}>
-               <p className="header-line-button-text">Обо мне</p>
+               <p className="header-line-button-text">About Me</p>
                <img className="header-line-button-icon" src="images/about-icon.png" alt="" />
             </Link>
             <Link to = "resume" className="header-line-button" offset={-160} spy={true} smooth={true} duration={500}>
-               <p className="header-line-button-text">Резюме</p>
+               <p className="header-line-button-text">Resume</p>
                <img className="header-line-button-icon" src="images/resume-icon.png" alt="" />
             </Link>
             <CSSTransition
@@ -116,20 +118,20 @@ function Header() {
                >
                <img className="header-line-photo" style = {activeHeaderLine && window.innerWidth >= 670? {display: "none"} : {}} src="images/header-line-photo.jpg" alt="" />
                </CSSTransition>
-               <p className="header-line-center-title no-display" style = {activeHeaderLine && window.innerWidth >= 670? {display: "flex"} : {}}>Михаил Ефимов</p>
+               <p className="header-line-center-title no-display" style = {activeHeaderLine && window.innerWidth >= 670? {display: "flex"} : {}}>Mikhail Efimov</p>
                <p className="header-line-center-subtitle no-display" style = {activeHeaderLine && window.innerWidth >= 670? {display: "flex"} : {}}>Web Developer</p>
             </div>
             </CSSTransition>
             <Link to = "project" className="header-line-button" offset={-80} spy={true} smooth={true} duration={500}>
-               <p className="header-line-button-text">Мои<br />проекты</p>
+               <p className="header-line-button-text">My<br />project</p>
                <img className="header-line-button-icon" src="images/project-icon.png" alt="" />
             </Link>
             <Link to = "blog" className="header-line-button" offset={-79} spy={true} smooth={true} duration={500}>
-               <p className="header-line-button-text">Блог</p>
+               <p className="header-line-button-text">Blog</p>
                <img className="header-line-button-icon" src="images/blog-icon.png" alt="" />
             </Link>
             <Link to = "feedback" className="header-line-button" offset={-76} spy={true} smooth={true} duration={500}>
-               <p className="header-line-button-text">Связаться</p>
+               <p className="header-line-button-text">Contact</p>
                <img className="header-line-button-icon" src="images/feedback-icon.png" alt="" />
             </Link>
          </div>

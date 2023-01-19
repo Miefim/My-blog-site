@@ -36,7 +36,7 @@ function BlogListBlock() {
          blogs.push({
             id: el.id, 
             data: el.data(),
-            date: new Intl.DateTimeFormat("ru", {
+            date: new Intl.DateTimeFormat("en", {
                day: "numeric", 
                month: "long", 
                year: "numeric",
@@ -58,8 +58,8 @@ function BlogListBlock() {
 
    return (
       <div className={style.root}>
-         {collectionError && <h1>Ошибка сервера :(</h1>}
-         {blogs?.length === 0 && !isLoadingCollection? <h1>Пока нет ни одного поста</h1> : ''}
+         {collectionError && <h1>Server Error :(</h1>}
+         {blogs?.length === 0 && !isLoadingCollection? <h1>There is no news yet</h1> : ''}
          <div className={style.container}>
          {user?.uid === "bqn4tboccsbVpUGKBxtly1GuOQF3" && 
             <Button className={style.createPost} onClick = {() => setModalVisible(true)}>
@@ -95,10 +95,10 @@ function BlogListBlock() {
                               }}
                            >
                               <img className={style.commentIcon} src="images/blog-unit-info-line-comment-icon.png" alt="" />
-                              Комментарии ({news.data.commentCount || 0})
+                              Comments ({news.data.commentCount || 0})
                            </div>
                            <div className={style.more} onClick = { () => navigate(`${news.id}`) }>
-                              Читать дальше
+                              More
                               <img className={style.arrow} src='images/right-arrow.png' alt="" />
                            </div>
                         </div>

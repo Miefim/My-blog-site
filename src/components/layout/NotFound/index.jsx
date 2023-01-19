@@ -6,7 +6,7 @@ function NotFoundBlock() {
    <>   
       <div className={style.root}>
          <img className={style.icon} src={icon} alt="" />
-         <h1 className={style.title}>Похоже, что такой страницы не существует :(</h1>
+         <h1 className={style.title}>It looks like this page doesn't exist :(</h1>
       </div>
    </> 
    );

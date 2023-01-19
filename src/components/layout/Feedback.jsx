@@ -64,7 +64,7 @@ function Feedback() {
       const value = e.target.value.replace(/\s+/g, '')
       setName(e.target.value)
       if(value.length < 2){
-         setNameError('Слишком короткое имя')
+         setNameError('Name too short')
       }
       else{
          setNameError('')
@@ -76,10 +76,10 @@ function Feedback() {
       setTel(e.target.value)
       
       if(value.length < 10){
-         setTelError('Слишком короткий номер')
+         setTelError('The number is too short')
       }
       else if (!value.match(/^[+0-9]{1}[0-9]*$/)){
-         setTelError('Неверно введен номер')
+         setTelError('Invalid number entered')
       }
       else{
          setTelError('')
@@ -90,7 +90,7 @@ function Feedback() {
       const value = e.target.value.replace(/\s+/g, '')
       setEmail(e.target.value)
       if(!value.match(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)){
-         setEmailError('Неверно введен Email')
+         setEmailError('Email entered incorrectly')
       }
       else{
          setEmailError('') 
@@ -101,7 +101,7 @@ function Feedback() {
       const value = e.target.value.replace(/\s+/g, '')
       setMessage(e.target.value)
       if(!value){
-         setMessageError('Введите сообщение')
+         setMessageError('Enter your message')
       }
       else{
          setMessageError('') 
@@ -117,16 +117,16 @@ function Feedback() {
          setMessage('')
       }
       if(!name){
-         setNameError('Введите имя')
+         setNameError('Enter your name')
       }
       if(!tel){
-         setTelError('Введите телефон')
+         setTelError('Enter your phone')
       }
       if(!email){
-         setEmailError('Введите Email')
+         setEmailError('Enter your email')
       }
       if(!message){
-         setMessageError('Введите сообщение')
+         setMessageError('Enter your message')
       } 
    }
 
@@ -134,7 +134,7 @@ function Feedback() {
       <YMaps>
          <section className="feedback" name="feedback">
             <div className='prompt-block' style={flag? {opacity: "0"} : {}}>
-               <div className='prompt-block-text'>Для масштабирования нажмите LCtrl</div> 
+               <div className='prompt-block-text'>Press LCtrl</div> 
             </div>
             <div className='sens-plate'
                tabIndex="6" 
@@ -157,14 +157,14 @@ function Feedback() {
                <div className="feedback-form" style={flag? {display: "none"} : {}}>
                   <div className='feedback-form-content'>
                      <div className="line-title"></div>
-                     <div className="title-feedback">Задайте свой вопрос</div>
+                     <div className="title-feedback">Send a Message</div>
                      <div className="input-block">
                         {nameError && <p className="input-error-message">{nameError}</p>}
-                        <input className={!nameError? "small-input" : "small-input input-error"} type="text" placeholder="Имя" value={name} onChange={validationName} />
+                        <input className={!nameError? "small-input" : "small-input input-error"} type="text" placeholder="Name   " value={name} onChange={validationName} />
                      </div>
                      <div className="input-block">
                         {telError && <p className="input-error-message">{telError}</p>} 
-                        <input className={!telError? "small-input" : "small-input input-error"} type="text" placeholder="Телефон" value={tel} onChange={validationTel} />
+                        <input className={!telError? "small-input" : "small-input input-error"} type="text" placeholder="Phone" value={tel} onChange={validationTel} />
                      </div>
                      <div className="input-block">
                         {emailError && <p className="input-error-message">{emailError}</p>}   
@@ -172,7 +172,7 @@ function Feedback() {
                      </div>
                      <div className="input-block">
                         {messageError && <p className="input-error-message">{messageError}</p>}
-                        <textarea className={!messageError? "big-input" : "big-input input-error"} type="text" placeholder="Ваш вопрос" value={message} onChange={validationMessage}/>
+                        <textarea className={!messageError? "big-input" : "big-input input-error"} type="text" placeholder="Message" value={message} onChange={validationMessage}/>
                      </div>
                      <div className="feedback-button-box">
                         <button 
@@ -184,8 +184,8 @@ function Feedback() {
                            {!postFetchError
                            ?  postFetchLoading
                            ?  <LoaderCircle />
-                           :  <p className="header-banner-button-text">Отправить</p>
-                           :  'Ошибка'}
+                           :  <p className="header-banner-button-text">Send</p>
+                           :  'Error'}
                         </button>
                      </div>
                   </div>

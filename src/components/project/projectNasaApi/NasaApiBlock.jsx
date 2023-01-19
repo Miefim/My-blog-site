@@ -35,7 +35,7 @@ function NasaApiBlock () {
                   <input 
                      className={style.input} 
                      type="text" 
-                     placeholder="Введите запрос, чтобы найти фото на космическую тематику" 
+                     placeholder="Enter a query to find space-themed photos" 
                      value={inputValue} 
                      onChange={(e) => setInputValue(e.target.value)}
                   />
@@ -55,7 +55,7 @@ function NasaApiBlock () {
                )}
             </div>
          </div>
-         <h1 style={imageArray?.length === 0? {display: "flex"} : {display: "none"}}>Ничего не найдено, попробуйте ввести запрос на английском языке</h1>
+         <h1 style={imageArray?.length === 0? {display: "flex", margin: 'auto'} : {display: "none"}}>Nothing found</h1>
          <div className={style.slider} style = {openSliderFlag? {display: "flex", position: "fixed"}: {display: "none"}}>
             <button className={style.slider_btnL} onClick={() => {setIndex(index - 1)}}>
                <img className={style.slider_btnL_picture} src="images/nasaApiBlock/left-arrow.png" alt="" />

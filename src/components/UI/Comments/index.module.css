@@ -30,16 +30,11 @@
    margin: 10px 0;
    padding: 10px;
    width: 500px;
+   position: relative;
 }
 
 .commentName {
    font-size: large;
-}
-
-.date {
-   display: flex;
-   justify-content: flex-end;
-   font-size: 10px;
 }
 
 .inputBlock {
@@ -52,18 +47,33 @@
    flex-direction: row;
    align-items: center;
    justify-content: right;
+   height: 20px;
+}
+
+.date {
+   padding: 3px 10px;
+   background-color: #499ad6;
+   border-radius: 10px;
+   font-size: 10px;
+   color: #ffffffff;
+   position: absolute;
+   top: 0;
+   right: 10px;
 }
 
 .deleteBtn {
    display: flex;
-   width: 46px;
-   margin-right: 20px;
+   padding: 2px 7px;
    font-size: 12px;
    cursor: pointer;
+   border: 1px solid #d64949;
+   border-radius: 10px;
+   color: #d64949;
 }
 
 .deleteBtn:hover {
-   color: red;
+   background-color: #d64949;
+   color: #ffffffff;
    transition: 0.3s;
    text-decoration: underline;
 }
@@ -81,5 +91,5 @@
    text-decoration: underline;
    color: #499ad6;
    cursor: pointer;
-   margin-left: 5px;
+   margin: 0 5px;
 }

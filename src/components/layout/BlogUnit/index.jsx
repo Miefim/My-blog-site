@@ -17,7 +17,7 @@ function BlogUnit() {
    
    return (
       <div className={style.root}>
-         {blogUnitError && <h1>Ошибка сервера :(</h1> }
+         {blogUnitError && <h1>Server Error :(</h1> }
          {isLoadingBlogUnit
          ?  <LoaderCircle className={style.loader}/> 
          :
