@@ -120,7 +120,7 @@ function Login({successAction}) {
                }
                onClick = {() => setTypeForm('signUp')}
             >
-               Регистрация
+               Register
             </button>
             <button 
                className = {
@@ -130,7 +130,7 @@ function Login({successAction}) {
                }
                onClick = {() => setTypeForm('login')}
             >
-               Войти
+               Sign in
             </button>
          </div>
          <div 
@@ -141,9 +141,9 @@ function Login({successAction}) {
                :  {display: 'none'}
             }  
          >
-            <h1 className = {style.title}>Войти в аккаунт</h1>
+            <h1 className = {style.title}>Sign in with email</h1>
             <div className = {style.auth_line}>
-               Авторизоваться с помощью:
+               Log in with:
                <div className = {style.auth_providers}>
                   <img 
                      className = {style.google_provider} 
@@ -169,14 +169,14 @@ function Login({successAction}) {
             }
             <Input 
                className = {style.input} 
-               placeholder = "Почта" 
+               placeholder = "Email" 
                value = {login} 
                onChange = {e => setLogin(e.target.value)}
             />
             <Input 
                className = {style.input} 
                type = 'password'
-               placeholder = "Пароль"
+               placeholder = "Password"
                value = {password} 
                onChange = {e => setPassword(e.target.value)} 
             />
@@ -184,9 +184,9 @@ function Login({successAction}) {
                className = {style.btn}
                onClick = {signInEmail}
             >
-               Вход
+               Continue
             </Button>
-            <a className = {style.forgot_password}>Забыли пароль?</a>
+            {/* <a className = {style.forgot_password}>Забыли пароль?</a> */}
          </div>
          <div 
             className = {style.sign_up}
@@ -196,7 +196,7 @@ function Login({successAction}) {
                :  {display: 'none'}
             }  
          >
-            <h1 className = {style.title}>Регистрация</h1>
+            <h1 className = {style.title}>Create Account</h1>
             {  registerError
                ?    
                   <div className = {style.alert_error}>
@@ -208,20 +208,20 @@ function Login({successAction}) {
             }
             <Input
                className = {style.input}
-               placeholder = 'Введите имя'
+               placeholder = 'Name'
                value = {name}
                onChange = {e => setName(e.target.value)}
             />
             <Input
                className = {style.input}
-               placeholder = 'Введите почту'
+               placeholder = 'Email'
                value = {email}
                onChange = {e => setEmail(e.target.value)}
             />
             <Input
                className = {style.input}
                type = 'password'
-               placeholder = 'Придумайте пароль'
+               placeholder = 'Password'
                value = {createPassword}
                onChange = {e => setCreatePassword(e.target.value)}
             />
@@ -229,7 +229,7 @@ function Login({successAction}) {
                className = {style.btn}
                onClick = {signUp}
             >
-               Зарегистрироваться
+               Sign up
             </Button>
          </div>
       </div>

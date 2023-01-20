@@ -1,12 +1,26 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import { useCollection } from 'react-firebase-hooks/firestore'
+import { collection } from 'firebase/firestore';
 
-import { setProjectList } from '../../Redux/slices/projectListSlice';
+import { database } from '../../firebase';
+import { useMemo } from 'react';
 
 function Project() {
-   const projectList = useSelector(state => state.projectList.value)
-   const dispatch = useDispatch()
+   const [projectCollection, isLoadCollection] = useCollection(
+      collection(database, 'projects')
+   )
+
+   const projects = useMemo(() => {
+      let projects = []
+      projectCollection?.forEach(project => {
+         projects.push({
+            id: project.id,
+            data: project.data()
+         })
+      })
+      return projects
+   },[projectCollection])
 
    let [projectWindowWidth, setProjectWindowWidth] = React.useState(0)
    let [widthUnit, setWidthUnit] = React.useState(0)
@@ -17,17 +31,7 @@ function Project() {
    const projectWindowRef = React.useRef()
 
    const numberUnitsScreen = projectWindowWidth / widthUnit
-   const maxIndex = (projectList.length - numberUnitsScreen) / numberUnitsScreen
-
-   React.useEffect(() => {
-      fetch(`https://639ef68b7aaf11ceb88f020b.mockapi.io/project-items`)
-      .then((response) => {
-         return response.json()
-      })
-      .then((data) => {
-         dispatch(setProjectList(data))
-      })
-   }, [])
+   const maxIndex = (projects.length - numberUnitsScreen) / numberUnitsScreen
 
    React.useEffect(() => {
       setProjectWindowWidth(projectWindowRef.current.clientWidth)
@@ -100,9 +104,9 @@ function Project() {
          <div className="container no-margin">
             <div className="resume-title">
                <div className="line-title"></div>
-               <div className="title">Мои проекты</div>
+               <div className="title">My Projects</div>
                <Link to="project_list">
-                  <div className="project-button">Смотреть все проекты</div>
+                  <div className="project-button">All projects</div>
                </Link>
             </div>
             <div className="project-content">
@@ -120,20 +124,20 @@ function Project() {
                      onTouchMove={move}
                      onTouchEnd={end}
                   >
-                     {projectList?.map((project) => 
+                     {projects?.map((project) => 
                         <div className="project-unit" key={project.id}>
                            <div className="project-unit-content">
-                              <div className="project-type">{project.type}</div>
-                              <Link to={project.href} className="project-image-block">
+                              <div className="project-type">{project.data.type}</div>
+                              <Link to={project.data.href} className="project-image-block">
                                  <img
                                     className="project-image"
-                                    src={project.img}
+                                    src={project.data.img}
                                     alt=""
                                  />
                               </Link>
-                              <div className="project-title">{project.title}</div>
+                              <div className="project-title">{project.data.title}</div>
                               <div className="project-description">
-                                 {project.subtitle}
+                                 {project.data.subtitle}
                               </div>
                            </div>
                         </div>

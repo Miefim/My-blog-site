@@ -760,6 +760,7 @@ body {
     text-align: center;
     font-size: 50px;
     color: #ffffff;
+    justify-content: center;
 }
 
 .feedback-map:after {
@@ -878,11 +879,12 @@ body {
 
 .footer-social-network-line-unit {
     display: flex;
-    margin-right: 40px;
     align-items: center;
     font-size: 12px;
     font-family: 'Open Sans', sans-serif;
     color: #848684;
+    width: 130px;
+    justify-content: center;
 }
 
 .footer-social-network-line-unit:hover {
@@ -900,6 +902,10 @@ body {
 .footer-social-network-line-unit:hover .footer-social-network-line-unit-image {
     opacity: .25;
     transition: 0.3s linear;
+}
+
+.footer-social-network-line-unit-link {
+    text-decoration: none;
 }
 
 .rights {

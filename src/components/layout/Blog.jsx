@@ -18,7 +18,7 @@ function Blog() {
          blogs.push({
             id: el.id, 
             data: el.data(),
-            date: new Intl.DateTimeFormat("ru", {
+            date: new Intl.DateTimeFormat("en", {
                day: "numeric", 
                month: "long", 
                year: "numeric",
@@ -37,49 +37,51 @@ function Blog() {
       <div className="container">
          <div className="resume-title">
             <div className="line-title"></div>
-            <div className="title">Блог</div>
+            <div className="title">Blog</div>
          </div>
          <div className="blog-content">
-            {blogs.map((news) => 
-               <div 
-                  className="blog-unit" 
-                  key={news.id}
-               >
-                  <img className="blog-unit-image" src={news.data.img} alt="" />
-                  <div className="blog-unit-title">{news.data.title}</div>
-                  <div className="blog-unit-info-line">
-                     <div className="blog-unit-info-line-date">{news.date}</div>
-                     <div 
-                        className="blog-unit-info-line-comment" 
-                        onClick={() => {
-                           navigate(`${news.id}`)
-                           setTimeout(() => {
-                              document.querySelector(`#comments`)?.scrollIntoView({
-                                 behavior: 'smooth'
-                              })
-                           }, 500)
-                        }}>
-                        <img
-                           className="blog-unit-info-line-comment-icon"
-                           src="images/blog-unit-info-line-comment-icon.png"
-                           alt=""
-                        />
-                        Комментарии ({news.data.commentCount || 0})
+            {collectionError && <h1>Server Error :(</h1> }
+            {isLoadingCollection
+            ?  <h1>Loading...</h1>
+            :
+               blogs.map((news) => 
+                  <div 
+                     className="blog-unit" 
+                     key={news.id}
+                  >
+                     <img className="blog-unit-image" src={news.data.img} alt="" />
+                     <div className="blog-unit-title">{news.data.title}</div>
+                     <div className="blog-unit-info-line">
+                        <div className="blog-unit-info-line-date">{news.date}</div>
+                        <div 
+                           className="blog-unit-info-line-comment" 
+                           onClick={() => {
+                              navigate(`${news.id}`)
+                              setTimeout(() => {
+                                 document.querySelector(`#comments`)?.scrollIntoView({
+                                    behavior: 'smooth'
+                                 })
+                              }, 500)
+                           }}>
+                           <img
+                              className="blog-unit-info-line-comment-icon"
+                              src="images/blog-unit-info-line-comment-icon.png"
+                              alt=""
+                           />
+                           Comments ({news.data.commentCount || 0})
+                        </div>
+                     </div>
+                     <div className="blog-unit-news">
+                     {news.data.text}
+                     </div>
+                     <div className="blog-unit-read-more" onClick={ () => navigate(`${news.id}`)}>
+                        More
+                        <img className="blog-unit-read-more-icon" src="images/right-arrow.png" alt="" />
                      </div>
                   </div>
-                  <div className="blog-unit-news">
-                    {news.data.text}
-                  </div>
-                  <div className="blog-unit-read-more" onClick={ () => navigate(`${news.id}`)}>
-                     Читать далее
-                     <img className="blog-unit-read-more-icon" src="images/right-arrow.png" alt="" />
-                  </div>
-               </div>
-            )}
+               )}
          </div>
-         {isLoadingCollection && <h1>Загрузка...</h1>}
-         {collectionError && <h1>Ошибка сервера :(</h1> }
-         <Link to ="/blog_list" className="blog-button">Читать все новости</Link>
+         <Link to ="/blog_list" className="blog-button">Read more</Link>
       </div>
    </section>
    )}
