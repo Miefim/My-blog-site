@@ -82,7 +82,7 @@ function AboutMe() {
             <div className="about-me-card-content">
                <div className="line-title"></div>
                <p className="title">My Expertise</p>
-               <div className="about-me-card-content-skill" style={{margin: '70px auto'}}>
+               <div className="about-me-card-content-skill" style={{margin: '30px 0 0 0'}}>
                   <img
                      className="about-me-card-content-skill-icon"
                      src="images/skill-icon1.png"
@@ -93,19 +93,19 @@ function AboutMe() {
                      Development of web client applications
                   </p>
                </div>
-               {/* <div className="line-skill"></div>
+               <div className="line-skill"></div>
                <div className="about-me-card-content-skill">
                   <img
                      className="about-me-card-content-skill-icon"
-                     src="images/skill-icon2.png"
+                     src="images/skill-icon3.png"
                      alt=""
                   />
                   <p className="about-me-card-content-description">
-                     <b className="black-text">BackEnd разработка</b><br />
-                     Разработка серверной части
+                     <b className="black-text">Website maintenance</b><br />
+                     Updating website content using CMS
                   </p>
                </div>
-               <div className="line-skill"></div>
+               {/* <div className="line-skill"></div>
                <div className="about-me-card-content-skill">
                   <img
                      className="about-me-card-content-skill-icon"

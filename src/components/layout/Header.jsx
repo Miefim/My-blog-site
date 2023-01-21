@@ -50,7 +50,7 @@ function Header() {
          {
             user && <div className="header-admin-info">          
                {
-                  user?.uid === 'bqn4tboccsbVpUGKBxtly1GuOQF3'
+                  user?.uid === process.env.REACT_APP_ADMIN_UID
                   ?
                      <>
                         <div>Hello Admin!</div>

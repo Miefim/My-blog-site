@@ -61,7 +61,7 @@ function BlogListBlock() {
          {collectionError && <h1>Server Error :(</h1>}
          {blogs?.length === 0 && !isLoadingCollection? <h1>There is no news yet</h1> : ''}
          <div className={style.container}>
-         {user?.uid === "bqn4tboccsbVpUGKBxtly1GuOQF3" && 
+         {user?.uid === process.env.REACT_APP_ADMIN_UID && 
             <Button className={style.createPost} onClick = {() => setModalVisible(true)}>
                Создать пост +
             </Button>
@@ -104,7 +104,7 @@ function BlogListBlock() {
                         </div>
                      </div>
                      {
-                        user?.uid === "bqn4tboccsbVpUGKBxtly1GuOQF3" && 
+                        user?.uid === process.env.REACT_APP_ADMIN_UID && 
                            <Button 
                               id = {news.id} 
                               className={style.deleteBtn} 
