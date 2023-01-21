@@ -147,16 +147,16 @@ function Resume() {
                      <div className="resume-card-content-title">HTML/CSS</div>
                      <div className="skill-level-line">
                         <div className="line-skill-active"></div>
-                        <div className="line-skill-no-active"></div>
-                        <div className="line-skill-no-active"></div>
+                        <div className="line-skill-active"></div>
+                        <div className="line-skill-active"></div>
                         <div className="line-skill-no-active"></div>
                         <div className="line-skill-no-active"></div>
                      </div>
                      <div className="resume-card-content-title">JavaScript</div>
                      <div className="skill-level-line">
                         <div className="line-skill-active"></div>
-                        <div className="line-skill-no-active"></div>
-                        <div className="line-skill-no-active"></div>
+                        <div className="line-skill-active"></div>
+                        <div className="line-skill-active"></div>
                         <div className="line-skill-no-active"></div>
                         <div className="line-skill-no-active"></div>
                      </div>

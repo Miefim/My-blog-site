@@ -20,7 +20,7 @@ function CreateBlog({callback}) {
 
    const [addNewPost, isPostLoading, postError] = useFetching(async() => {
       await addDoc(collection(database, "posts"), {
-         img: "/images/blog-image-news1.jpg",
+         img: `/images/blogImages/${Math.floor(Math.random() * (6 - 1 + 1)) + 1}.jpg`,
          title,
          text: item,
          date: serverTimestamp(),

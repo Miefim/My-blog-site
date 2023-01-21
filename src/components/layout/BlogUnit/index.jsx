@@ -23,7 +23,7 @@ function BlogUnit() {
          :
             <>  
             <h1 className={style.title}>{blogUnit?.title}</h1>
-            <p className={style.text}>
+            <p className={style.text} style={{whiteSpace: 'break-spaces'}}>
                <img className={style.img} src={blogUnit?.img} alt="" />
                {blogUnit?.text}
             </p>
