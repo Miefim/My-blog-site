@@ -16,6 +16,7 @@ import ProjectQuoteGeneratorPage from "./pages/ProjectQuoteGeneratorPage"
 import AdminAutorizationPage from "./pages/AdminAutorizationPage"
 import AdminAccountPage from "./pages/AdminAccountPage"
 import NotFoundPage from "./pages/NotFoundPage"
+import ProjectMyBlogPage from "./pages/ProjectMyBlogPage";
 
 const router = createBrowserRouter(createRoutesFromElements(
   <>
@@ -24,6 +25,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/blog_list/:id" element={<BlogUnitPage />} />
     <Route exact path="/:id" element={<BlogUnitPage />} />
     <Route path="/project_list" element={<ProjectListPage />} />
+    <Route path="/project_my_blog" element={<ProjectMyBlogPage />} />
     <Route path="/project_nasa_api" element={<ProjectNasaApiPage />} />
     <Route path="/project_quote_generator" element={<ProjectQuoteGeneratorPage />} />
     <Route path="/admin" element={<AdminAutorizationPage />} />

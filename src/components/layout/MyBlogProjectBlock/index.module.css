@@ -1,0 +1,38 @@
+.root {
+   width: 1200px;
+   margin: auto;
+}
+
+.title {
+   font-size: 30px;
+   font-weight: 500;
+}
+
+.content {
+   width: 800px;
+   margin-top: 50px;
+   white-space: pre-wrap;
+   display: flex;
+   flex-direction: column;
+}
+
+.big_picture {
+   width: 700px;
+   margin: 30px auto;
+   border: 1px solid;
+   padding: 10px;
+}
+
+.medium_picture {
+   width: 500px;
+   margin: 30px auto;
+   border: 1px solid;
+   padding: 10px;
+}
+
+.small_picture {
+   box-sizing: border-box;
+   width: 400px;
+   margin: 30px auto;
+   padding: 10px;
+}

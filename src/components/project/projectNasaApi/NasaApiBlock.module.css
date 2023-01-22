@@ -13,7 +13,7 @@
 }
 
 .banner {
-   background: url("/public/images/nasaApiBlock/banner.jpg") no-repeat;
+   background: url("/public/images/projectImages/nasaApiBlock/banner.jpg") no-repeat;
    height: 200px;
    width: auto;
    display: flex;

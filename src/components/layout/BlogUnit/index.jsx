@@ -55,8 +55,7 @@ function BlogUnit() {
       setVisible(false)
       setEditState(false)
    }
-
-   
+  
    const cancelChanges = () => {
       setTitle(originalTitle)
       setItem(originalItem)
@@ -75,8 +74,8 @@ function BlogUnit() {
                <div className={style.swicher} onClick={swichEditState}>
                   Edit
                   <div className={editState? [style.rail, style.rail_active].join(' ') : style.rail}>
-                     <div className={style.train}>
-                        {editState? 'On' : 'Off'}
+                     <div className={editState? [style.train, style.train_active].join(' ') : style.train}>
+                        {editState? 'I' : 'O'}
                      </div>
                   </div>
                </div>

@@ -27,7 +27,6 @@
 }
 
 .rail_active {
-   justify-content: end;
    background-color: rgb(208, 0, 0);
 }
 
@@ -41,6 +40,11 @@
    display: flex;
    justify-content: center;
    align-items: center;
+   transition: .3s;
+}
+
+.train_active {
+   transform: translateX(24px);
 }
 
 .blog_banner {
