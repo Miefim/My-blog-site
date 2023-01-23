@@ -1,7 +1,7 @@
 .commentBlock {
    display: flex;
    flex-direction: column;
-   margin-top: 80px;
+   margin-top: 50px;
 }
 
 .commentBlockTitle {

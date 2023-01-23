@@ -80,7 +80,7 @@ function BlogUnit() {
                   </div>
                </div>
                }
-               <div className={style.blog_banner} style={{background: `url("${blogUnit.img}") no-repeat fixed bottom`, backgroundSize: 'cover'}}></div> 
+               <div className={style.blog_banner} style={{background: `url("${blogUnit?.img}") no-repeat fixed bottom`, backgroundSize: 'cover'}}></div> 
                {!editState
                ? 
                   <div className={style.item_block}>

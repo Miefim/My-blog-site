@@ -1,6 +1,9 @@
+import { Link } from 'react-router-dom'
+
 import style from './index.module.css'
 
 const MyBlogProjectBlock = () => {
+   window.scrollTo(0, 0)
    return(
       <div className={style.root}>
          <div className='line-title' style={{margin: '80px 0 0 0'}}></div>
@@ -30,10 +33,10 @@ const MyBlogProjectBlock = () => {
             отменить изменения. В случае когда изменениния не обнаружены, выход из режима редактирования происходит по нажатию на флажок.
             <img className={style.big_picture} src="/images/projectImages/myBlog/7.png" alt="" /> <br />
             Также у администратора есть личный кабинет, откуда можно добавлять новые посты и управлять комментариями различных пользователей, 
-            на изображении снизу мы видим информацию о пользователе и списов всех комментариев, которые он оставлял когда либо под всеми постами
+            на изображении снизу мы видим информацию о пользователе и список всех комментариев, которые он оставлял когда либо под всеми постами
             с возможностью удаления как всех, так и отдельно взятого. 
             <img className={style.big_picture} src="/images/projectImages/myBlog/8.png" alt="" /> <br />
-            
+            <div>А по<Link to='/HIaRCyWAuUKS1I64Wb9l' className={style.link} href="">ссылке</Link>можно пройти и оставить свой комментарий ;)</div> 
          </div>
       </div>
    )

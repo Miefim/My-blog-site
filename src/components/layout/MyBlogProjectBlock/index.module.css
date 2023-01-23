@@ -36,3 +36,9 @@
    margin: 30px auto;
    padding: 10px;
 }
+
+.link {
+   margin: 0 5px;
+   text-decoration: none;
+   color: #499ad6;
+}

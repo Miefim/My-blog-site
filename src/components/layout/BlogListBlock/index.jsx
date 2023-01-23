@@ -110,7 +110,9 @@ function BlogListBlock() {
                               className={style.deleteBtn} 
                               onClick = {e => removePost(e.target.id)}
                            >
-                              {isRemoveLoad && buttonId === news.id? <LoaderCircle/> : 'Удалить пост'}
+                              {!removeError
+                              ?  isRemoveLoad && buttonId === news.id? <LoaderCircle/> : 'Удалить пост'
+                              :  buttonId === news.id? 'Error' : 'Удалить пост'}
                            </Button>
                      }
                   </div>
