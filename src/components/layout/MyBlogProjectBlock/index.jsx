@@ -9,9 +9,9 @@ const MyBlogProjectBlock = () => {
          <div className='line-title' style={{margin: '80px 0 0 0'}}></div>
          <h1 className={style.title}>My Blog</h1>
          <div className={style.content}>
-            Самый главный проект на данном этапе, это конечно данный сайт в 
+            Самый главный проект на данном этапе, это, конечно, данный сайт в 
             целом, но в этой статье хочу описать одну из наиболее интересных 
-            частей сайта, а именно то как устроен блог. <br/><br/>
+            частей сайта, а именно как устроен блог. <br/><br/>
             <img className={style.big_picture} src="/images/projectImages/myBlog/1.png" alt="" /> <br />
             Под блоком статьи расположен блок комментариев, но прежде чем оставить 
             комментарий необходимо авторизоваться. <br />

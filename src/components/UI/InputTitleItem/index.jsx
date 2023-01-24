@@ -14,7 +14,7 @@ const InputTitleItem = ({className, value, ...props}) => {
       }
    },[value])
    return(
-      <>
+      <div className={style.root}>
          <input {...props} 
             className={
                error
@@ -25,7 +25,7 @@ const InputTitleItem = ({className, value, ...props}) => {
             value={value}
          />
          <p className={style.error_message}>{error}</p>
-      </> 
+      </div> 
    )
 }
 

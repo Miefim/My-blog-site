@@ -11,7 +11,7 @@ function Resume() {
                   <div className="resume-card">
                      <div className="line-title"></div>
                      <div className="resume-card-title">
-                        <div className="resume-card-title-text title">Expertise</div>
+                        <div className="resume-card-title-text title">Experience</div>
                         <img
                            className="resume-card-title-icon"
                            src="images/resume-card-icon-work.png"

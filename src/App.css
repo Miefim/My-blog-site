@@ -627,6 +627,7 @@ body {
 .blog-unit-image {
     height: 50%;
     width: 100%;
+    cursor: pointer;
 }
 
 .blog-unit-title {

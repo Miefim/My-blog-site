@@ -13,8 +13,9 @@ const TextareaItem = ({className, value, ...props}) => {
          setError(null)
       }
    },[value])
+
    return(
-      <>
+      <div className={style.root}>
          <textarea {...props} 
             className={
                error
@@ -25,7 +26,7 @@ const TextareaItem = ({className, value, ...props}) => {
             value={value}
          />
          <p className={style.error_message}>{error}</p>
-      </> 
+      </div> 
    )
 }
 

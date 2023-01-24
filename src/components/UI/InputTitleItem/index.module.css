@@ -1,3 +1,7 @@
+.root {
+   position: relative;
+}
+
 .input {
    font-size: 32px;
    width: 100%;
@@ -10,8 +14,8 @@
 
 .error_message {
    position: absolute;
-   top: 115px;
-   right: 20px;
+   top: -3px;
+   right: 10px;
    color: red;
 }
 

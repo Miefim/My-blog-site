@@ -49,7 +49,7 @@ function Blog() {
                      className="blog-unit" 
                      key={news.id}
                   >
-                     <img className="blog-unit-image" src={news.data.img} alt="" />
+                     <img className="blog-unit-image" src={news.data.img} alt="" onClick={ () => navigate(`${news.id}`)}/>
                      <div className="blog-unit-title">{news.data.title}</div>
                      <div className="blog-unit-info-line">
                         <div className="blog-unit-info-line-date">{news.date}</div>
@@ -81,7 +81,7 @@ function Blog() {
                   </div>
                )}
          </div>
-         <Link to ="/blog_list" className="blog-button">Read more</Link>
+         <Link to ="/blog_list" className="blog-button">All posts</Link>
       </div>
    </section>
    )}

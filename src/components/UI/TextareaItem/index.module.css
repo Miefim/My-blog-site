@@ -1,3 +1,8 @@
+.root {
+   position: relative;
+   width: 800px;
+}
+
 .textarea {
    margin-top: 20px;
    font-size: 16px;
@@ -11,8 +16,8 @@
 
 .error_message {
    position: absolute;
-   top: 160px;
-   right: 420px;
+   top: 15px;
+   right: 10px;
    color: red;
 }
 
