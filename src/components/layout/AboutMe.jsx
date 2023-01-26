@@ -22,7 +22,7 @@ function AboutMe() {
                      src="images/download-icon.png"
                      alt=""
                   />
-                  <a href="/documents/resume.pdf" download="Mikhail_Efimov_Frond-end_developer_resume" style={{textDecoration: 'none'}}>
+                  <a href="/documents/Resume_EN.pdf" download="Mikhail_Efimov_Frond_End_developer_resume" style={{textDecoration: 'none'}}>
                      <p className="about-me-card-content-button-text">Download My CV</p>
                   </a>
                </div>
@@ -47,14 +47,14 @@ function AboutMe() {
                         alt=""
                      />
                   </a>
-                  <a href="https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D0%B5%D1%84%D0%B8%D0%BC%D0%BE%D0%B2-b03801258/" target='_blank'>
+                  <a href="https://www.linkedin.com/in/mikhail-efimov-b03801258/?locale=en_US" target='_blank'>
                      <img
                         className="about-me-card-content-social-network-icon"
                         src="/images/linkedin-logo-blue.png"
                         alt=""
                      />
                   </a>
-                  <a href="" target='_blank'>
+                  <a href="https://spb.hh.ru/resume/61fd0c6eff0ba50b2a0039ed1f506444714b46" target='_blank'>
                      <img
                         className="about-me-card-content-social-network-icon"
                         src="images/hh-logo.png"
@@ -82,7 +82,7 @@ function AboutMe() {
             <div className="about-me-card-content">
                <div className="line-title"></div>
                <p className="title">My Expertise</p>
-               <div className="about-me-card-content-skill" style={{margin: '70px auto'}}>
+               <div className="about-me-card-content-skill" style={{margin: '30px 0 0 0'}}>
                   <img
                      className="about-me-card-content-skill-icon"
                      src="images/skill-icon1.png"
@@ -93,19 +93,19 @@ function AboutMe() {
                      Development of web client applications
                   </p>
                </div>
-               {/* <div className="line-skill"></div>
+               <div className="line-skill"></div>
                <div className="about-me-card-content-skill">
                   <img
                      className="about-me-card-content-skill-icon"
-                     src="images/skill-icon2.png"
+                     src="images/skill-icon3.png"
                      alt=""
                   />
                   <p className="about-me-card-content-description">
-                     <b className="black-text">BackEnd разработка</b><br />
-                     Разработка серверной части
+                     <b className="black-text">Website maintenance</b><br />
+                     Updating website content using CMS
                   </p>
                </div>
-               <div className="line-skill"></div>
+               {/* <div className="line-skill"></div>
                <div className="about-me-card-content-skill">
                   <img
                      className="about-me-card-content-skill-icon"

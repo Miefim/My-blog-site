@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 import { useCollection } from 'react-firebase-hooks/firestore'
 import { collection } from 'firebase/firestore';
 
@@ -7,6 +8,7 @@ import { database } from '../../firebase';
 import { useMemo } from 'react';
 
 function Project() {
+   const navigate = useNavigate()
    const [projectCollection, isLoadCollection] = useCollection(
       collection(database, 'projects')
    )
@@ -22,6 +24,7 @@ function Project() {
       return projects
    },[projectCollection])
 
+   const [projectLink, setProjectLink] = useState('')
    let [projectWindowWidth, setProjectWindowWidth] = React.useState(0)
    let [widthUnit, setWidthUnit] = React.useState(0)
    let [index, setIndex] = React.useState(0)
@@ -81,12 +84,21 @@ function Project() {
       e.type === "touchend"? xEnd = e.changedTouches[0].clientX : xEnd = e.clientX
       e.currentTarget.style.transition = "0.3s"
       let difOX = x - xEnd
+      const moduleDifOX = Math.abs(difOX)
       setStateMouse(stateMouse = false)
-      if (difOX > 0){
-         incrementIndex()
+      if(moduleDifOX === 0){
+         navigate(projectLink)
       }
-      else{
-         decrementIndex()
+      else if(moduleDifOX > 100){
+         if (difOX > 0){
+            incrementIndex()
+         }
+         if (difOX < 0){
+            decrementIndex()
+         }
+      } 
+      else {
+         setTransformTape(index * (widthUnit * numberUnitsScreen))
       }
    }
 
@@ -105,7 +117,7 @@ function Project() {
             <div className="resume-title">
                <div className="line-title"></div>
                <div className="title">My Projects</div>
-               <Link to="project_list">
+               <Link to="project_list" style={{textDecoration: 'none'}}>
                   <div className="project-button">All projects</div>
                </Link>
             </div>
@@ -128,13 +140,13 @@ function Project() {
                         <div className="project-unit" key={project.id}>
                            <div className="project-unit-content">
                               <div className="project-type">{project.data.type}</div>
-                              <Link to={project.data.href} className="project-image-block">
+                              <div className="project-image-block" onMouseDown={() => setProjectLink(project.data.href)}>
                                  <img
                                     className="project-image"
                                     src={project.data.img}
                                     alt=""
                                  />
-                              </Link>
+                              </div>
                               <div className="project-title">{project.data.title}</div>
                               <div className="project-description">
                                  {project.data.subtitle}

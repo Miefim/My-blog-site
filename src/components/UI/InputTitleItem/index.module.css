@@ -1,0 +1,25 @@
+.root {
+   position: relative;
+   width: 800px;
+}
+
+.input {
+   font-size: 32px;
+   width: 800px;
+   font-family: 'Open Sans', sans-serif;
+   font-weight: 100;
+   background-color: #ffffff;
+   border: 1px solid;
+   padding: 0;
+}
+
+.error_message {
+   position: absolute;
+   top: -3px;
+   right: 10px;
+   color: red;
+}
+
+.error {
+   background-color: #ff9999;
+}

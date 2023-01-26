@@ -22,6 +22,7 @@ function BlogListBlock() {
    
    const [buttonId, setButtonId] = useState(0)
    const [modalVisible, setModalVisible] = useState(false)
+   const [modalVisibleWarning, setModalVisibleWarning] = useState(false)
 
    const navigate = useNavigate()
 
@@ -48,12 +49,12 @@ function BlogListBlock() {
    },[collectionBlog])
 
    const [removePost, isRemoveLoad, removeError] = useFetching(async(props) => {
-      setButtonId(props)
       const collectionComm = await getDocs(collection(database, `posts/${props}/comments`))
       collectionComm.forEach(async(el) => {
          await deleteDoc(doc(database, `posts/${props}/comments`, el.id));
       })
       await deleteDoc(doc(database, "posts", `${props}`));
+      setModalVisibleWarning(false)
    }) 
 
    return (
@@ -61,7 +62,7 @@ function BlogListBlock() {
          {collectionError && <h1>Server Error :(</h1>}
          {blogs?.length === 0 && !isLoadingCollection? <h1>There is no news yet</h1> : ''}
          <div className={style.container}>
-         {user?.uid === "bqn4tboccsbVpUGKBxtly1GuOQF3" && 
+         {user?.uid === process.env.REACT_APP_ADMIN_UID && 
             <Button className={style.createPost} onClick = {() => setModalVisible(true)}>
                Создать пост +
             </Button>
@@ -75,7 +76,7 @@ function BlogListBlock() {
                blogs.map((news) =>
                   <div className={style.blogUnit} key={news.id}>
                      <div className={style.imageBlock}>
-                        <img className={style.image} src={news.data.img} alt="" />
+                        <img className={style.image} src={news.data.img} alt="" onClick={() => navigate(`${news.id}`)}/>
                         <div className={style.type}>{news.type}</div>
                      </div>
                      <div className={style.description}>
@@ -97,29 +98,51 @@ function BlogListBlock() {
                               <img className={style.commentIcon} src="images/blog-unit-info-line-comment-icon.png" alt="" />
                               Comments ({news.data.commentCount || 0})
                            </div>
-                           <div className={style.more} onClick = { () => navigate(`${news.id}`) }>
+                           <div className={style.more} onClick = {() => navigate(`${news.id}`)}>
                               More
                               <img className={style.arrow} src='images/right-arrow.png' alt="" />
                            </div>
                         </div>
                      </div>
                      {
-                        user?.uid === "bqn4tboccsbVpUGKBxtly1GuOQF3" && 
+                        user?.uid === process.env.REACT_APP_ADMIN_UID && 
                            <Button 
                               id = {news.id} 
                               className={style.deleteBtn} 
-                              onClick = {e => removePost(e.target.id)}
+                              onClick = {(e) => {
+                                 setModalVisibleWarning(true)
+                                 setButtonId(e.target.id)
+                              }}
                            >
-                              {isRemoveLoad && buttonId === news.id? <LoaderCircle/> : 'Удалить пост'}
+                              Delete
                            </Button>
                      }
                   </div>
                )
          }
          </div>
+         {user?.uid === process.env.REACT_APP_ADMIN_UID && 
          <ModalWin visible={modalVisible} setVisible={setModalVisible}>
             <CreateBlog callback={() => setModalVisible(false)}/>
-         </ModalWin>
+         </ModalWin>}
+         {user?.uid === process.env.REACT_APP_ADMIN_UID && 
+         <ModalWin visible={modalVisibleWarning} setVisible={setModalVisibleWarning}>
+            <div className={style.warning}>
+               Do you really want to delete the post?
+               <div className={style.warning_block_buttons}>
+                  <Button 
+                     className={style.warning_delete_btn}
+                     onClick = {() => removePost(buttonId)}
+                  >
+                     {!removeError
+                        ?  isRemoveLoad? <LoaderCircle/> : 'Delete'
+                        :  'Error' 
+                     }
+                  </Button>
+                  <Button onClick={() => setModalVisibleWarning(false)}>Cancel</Button>
+               </div>
+            </div>
+         </ModalWin>}
       </div>
       
    )}

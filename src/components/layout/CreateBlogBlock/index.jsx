@@ -3,11 +3,11 @@ import { getAuth } from "firebase/auth"
 import { useAuthState } from "react-firebase-hooks/auth"
 import { collection, addDoc, serverTimestamp  } from "firebase/firestore"; 
 
+import TextareaItem from '../../UI/TextareaItem'
+import InpuTitleItem from '../../UI/InputTitleItem'
 import { database } from "../../../firebase"
 import { useFetching } from "../../../hooks/useFetching"
 import LoaderCircle from "../../UI/LoaderCircle";
-import Input from "../../UI/Input"
-import Textarea from "../../UI/Textarea"
 import Button from "../../UI/Button"
 import style from "./index.module.css"
 
@@ -20,7 +20,7 @@ function CreateBlog({callback}) {
 
    const [addNewPost, isPostLoading, postError] = useFetching(async() => {
       await addDoc(collection(database, "posts"), {
-         img: "/images/blog-image-news1.jpg",
+         img: `/images/blogImages/${Math.floor(Math.random() * (6 - 1 + 1)) + 1}.jpg`,
          title,
          text: item,
          date: serverTimestamp(),
@@ -37,29 +37,29 @@ function CreateBlog({callback}) {
          {user?.uid === process.env.REACT_APP_ADMIN_UID
          ? 
             <>
-            <h1 className={style.title}>Добавление поста</h1>
-            <Input 
-               placeholder={'Название статьи'} 
+            <h1 className={style.title}>Add new post</h1>
+            <InpuTitleItem 
+               placeholder={'Title'} 
                value = {title} 
                onChange = { e => setTitle(e.target.value) }
             />
-            <Textarea 
+            <TextareaItem 
                className={style.textarea} 
-               placeholder={'Статья'} 
+               placeholder={'Item'} 
                value = {item} 
-               onChange = { e => setItem(e.target.value) }
+               onChange = { e => setItem(e.target.value)}
             />
             <Button 
                disabled = {!title && !item} 
                onClick = { addNewPost } 
                className={style.btn}
             >
-               {isPostLoading ? <LoaderCircle/> : 'Создать пост'}
-               {postError? "Ошибка" : ''}
+               {isPostLoading ? <LoaderCircle/> : 'Add post'}
+               {postError? "Error" : ''}
             </Button>
             </>
          :
-            <h1>Ах ты хитруша какая, это только для одмена</h1>
+            <h1>Oh, what a cunning you are, this is only for admin</h1>
          }  
       </div>
    )

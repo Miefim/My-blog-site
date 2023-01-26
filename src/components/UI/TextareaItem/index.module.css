@@ -1,0 +1,26 @@
+.root {
+   position: relative;
+   width: 800px;
+}
+
+.textarea {
+   margin-top: 20px;
+   font-size: 16px;
+   width: 800px;
+   height: 100vh;
+   font-family: 'Exo 2', sans-serif;
+   border: 1px solid;
+   padding: 0;
+   resize: none;
+}
+
+.error_message {
+   position: absolute;
+   top: 15px;
+   right: 10px;
+   color: red;
+}
+
+.error {
+   background-color: #ff9999;
+}

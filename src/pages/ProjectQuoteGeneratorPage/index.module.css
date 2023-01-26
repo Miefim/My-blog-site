@@ -3,5 +3,5 @@
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-   background: url("/public/images/quoteGenerator/banner.jpg") center; 
+   background: url("/public/images/projectImages/quoteGenerator/banner.jpg") center; 
 }

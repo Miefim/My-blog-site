@@ -12,7 +12,7 @@ function Footer({className, ...props}) {
                VK
             </div>
          </a>
-         <a className="footer-social-network-line-unit-link" href="" target='_blank'>
+         <a className="footer-social-network-line-unit-link" href="https://spb.hh.ru/resume/61fd0c6eff0ba50b2a0039ed1f506444714b46" target='_blank'>
             <div className="footer-social-network-line-unit">
                <img
                   className="footer-social-network-line-unit-image"
@@ -32,7 +32,7 @@ function Footer({className, ...props}) {
                GitHub
             </div>
          </a>
-         <a className="footer-social-network-line-unit-link" href="https://www.linkedin.com/in/%D0%BC%D0%B8%D1%85%D0%B0%D0%B8%D0%BB-%D0%B5%D1%84%D0%B8%D0%BC%D0%BE%D0%B2-b03801258/" target='_blank'>
+         <a className="footer-social-network-line-unit-link" href="https://www.linkedin.com/in/mikhail-efimov-b03801258/?locale=en_US" target='_blank'>
             <div className="footer-social-network-line-unit">
                <img
                   className="footer-social-network-line-unit-image"

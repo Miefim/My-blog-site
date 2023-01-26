@@ -7,6 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { collection, query, where } from "firebase/firestore";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
+import MobileMenu from './MobileMenu'
 import { database } from "../../firebase";
 import ButtonUp from "../layout/ButtonUp";
 import LoaderCircle from "../UI/LoaderCircle";
@@ -23,10 +24,10 @@ function Header() {
 
    window.addEventListener("scroll", () => {
       if(window.pageYOffset >= `${620}`){
-         setActiveHeaderLine(activeHeaderLine = true)
+         setActiveHeaderLine(true)
       }
       else {
-         setActiveHeaderLine(activeHeaderLine = false)
+         setActiveHeaderLine(false)
       }
    },{
       passive: true
@@ -50,7 +51,7 @@ function Header() {
          {
             user && <div className="header-admin-info">          
                {
-                  user?.uid === 'bqn4tboccsbVpUGKBxtly1GuOQF3'
+                  user?.uid === process.env.REACT_APP_ADMIN_UID
                   ?
                      <>
                         <div>Hello Admin!</div>
@@ -79,7 +80,7 @@ function Header() {
                   <p className="header-banner-subtitle">Web Developer</p>
                </div>
                <div className="header-banner-content-bottom">
-                  <a href="/documents/resume.pdf" target='_blank' style={{textDecoration: 'none'}}>
+                  <a href="/documents/Resume_EN.pdf" target='_blank' style={{textDecoration: 'none'}}>
                      <div className="header-banner-button">
                         <img className="header-banner-button-icon" src="images/print-icon.png" alt="" />
                         <p className="header-banner-button-text">Print CV</p>
@@ -135,9 +136,7 @@ function Header() {
                <img className="header-line-button-icon" src="images/feedback-icon.png" alt="" />
             </Link>
          </div>
-         <div className="mobile-menu-line" style = {activeHeaderLine && window.innerWidth <= 670? {position: "fixed", width: "100%", zIndex: "10", top: "0"} : {}}>
-            <img className="mobile-menu-image" src="images/button-mobile-menu-icon.png" alt="" />
-         </div>
+         <MobileMenu fixed={activeHeaderLine} />
       </section>
       <ButtonUp flag = {activeHeaderLine} />
       </>

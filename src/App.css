@@ -19,7 +19,8 @@ body {
 }
 
 .header-banner {
-    background: url("../public/images/banner.jpg") fixed;
+    background-image: url("../public/images/banner.jpg");
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -136,27 +137,6 @@ body {
     display: flex;
     margin-top: 10px;
     cursor: pointer;
-}
-
-.mobile-menu-line {
-    position: relative;
-    background-color: #ffffff;
-    box-shadow: 5px 2px 8px 0px #e6e6e6;
-    display: none;
-    justify-content: flex-end
-}
-
-
-.mobile-menu-image {
-    height: 30px;
-    padding: 10px 10px 10px 10px;
-    margin: 5px 20px 5px 0;
-}
-
-.mobile-menu-image:hover {
-    box-shadow: inset 0px 0px 20px 1px #f2f2f2;
-    transition: 0.3s linear;
-    cursor: pointer; 
 }
 
 .header-line-button {
@@ -627,6 +607,7 @@ body {
 .blog-unit-image {
     height: 50%;
     width: 100%;
+    cursor: pointer;
 }
 
 .blog-unit-title {
@@ -1076,7 +1057,7 @@ li:before {
         width: 275px;
     }
 
-    .blog-unit:last-child {
+    .blog-unit:nth-child(3) {
         display: none;
     }
 
@@ -1139,6 +1120,11 @@ li:before {
 }
 
 @media screen and (max-width: 800px) {
+    
+    .header-banner {
+        background-size: auto;
+    }
+
     .header-banner-content-bottom {
         display: none;
     }
@@ -1188,10 +1174,6 @@ li:before {
     .header-line {
         display: none;
     }
-
-    .mobile-menu-line {
-        display: flex;
-    }
     
     .header-banner-title {
         margin: 180px auto 10px auto;
@@ -1215,6 +1197,14 @@ li:before {
 
     .project-window {
         width: 100%;
+    }
+
+    .project-title {
+        margin: 10px 20px;
+    }
+
+    .project-description {
+        margin: 0 20px;
     }
 
     .about-me-card {
@@ -1253,6 +1243,39 @@ li:before {
 
     .about-me-card-content {
         margin: auto 50px auto 50px
+    }
+
+    .project {
+        padding-bottom: 0;
+    }
+
+    .project-content {
+        margin-top: 0;
+    }
+
+    .project-button {
+        position: static;
+        margin: 20px 0 20px -30px;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        border-radius: 0px;
+        background-color: #499ad6;
+        color: #ffffff;
+    }
+
+    .project-image-block {
+        height: 50%;
+    }
+
+    .blog-button {
+        margin: 50px 0 0 0;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        border-radius: 0px;
+        background-color: #499ad6;
+        color: #ffffff;
     }
 }
 

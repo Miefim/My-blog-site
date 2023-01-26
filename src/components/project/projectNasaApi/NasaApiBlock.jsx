@@ -1,4 +1,6 @@
-import React from "react"
+import React, { useState } from "react"
+import { useEffect } from "react"
+import { useRef } from "react"
 
 import style from "./NasaApiBlock.module.css"
 
@@ -24,6 +26,13 @@ function NasaApiBlock () {
       setOpenSliderFlag(true)
    }
 
+   const imageUnitSliderRef = useRef()
+   const [imageUnitSliderWidth, setImageUnitSliderWidth] = useState(null)
+
+   useEffect(() => {
+      setImageUnitSliderWidth(imageUnitSliderRef?.current?.clientWidth)
+   })
+
    return (
       <>
          <div className={style.container}>
@@ -40,7 +49,7 @@ function NasaApiBlock () {
                      onChange={(e) => setInputValue(e.target.value)}
                   />
                   <button className={style.surchButton} onClick={surchImages}>
-                     <img className={style.surchButton_picture} src="images/nasaApiBlock/surch.png" alt="" />
+                     <img className={style.surchButton_picture} src="images/projectImages/nasaApiBlock/surch.png" alt="" />
                   </button>
                </div>
             </div>
@@ -58,12 +67,12 @@ function NasaApiBlock () {
          <h1 style={imageArray?.length === 0? {display: "flex", margin: 'auto'} : {display: "none"}}>Nothing found</h1>
          <div className={style.slider} style = {openSliderFlag? {display: "flex", position: "fixed"}: {display: "none"}}>
             <button className={style.slider_btnL} onClick={() => {setIndex(index - 1)}}>
-               <img className={style.slider_btnL_picture} src="images/nasaApiBlock/left-arrow.png" alt="" />
+               <img className={style.slider_btnL_picture} src="images/projectImages/nasaApiBlock/left-arrow.png" alt="" />
             </button>
             <div className={style.slider_window}>
-               <div className={style.slider_tape} style = {{transform: `translate3d(-${index * 1200}px, 0px, 0px)`}}>
+               <div className={style.slider_tape} style = {{transform: `translate3d(-${index * imageUnitSliderWidth}px, 0px, 0px)`}}>
                   {imageArray?.map((el)=>
-                     <div className={style.imageUnitSlider} key = {el.links[0].href}>
+                     <div className={style.imageUnitSlider} key = {el.links[0].href} ref={imageUnitSliderRef}>
                         <img className={style.imageUnitSlider_picture} src={el.links[0].href} alt="" />          
                         <div className={style.description}>{el.data[0].description}</div>
                      </div>
@@ -71,10 +80,10 @@ function NasaApiBlock () {
                </div>
             </div>
             <button className={style.slider_btnR} onClick={() => {setIndex(index + 1)}}>
-               <img className={style.slider_btnR_picture} src="images/nasaApiBlock/left-arrow.png" alt="" />
+               <img className={style.slider_btnR_picture} src="images/projectImages/nasaApiBlock/left-arrow.png" alt="" />
             </button>
             <button className={style.slider_btnClose} onClick={() => setOpenSliderFlag(false)}>
-               <img className={style.slider_btnClose_picture} src="images/nasaApiBlock/close.png" alt="" />
+               <img className={style.slider_btnClose_picture} src="images/projectImages/nasaApiBlock/close.png" alt="" />
             </button>
          </div>
       </>

@@ -1,7 +1,7 @@
 .commentBlock {
    display: flex;
    flex-direction: column;
-   margin-top: 80px;
+   margin-top: 50px;
 }
 
 .commentBlockTitle {
@@ -92,4 +92,12 @@
    color: #499ad6;
    cursor: pointer;
    margin: 0 5px;
+}
+
+@media screen and (max-width: 560px) {
+
+   .textarea {
+      width: auto;
+   }
+
 }

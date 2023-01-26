@@ -30,6 +30,7 @@
 
 .image {
    width: 100%;
+   cursor: pointer;
 }
 
 .description {
@@ -109,8 +110,6 @@
    border: 1px solid red;
    color: red;
    font-size: 13px;
-   width: 200px;
-   height: 38px;
 }
 
 .deleteBtn:hover {
@@ -124,6 +123,29 @@
    width: 200px;
 }
 
+.warning {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.warning_block_buttons {
+   display: flex;
+   margin-top: 20px;
+   justify-content: space-between;
+   width: 100%;
+}
+
+.warning_delete_btn {
+   border: 1px solid red;
+   color: red;
+   width: 128px;
+   height: 40px;
+}
+
+.warning_delete_btn:hover {
+   background-color: red;
+}
 
 @media screen and (max-width: 1250px) {
    .blogUnit {
@@ -157,6 +179,10 @@
       flex-direction: column;
       align-items: center;
       height: 150px;
+   }
+
+   .more {
+      width: auto;
    }
 
    .date {
