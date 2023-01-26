@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import MobileMenu from './MobileMenu'
 import ButtonUp from "../layout/ButtonUp";
 
 function HeaderInner () {
@@ -9,11 +10,11 @@ function HeaderInner () {
    let [activeHeaderLine, setActiveHeaderLine] = React.useState(false)
 
    window.addEventListener("scroll", () => {
-         if(window.pageYOffset >= `${80}`){
-            setActiveHeaderLine(activeHeaderLine = true)
+         if(window.pageYOffset >= `${1}`){
+            setActiveHeaderLine(true)
          }
          else {
-            setActiveHeaderLine(activeHeaderLine = false)
+            setActiveHeaderLine(false)
          }
       }, {
       passive: true
@@ -29,7 +30,7 @@ function HeaderInner () {
 
    return (
       <>
-         <section className="header" name="header">
+         <section className="header" name="header" style={activeHeaderLine && window.innerWidth <= 670? {height: '60px'} : {}}>
             <div className="header-line">
                <Link to ="/" className="header-line-button">
                   <p className="header-line-button-text">Home</p>
@@ -60,9 +61,7 @@ function HeaderInner () {
                   <img className="header-line-button-icon" src="/images/feedback-icon.png" alt="" />
                </Link>
             </div>
-            <div className="mobile-menu-line" style = {{position: "fixed", width: "100%", zIndex: "10", top: "0"}}>
-               <img className="mobile-menu-image" src="/images/button-mobile-menu-icon.png" alt="" />
-            </div>
+            <MobileMenu fixed={activeHeaderLine}/>
          </section>
          <ButtonUp flag = {activeHeaderLine} />
       </>

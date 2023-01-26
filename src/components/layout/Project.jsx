@@ -117,7 +117,7 @@ function Project() {
             <div className="resume-title">
                <div className="line-title"></div>
                <div className="title">My Projects</div>
-               <Link to="project_list">
+               <Link to="project_list" style={{textDecoration: 'none'}}>
                   <div className="project-button">All projects</div>
                </Link>
             </div>

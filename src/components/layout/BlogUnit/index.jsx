@@ -88,8 +88,8 @@ function BlogUnit() {
                      <p className={style.text}>{blogUnit?.text}</p>
                   </div>
                :  <div className={style.edit_block}>
-                     <InputTitleItem value={title} onChange={e => setTitle(e.target.value)}/>
-                     <TextareaItem value={item} onChange={e => setItem(e.target.value)}/>
+                     <InputTitleItem value={title} onChange={e => setTitle(e.target.value)} className={style.inputTitleItem}/>
+                     <TextareaItem value={item} onChange={e => setItem(e.target.value)} className={style.textareaItem}/>
                      <div className={style.edit_block_buttons}>
                         <Button className={style.save_btn} onClick={saveChanges} disabled={title === originalTitle && item === originalItem}>Save</Button>
                         <Button onClick={cancelChanges}>Cancel</Button>

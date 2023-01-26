@@ -1,4 +1,6 @@
-import React from "react"
+import React, { useState } from "react"
+import { useEffect } from "react"
+import { useRef } from "react"
 
 import style from "./NasaApiBlock.module.css"
 
@@ -23,6 +25,13 @@ function NasaApiBlock () {
    const openSlider = () => {
       setOpenSliderFlag(true)
    }
+
+   const imageUnitSliderRef = useRef()
+   const [imageUnitSliderWidth, setImageUnitSliderWidth] = useState(null)
+
+   useEffect(() => {
+      setImageUnitSliderWidth(imageUnitSliderRef?.current?.clientWidth)
+   })
 
    return (
       <>
@@ -61,9 +70,9 @@ function NasaApiBlock () {
                <img className={style.slider_btnL_picture} src="images/projectImages/nasaApiBlock/left-arrow.png" alt="" />
             </button>
             <div className={style.slider_window}>
-               <div className={style.slider_tape} style = {{transform: `translate3d(-${index * 1200}px, 0px, 0px)`}}>
+               <div className={style.slider_tape} style = {{transform: `translate3d(-${index * imageUnitSliderWidth}px, 0px, 0px)`}}>
                   {imageArray?.map((el)=>
-                     <div className={style.imageUnitSlider} key = {el.links[0].href}>
+                     <div className={style.imageUnitSlider} key = {el.links[0].href} ref={imageUnitSliderRef}>
                         <img className={style.imageUnitSlider_picture} src={el.links[0].href} alt="" />          
                         <div className={style.description}>{el.data[0].description}</div>
                      </div>

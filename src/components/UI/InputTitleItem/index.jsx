@@ -13,8 +13,9 @@ const InputTitleItem = ({className, value, ...props}) => {
          setError(null)
       }
    },[value])
+   
    return(
-      <div className={style.root}>
+      <div className={[style.root, className].join(' ')}>
          <input {...props} 
             className={
                error

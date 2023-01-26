@@ -1,6 +1,7 @@
 .root {
-   width: 1200px;
+   max-width: 1200px;
    margin: auto;
+   padding: 0 20px;
 }
 
 .title {
@@ -41,4 +42,45 @@
    margin: 0 5px;
    text-decoration: none;
    color: #499ad6;
+}
+
+.linePicture {
+   display: flex;
+   flex-wrap: wrap;
+}
+
+@media screen and (max-width: 820px) {
+   
+   .content {
+      width: 100%;
+   }
+
+}  
+
+@media screen and (max-width: 750px) {
+   
+   .big_picture {
+      width: 100%;
+      box-sizing: border-box;
+   }
+
+}  
+
+@media screen and (max-width: 560px) {
+
+   .medium_picture {
+      width: 100%;
+      box-sizing: border-box;
+   }
+   
+}
+
+@media screen and (max-width: 430px) {
+
+   .small_picture {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0;
+   }
+   
 }

@@ -19,7 +19,7 @@ const MyBlogProjectBlock = () => {
             Нажав на ссылку откроется модальное окно с вариантами авторизации: логина и пароля или при помощи провайдеров
             Google или GitHub. Если у вас нет аккаунта и вариант с провайдером не подходит, то можно зарегистрироваться 
             нажав для этого соответствующую кнопку.
-            <div style={{display:'flex'}}>
+            <div className={style.linePicture}>
                <img className={style.small_picture} src="/images/projectImages/myBlog/3.png" alt="" /> 
                <img className={style.small_picture} src="/images/projectImages/myBlog/4.png" alt="" /> 
             </div>

@@ -1,5 +1,5 @@
 .container {
-   width: 1200px;
+   max-width: 1200px;
    display: flex;
    flex-direction: column;
    margin: 0 auto;
@@ -8,13 +8,15 @@
 .content {
    display: flex;
    flex-direction: column;
-   height: 274px;
+   min-height: 274px;
+   box-sizing: border-box;
+   padding: 20px;
 }
 
 .quote {
    display: flex;
    justify-content: center;
-   width: 1000px;
+   max-width: 1000px;
    text-align: center;
    margin: auto;
    font-size: 30px;
@@ -37,10 +39,10 @@
    height: 50px;
    border: none;
    cursor: pointer;
-   background-color: #ffffff;
+   background-color: rgb(73, 154, 214);
 }
 
 .button:hover {
-   background-color: #f6f6f6;
+   background-color: rgb(65, 137, 192);
    transition: 0.3s;
 }

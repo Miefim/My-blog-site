@@ -15,7 +15,7 @@ const TextareaItem = ({className, value, ...props}) => {
    },[value])
 
    return(
-      <div className={style.root}>
+      <div className={[style.root, className].join(' ')}>
          <textarea {...props} 
             className={
                error

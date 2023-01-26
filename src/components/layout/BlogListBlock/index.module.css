@@ -181,6 +181,10 @@
       height: 150px;
    }
 
+   .more {
+      width: auto;
+   }
+
    .date {
       width: fit-content;
    }
