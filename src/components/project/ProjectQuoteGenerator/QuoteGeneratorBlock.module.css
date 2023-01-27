@@ -40,6 +40,7 @@
    border: none;
    cursor: pointer;
    background-color: rgb(73, 154, 214);
+   color: #ffffff;
 }
 
 .button:hover {

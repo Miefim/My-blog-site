@@ -3,12 +3,15 @@ import { collection } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useMemo } from "react";
 
+import LoaderCircle from '../../UI/LoaderCircle';
 import LoaderBlogList from '../../UI/skeleton/LoaderBlogList'
 import { database } from "../../../firebase";
 import style from './index.module.css'
 
 function ProjectListBlock() {
    window.scrollTo(0, 0)
+
+   const windowWidth = window.innerWidth
 
    const [projectCollection, isLoadCollection] = useCollection(
       collection(database, 'projects')
@@ -29,7 +32,7 @@ function ProjectListBlock() {
       <div className={style.root}>
          <div className={style.container}>
             {isLoadCollection
-            ?  [... new Array(5)].map((_, index) => <LoaderBlogList key={index}/>)
+            ?  windowWidth > 1250? [... new Array(5)].map((_, index) => <LoaderBlogList key={index}/>) : <LoaderCircle style={{height: '100px', width: '100px'}}/>
             :
             projects?.map((project) => 
                <div className={style.pojectUnit} key={project.id}>
