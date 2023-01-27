@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { collection } from "firebase/firestore";
 
+import LoaderCircle from '../UI/LoaderCircle'
 import { database } from "../../firebase";
 
 function Blog() {
@@ -42,7 +43,7 @@ function Blog() {
          <div className="blog-content">
             {collectionError && <h1>Server Error :(</h1> }
             {isLoadingCollection
-            ?  <h1>Loading...</h1>
+            ?  <div className="blog-loaderBlock"><LoaderCircle style={{height: '100px', width: '100px'}}/></div>
             :
                blogs.map((news) => 
                   <div 

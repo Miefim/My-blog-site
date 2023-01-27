@@ -9,13 +9,15 @@ import { useFetching } from '../../../hooks/useFetching';
 import { database } from "../../../firebase";
 import CreateBlog from '../CreateBlogBlock';
 import ModalWin from '../../UI/ModalWin';
+import LoaderCircle from '../../UI/LoaderCircle';
 import LoaderBlogList from '../../UI/skeleton/LoaderBlogList'
 import Button from '../../UI/Button'
 import style from './index.module.css'
-import LoaderCircle from '../../UI/LoaderCircle';
 
 function BlogListBlock() {
    window.scrollTo(0, 0)
+
+   const windowWidth = window.innerWidth
 
    const auth = getAuth()
    const [user] = useAuthState(auth);
@@ -69,9 +71,7 @@ function BlogListBlock() {
          }
          {isLoadingCollection
             ?  
-               [...new Array(5)].map((_, index) =>
-                  <LoaderBlogList key = {index}/>
-               ) 
+               windowWidth > 1250? [...new Array(5)].map((_, index) => <LoaderBlogList key = {index}/>) : <LoaderCircle style={{height: '100px', width: '100px'}}/>
             :
                blogs.map((news) =>
                   <div className={style.blogUnit} key={news.id}>

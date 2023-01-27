@@ -13,7 +13,7 @@ function AdminAutorizationPage() {
    const navigate = useNavigate()
 
    useEffect(() => {
-      if(user?.uid === 'bqn4tboccsbVpUGKBxtly1GuOQF3'){
+      if(user?.uid === process.env.REACT_APP_ADMIN_UID){
          navigate('/admin/account')
       }
       else if(user){

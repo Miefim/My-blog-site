@@ -4,6 +4,7 @@
    justify-content: center;
    align-items: center;
    position: relative;
+   width: 100%;
 }
 
 .input {
@@ -75,6 +76,7 @@
 .login {
    display: flex;
    flex-direction: column;
+   width: 100%;
 }
 
 .sign_up {
@@ -111,4 +113,28 @@
    height: 30px;
    margin: 0 10px;
    cursor: pointer;
+}
+
+@media screen and (max-width: 620px) {
+
+   .input {
+      width: 400px
+   } 
+
+}
+
+@media screen and (max-width: 560px) {
+
+   .input {
+      width: 300px
+   } 
+
+}
+
+@media screen and (max-width: 450px) {
+
+   .input {
+      width: auto
+   } 
+
 }
