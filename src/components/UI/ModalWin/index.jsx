@@ -1,6 +1,6 @@
 import style from "./index.module.css"
 
-const ModalWin = ({children, visible, setVisible}) => {
+const ModalWin = ({children, visible, setVisible, className}) => {
    return(
       <div 
          style = {
@@ -11,7 +11,7 @@ const ModalWin = ({children, visible, setVisible}) => {
          className = {style.root} 
          onClick = {() => setVisible(false)}
       >
-         <div className={style.content} onClick = {e => e.stopPropagation()}>
+         <div className={[style.content, className].join(' ')} onClick = {e => e.stopPropagation()}>
             {children}
          </div>
       </div>

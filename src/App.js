@@ -13,6 +13,7 @@ import BlogUnitPage from "./pages/BlogUnitPage"
 import ProjectListPage from "./pages/ProjectListPage"
 import ProjectNasaApiPage from "./pages/ProjectNasaApiPage"
 import ProjectQuoteGeneratorPage from "./pages/ProjectQuoteGeneratorPage"
+import ProjectTestTaskReduxSagaPage from "./pages/ProjectTestTaskReduxSagaPage"
 import AdminAutorizationPage from "./pages/AdminAutorizationPage"
 import AdminAccountPage from "./pages/AdminAccountPage"
 import NotFoundPage from "./pages/NotFoundPage"
@@ -28,6 +29,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/project_my_blog" element={<ProjectMyBlogPage />} />
     <Route path="/project_nasa_api" element={<ProjectNasaApiPage />} />
     <Route path="/project_quote_generator" element={<ProjectQuoteGeneratorPage />} />
+    <Route path="/test_task_redux_saga" element={<ProjectTestTaskReduxSagaPage />} />
     <Route path="/admin" element={<AdminAutorizationPage />} />
     <Route path="/admin/account" element={<AdminAccountPage />} />
     <Route path="*" element={<NotFoundPage />} />
