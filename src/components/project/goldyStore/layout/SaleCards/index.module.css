@@ -1,0 +1,77 @@
+.saleCard {
+   display: flex;
+   justify-content: space-between;
+   width: 1300px;
+   height: 290px;
+   margin: 120px auto 0 auto;
+   font-family: 'Inter', sans-serif;
+   font-size: 20px;
+   line-height: 32px;
+   font-weight: 600;
+}
+
+.card {
+   position: relative;
+   width: 420px;
+   height: 290px;
+   background-color: #F8F8F8;
+}
+
+.card_bgImg {
+   margin-top: 25px;
+}
+
+.card_earringsImg {
+   position: absolute;
+   right: 18px;
+}
+
+.card_RingsImg {
+   position: absolute;
+   right: 0px;
+   top: 41px;
+}
+
+.card_Img {
+   position: absolute;
+   right: 0px;
+}
+
+.card_text {
+   height: 96px;
+   max-width: 222px;
+   position: absolute;
+   top: 72px;
+   left: 27px;
+}
+
+.card_sticker {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 194px;
+   height: 52px;
+   font-weight: 600;
+   font-size: 36px;
+   line-height: 57.6px;
+   background-color: #43807F;
+   color: #FFFFFF;
+   position: absolute;
+   bottom: 48px;
+   left: 0;
+}
+
+.red {
+   background-color: #E24B33;
+}
+
+.yellow {
+   background-color: #E1A661;
+}
+
+.sticker_smallText {
+   margin: 0;
+   font-size: 24px;
+   line-height: 38.4px;
+   margin-right: 13px;
+}
