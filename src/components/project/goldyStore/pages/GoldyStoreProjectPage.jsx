@@ -3,6 +3,7 @@ import Banner from "../layout/Banner"
 import Category from "../layout/Category"
 import Sales from "../layout/Sales"
 import SaleCards from "../layout/SaleCards"
+import ProductDay from "../layout/ProductDay"
 import Articles from "../layout/Articles"
 
 const GoldyStoreProjectPage = () => {
@@ -13,6 +14,7 @@ const GoldyStoreProjectPage = () => {
          <Category/>
          <Sales/>
          <SaleCards/>
+         <ProductDay/>
          <Articles/>
       </>
    )

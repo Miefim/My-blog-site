@@ -1,0 +1,14 @@
+.sticker {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-radius: 15px;
+   color: #FFFFFF;
+   width: 50px;
+   height: 21px;
+   font-family: 'Inter', sans-serif;
+   font-weight: 500;
+   font-size: 13px;
+   line-height: 13px;
+   background-color: #E24B33;
+}
