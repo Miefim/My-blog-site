@@ -1,7 +1,7 @@
 .category {
    display: flex;
    flex-direction: column;
-   width: 1300px;
+   max-width: 1300px;
    margin: 120px auto 0 auto;
    color: #303030;
    font-family: 'Inter', sans-serif;
@@ -23,6 +23,7 @@
    width: 100%;
    display: flex;
    justify-content: space-between;
+   flex-wrap: wrap;
 }
 
 .cardLine_card {
@@ -32,6 +33,38 @@
    width: 200px;
    height: 259px;
    background-color: #F8F8F8;
+   cursor: pointer;
+   
+}
+
+.cardLine_card:hover .card_imgRing {
+   transform: scale(1.2);
+   transition: .2s;
+}
+
+.cardLine_card:hover .card_imgEarrings {
+   transform: scale(1.2);
+   transition: .2s;
+}
+
+.cardLine_card:hover .card_imgRings {
+   transform: scale(1.2);
+   transition: .2s;
+}
+
+.cardLine_card:hover .card_imgBracelet {
+   transform: scale(1.2);
+   transition: .2s;
+}
+
+.cardLine_card:hover .card_imgNecklace {
+   transform: scale(1.2);
+   transition: .2s;
+}
+
+.cardLine_card:hover .card_imgWatch {
+   transform: scale(1.2);
+   transition: .2s;
 }
 
 .card_imgRing {
@@ -75,4 +108,28 @@
    position: absolute;
    bottom: 17px;
    margin: 0;
+}
+
+@media screen and (max-width: 1300px)  {
+
+   .category {
+      width: 90%;
+   }
+
+   .cardLine_card {
+      margin-bottom: 10px;
+   }
+
+   .category_cardLine {
+      justify-content: space-around;
+      height: auto;
+   }
+}
+
+@media screen and (max-width: 444px)  {
+
+   .cardLine_card {
+      width: 100%;
+   }   
+
 }

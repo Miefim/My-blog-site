@@ -1,8 +1,8 @@
 .articles {
    display: flex;
    flex-direction: column;
-   margin: 120px auto 0 auto;
-   width: 1300px;
+   margin: 120px auto 25px auto;
+   max-width: 1300px;
    font-family: 'Inter', sans-serif;
    font-size: 14px;
    line-height: 14px;
@@ -22,6 +22,7 @@
    display: flex;
    justify-content: space-between;
    position: relative;
+   flex-wrap: wrap;
 }
 
 .article {
@@ -56,8 +57,34 @@
    top: -54px;
    right: 0;
    font-weight: 500;
+   cursor: pointer;
+   transition: .3s;
+}
+
+.moreBtn:hover {
+   opacity: 50%;
 }
 
 .moreBtn_img {
    margin-left: 12px;
+}
+
+@media screen and (max-width: 1300px) { 
+
+   .articleBlock {
+      justify-content: space-around;
+   }
+
+}
+
+@media screen and (max-width: 460px) { 
+
+   .articles {
+      margin-top: 172px;
+   }
+
+   .article {
+      margin-top: 20px;
+   }
+
 }

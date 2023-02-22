@@ -1,8 +1,7 @@
 .saleCard {
    display: flex;
    justify-content: space-between;
-   width: 1300px;
-   height: 290px;
+   max-width: 1300px;
    margin: 120px auto 0 auto;
    font-family: 'Inter', sans-serif;
    font-size: 20px;
@@ -74,4 +73,34 @@
    font-size: 24px;
    line-height: 38.4px;
    margin-right: 13px;
+}
+
+@media screen and (max-width: 1300px) {
+
+   .saleCard {
+      flex-wrap: wrap;
+      justify-content: space-around;
+      width: 90%;
+   }
+
+   .card {
+      margin-top: 20px;
+   }
+
+}
+
+@media screen and (max-width: 940px) {
+
+   .saleCard {
+      width: 100%;
+   }
+
+}
+
+@media screen and (max-width: 360px) {
+
+   .card_text {
+      margin-left: -20px;
+   }
+
 }

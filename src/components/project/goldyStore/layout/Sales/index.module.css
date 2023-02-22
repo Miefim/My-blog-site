@@ -22,6 +22,7 @@
 .sales_categoryLine {
    display: flex;
    margin-bottom: 36px;
+   flex-wrap: wrap;
 }
 
 .categoryLine_btn {
@@ -29,13 +30,27 @@
    cursor: pointer;
    background-color: #F0F0F0;
    border-radius: 20px;
-   margin-right: 8px;
+   margin-right: 9px;
+}
+
+.categoryLine_btn:hover {
+   background-color: #DDDDDD;
+}
+
+.categoryLine_btn:active {
+   background-color: #303030;
+   color: #FFFFFF;
 }
 
 .categoryLine_btn_active {
    background-color: #303030;
    color: #FFFFFF;
 } 
+
+.categoryLine_btn_active:hover {
+   background-color: #303030;
+   color: #FFFFFF;
+}
 
 .btnBlock {
    position: absolute;
@@ -55,6 +70,11 @@
    width: 1320px;
    display: flex;
    overflow: hidden;
+   transition: .3s;
+}
+
+.sliderWinActive {
+   height: 600px;
 }
 
 .sliderTape {
@@ -73,6 +93,14 @@
    height: 370px;
    border: 1px solid #F0F0F0;
    margin: 0 10px;
+   overflow: hidden;
+}
+
+.cardActive {
+   height: 480px;
+   transition: .3s;
+   box-shadow: 0 16px 32px 0 rgba(0, 0, 0, .1);
+   overflow: visible;
 }
 
 .cardImgBlock {
@@ -161,18 +189,36 @@
 
 .likeIconBlock {
    position: absolute;
-   right: 22px;
-   top: 19px
+   right: 21px;
+   top: 18px
 }
 
 .likeIcon {
    fill:#C9C9C9;
+   transition: .3s;
+}
+
+.likeIcon:hover {
+   fill:#979797;
+}
+
+.likeIcon:active {
+   fill:#E24B33;
 }
 
 .eyeIconBlock {
    position: absolute;
-   right: 22px;
-   top: 52.5px
+   right: 21px;
+   top: 51.5px
+}
+
+.eyeIconBlock:hover .eyeIcon {
+   fill:#979797;
+}
+
+.eyeIcon {
+   fill:#C9C9C9;
+   transition: .3s;
 }
 
 .description {
@@ -181,4 +227,82 @@
    font-size: 14px;
    line-height: 22.4px;
    width: 262px;
+}
+
+.materialDropDown {
+   margin-top: 24px;
+}
+
+.sizeDropDown {
+   margin-top: 8px;
+}
+
+@media screen and (max-width: 1320px) {
+   
+   .sales {
+      width: 90%;
+   }
+
+   .sliderWin {
+      width: 990px;
+      margin: 0 auto;
+   }
+
+}
+
+@media screen and (max-width: 1100px) {
+
+   .sliderWin {
+      width: 660px;
+   }
+
+}
+
+@media screen and (max-width: 733px) {
+
+   .sliderWin {
+      width: 330px;
+   }
+
+}
+
+@media screen and (max-width: 666px) {
+
+   .btnBlock {
+      margin-top: -50px;
+   }
+
+}
+
+@media screen and (max-width: 530px) {
+
+   .categoryLine_btn {
+      width: 128px;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+   }
+
+   .sales_categoryLine {
+      justify-content: space-around;
+   }
+
+   .btnBlock {
+      display: none;
+   }
+
+}
+
+@media screen and (max-width: 367px) {
+
+   .sliderWin {
+      width: 288px;
+   }
+
+   .card {
+      width: 288px;
+      margin: 0;
+   }
+
 }

@@ -12,8 +12,12 @@
    height: 75px;
    position: relative;
    display: flex;
-   flex-direction: column;
+   justify-content: center;
    align-items: center;
+}
+
+.logoLine_titleBlock {
+   margin: 0 0 22px 0;
 }
 
 .logoLine_title {
@@ -22,31 +26,39 @@
    font-size: 32px;
    margin: 0;
    display: flex;
+   margin: -7px 0 0 4px;
 }
 
-.logoLine_title__golgColor {
+.logoLine_title__goldColor {
    color: #E1A661;
-   margin: 0 9px 0 0;
+   margin: 0 8px 0 0;
 }
 
 .logoLine_subTitle {
    font-family: 'Roboto Condensed', sans-serif;
    font-size: 14px;
    font-weight: 300;
-   letter-spacing: 3.6px;
+   letter-spacing: 3.8px;
    line-height: 14px;
    color: #909090;
+   margin: 1px 0 0 6px; 
 }
 
 .logoLine_location {
    position: absolute;
-   top: 27px;
+   top: 25px;
    left: 2px;
    display: flex;
    align-items: center;
    font-weight: 400;
    font-size: 14px;
    line-height: 14px;
+   cursor: pointer;
+}
+
+.logoLine_location:hover .location_iconPoint {
+   opacity: 50%;
+   transition: .3s;
 }
 
 .location_iconPoint {
@@ -60,13 +72,18 @@
 
 .logoLine_tel {
    display: flex;
-   align-items: center;
+   align-items: flex-end;
    position: absolute;
    top: 27px;
    left: 220px;
    font-weight: 400;
    font-size: 14px;
    line-height: 14px;
+}
+
+.logoLine_tel:hover .location_iconPoint {
+   opacity: 50%;
+   transition: .3s;
 }
 
 .logoLine_registerBlock {
@@ -83,10 +100,22 @@
 
 .registerBlock_signIn {
    margin-right: 10px;
+   transition: .3s;
+   cursor: pointer;
+}
+
+.registerBlock_signIn:hover {
+   opacity: 50%;
 }
 
 .registerBlock_signUp {
    margin-left: 10px;
+   transition: .3s;
+   cursor: pointer;
+}
+
+.registerBlock_signUp:hover {
+   opacity: 50%;
 }
 
 .registerBlock_delimiter {
@@ -96,16 +125,18 @@
 }
 
 .logoLine_iconGroup {
-   width: 116px;
-   height: 20px;
+   width: 125px;
+   height: 32px;
    position: absolute;
-   right: 0px;
-   top: 25px;
+   right: -8px;
+   top: 20.5px;
    display: flex;
    justify-content: space-between;
 }
 
 .iconGroup_likeBtn {
+   width: 32px;
+   height: 32px;
    display: flex;
    align-items: center;
 }
@@ -116,8 +147,8 @@
    background-color: #E46942;
    position: absolute;
    border-radius: 10px;
-   top: -10px;
-   left: 10px;
+   top: -3px;
+   left: 12px;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -128,61 +159,74 @@
    font-weight: 700;
    font-size: 10px;
    line-height: 10px;
+   margin: 1px 0 0 1px;
 }
 
 .iconGroup_sortBtn {
    display: flex;
-   padding: 2px;
-   align-items: end;
+   justify-content: center;
+   align-items: center;
+   width: 32px;
+   height: 32px;
+   transition: .3s;
 }
 
-.sortIcon1 {
-   background-color: #303030;
-   width: 2px;
-   height: 7px;
-   margin-right: 5px;
+.iconGroup_sortBtn:hover {
+   background-color: #F8F8F8;
 }
 
-.sortIcon2 {
-   background-color: #303030;
-   width: 2px;
-   height: 15px;
-   margin-right: 5px;
+.iconGroup_sortBtn:active {
+   background-color: #E8E7E7;
 }
 
-.sortIcon3 {
+
+.sortBtnIcon {
    background-color: #303030;
-   width: 2px;
-   height: 12px;
 }
 
 .iconGroup_cartBtn {
+   width: 32px;
+   height: 32px;
    display: flex;
-   align-items: end;
+   align-items: center;
+   justify-content: center;
    position: relative;
+   margin: 0 2px 1px 0;
+   transition: .3s;
+}
+
+.iconGroup_cartBtn:hover {
+   background-color: #F8F8F8;
+}
+
+.iconGroup_cartBtn:active {
+   background-color: #E8E7E7;
 }
 
 .cartBtn_icon1 {
    height: 13px;
    width: 16px;
+   box-sizing: border-box;
+   border: 1.6px solid #303030;
+   border-radius: 2px;
 }
 
 .cartBtn_icon2 {
-   width: 5px;
-   height: 6px;
+   box-sizing: border-box;
+   width: 7px;
+   height: 8px;
    border-top: 2px solid #303030;
    border-left: 2px solid #303030;
    border-right: 2px solid #303030;
    border-top-left-radius: 10px;
    border-top-right-radius: 10px;
    position: absolute;
-   top: 4px;
-   left: 4px;
+   top: 6px;
 }
 
 .header_navLine {
    height: 62px;
-   background-color: #F0F0F0;
+   background-color: #F8F8F8;
    margin-bottom: 0;
    display: flex;
    align-items: center;
@@ -197,12 +241,17 @@
 }
 
 .btnGroup_btn {
-   margin-right: 60px;
+   margin-right: 60.5px;
    font-weight: 500;
    font-size: 13px;
    line-height: 13px;
    color: #303030;
    cursor: pointer;
+   transition: .3s;
+}
+
+.btnGroup_btn:hover {
+   opacity: 50%;
 }
 
 .navLine_delimiter {
@@ -222,7 +271,7 @@
    width: fit-content;
    height: fit-content;
    border: none;
-   background-color: #F0F0F0;
+   background-color: #F8F8F8;
    margin-left: 56px;
    font-family: 'Inter', sans-serif;
    font-weight: 400;
@@ -259,4 +308,141 @@
    transform: rotate(-45deg);
    left: 11px;
    top: 10px;
+}
+
+.cityDropDown {
+   width: 140px;
+   height: auto;
+   padding: 0;
+   background-color: #FFFFFF;
+}
+
+.cityDropDownList {
+   width: 197px;
+   top: 25px;
+   left: -25px;
+}
+
+.dropDownMenuMobile {
+   display: none;
+}
+
+@media screen and (max-width: 1300px) {
+
+   .header {
+      width: 90%;
+      height: auto;
+   }
+
+   .navLine_btnGroup {
+      justify-content: space-around;
+      margin: 0;
+   }
+
+   .btnGroup_btn {
+      width: fit-content;
+      margin: 0;
+   }
+
+}
+
+@media screen and (max-width: 1024px) {
+
+   .logoLine_tel {
+      position: static;
+   }
+
+   .logoLine_location {
+      position: static;
+   }
+
+   .logoLine_registerBlock {
+      position: static;
+   }
+
+   .header_logoLine {
+      justify-content: space-between;
+   }
+
+   .logoLine_iconGroup {
+      position: static;
+   }
+   
+   .iconGroup_likeBtn {
+      position: relative;
+   }
+
+}
+
+@media screen and (max-width: 940px) {
+
+   .header {
+      width: 100%;
+   } 
+
+}
+
+@media screen and (max-width: 791px) {
+
+   .header_logoLine {
+      height: 210px;
+      flex-direction: column;
+   }
+
+   .logoLine_titleBlock {
+      margin-top: 15px;
+   }
+
+   .header_navLine {
+      margin-top: 20px;
+      width: auto;
+      flex-direction: column-reverse;
+      height: 124px;
+   }
+
+   .navLine_delimiter {
+      width: 100%;
+      height: 1px;
+   }
+
+   .navLine_btnGroup {
+      width: 100%;
+   }
+
+   .navLine_inputGroup {
+      margin-left: 56px;
+   }
+
+}
+
+@media screen and (max-width: 510px) {
+
+   .navLine_btnGroup {
+      display: none;
+   }
+
+   .navLine_inputGroup {
+      height: 50%;
+   }
+
+   .dropDownMenuMobile {
+      display: flex;
+      height: 50%;
+      width: 100%;
+      justify-content: center;
+   }
+
+   .dropDownMenuListMobile {
+      width: 100%;
+      margin-top: 20px;
+   }
+
+   .navLine_delimiter {
+      display: none;
+   } 
+
+   .header_navLine {
+      justify-content: space-around;
+   }
+
 }

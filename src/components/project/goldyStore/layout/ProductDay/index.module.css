@@ -40,6 +40,7 @@
    top: 267px;
    right: 16.86px;
    z-index: 10;
+   cursor: pointer;
 }
 
 .arrow_left {
@@ -116,6 +117,10 @@
    width: 109px;
    justify-content: space-between;
    margin-right: 10px;
+}
+
+.star:active {
+   fill: #E1A661;
 }
 
 .activeStar {
@@ -264,6 +269,11 @@
    box-sizing: border-box;
    border: 1px solid #DADADA;
    border-radius: 50%;
+   cursor: pointer;
+}
+
+.colorUnit:active {
+   border: 1px solid #303030;
 }
 
 .colorUnit_content {
@@ -314,15 +324,21 @@
    align-items: center;
    font-weight: 500;
    font-size: 12px;
-   line-height: 12px;
+   line-height: 12px;  
+   cursor: default;      
+}
+
+.clue:hover {
+   background-color: #D3D3D3;
+   transition: .3s;
 }
 
 .sizeLine {
    margin-top: 14px;
-   width: 572px;
-   height: 32px;
+   max-width: 572px;
    display: flex;
    justify-content: space-between;
+   flex-wrap: wrap;
 }
 
 .sizeLine_unit {
@@ -337,10 +353,23 @@
    font-weight: 400;
    font-size: 14px;
    line-height: 14px;
+   background-color: #FFFFFF;
+   transition: .3s;
+   font-family: 'Inter', sans-serif;
 }
 
-.sizeLine_unit:hover {
+.sizeLine_unit:not([disabled]):hover {
    border: 1px solid #303030;
+}
+
+.sizeLine_unit:not([disabled]):active {
+   border: 1px solid #303030;
+   background-color: #303030;
+   color: #FFFFFF;
+}
+
+.sizeLine_unit:disabled {
+   color: #DADADA; 
 }
 
 .unitSelected {
@@ -349,13 +378,15 @@
    color: #FFFFFF;
 }
 
-.unitNoActive {
+
+
+/* .unitNoActive {
    color: #DADADA;
 }
 
 .unitNoActive:hover {
    border: 1px solid #DADADA;
-}
+} */
 
 .buttonsGroup {
    height: 122px;
@@ -378,6 +409,16 @@
    line-height: 14px;
    color: #FFFFFF;
    background-color: #303030;
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.addBtn:hover {
+   background-color: #505050; 
+}
+
+.addBtn:active {
+   background-color: #000000;
 }
 
 .fastBuyBtn {
@@ -390,6 +431,16 @@
    color: #303030;
    background-color: #FFFFFF;
    border: 1px solid #303030;
+   transition: 0.3s;
+}
+
+.fastBuyBtn:hover {
+   background-color: #303030;
+   color: #FFFFFF;
+}
+
+.fastBuyBtn:active {
+   background-color: #000000;
 }
 
 .smallButtonsGroup {
@@ -410,6 +461,46 @@
    display: flex;
    align-items: center;
    height: 20px;
+   cursor: pointer;
+   transition: 0.3s;
+}
+
+.smallBtn:hover {
+   color: #979797;
+}
+
+.smallBtn:hover .smallBtnSvgLike {
+   transition: 0.3s;
+   fill: #979797;
+}
+
+.smallBtn:active {
+   color: #303030;
+}
+
+.smallBtn:active .smallBtnSvgLike {
+   transition: 0.3s;
+   fill: #E24B33;
+}
+
+.smallBtn:hover .smallBtn_svgSort {
+   background-color: #979797;
+   transition: 0.3s;
+}
+
+.smallBtn:active .smallBtn_svgSort {
+   background-color: #303030;
+   transition: 0.3s;
+}
+
+.smallBtn:hover .smallBtn_svgShare {
+   transition: 0.3s;
+   fill: #979797;
+}
+
+.smallBtn:active .smallBtn_svgShare {
+   transition: 0.3s;
+   fill: #303030;
 }
 
 .smallBtn:first-child {
@@ -430,3 +521,88 @@
    height: 20px;
 }
 
+@media screen and (max-width: 1300px) {
+
+   .productDay {
+      width: 90%;
+      height: auto;
+   }
+
+   .descriptionBlock {
+      width: auto;
+   }
+
+   .productDayBlock {
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+      height: auto;
+   }
+
+}
+
+@media screen and (max-width: 940px) {
+
+   .productDay {
+      width: 100%;
+   }
+
+   .btnBlock {
+      margin-right: 44px;
+   }
+
+   .title {
+      margin-left: 44px;
+   }
+
+}
+
+@media screen and (max-width: 550px) {
+
+   .imgBlock {
+      width: 100vw;
+      height: auto;
+   }
+
+   .unitImage {
+      width: 100vw;
+      height: auto;
+   }
+
+   .unit {
+      width: auto;
+      height: auto;
+   }
+   
+   .tape {
+      height: auto;
+   }
+
+   .descriptionBlock {
+      width: 100%;
+   }
+
+   .priceBlock {
+      flex-wrap: wrap;
+      height: auto;
+      justify-content: center;
+   } 
+
+   .timerBlock {
+      margin-top: 10px;
+      margin-left: -5px;
+   }
+
+   .sizeLine {
+     justify-content: space-around;
+   }
+
+   .btnBlock {
+      display: none;
+   }
+
+   .smallButtonsGroup {
+      margin-left: 10px;
+   }
+
+}
