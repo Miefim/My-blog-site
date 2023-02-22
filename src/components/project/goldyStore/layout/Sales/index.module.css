@@ -1,0 +1,308 @@
+.sales {
+   display: flex;
+   flex-direction: column;
+   width: 1300px;
+   margin: 120px auto 0 auto;
+   color: #303030;
+   font-family: 'Inter', sans-serif;
+   font-size: 14px;
+   line-height: 14px;
+   font-weight: 400;
+   position: relative;
+}
+
+.sales_title {
+   margin: 0 0 24px 0;
+   font-family: 'Prata', serif;
+   font-size: 40px;
+   line-height: 40px;
+   font-weight: 400;
+}
+
+.sales_categoryLine {
+   display: flex;
+   margin-bottom: 36px;
+   flex-wrap: wrap;
+}
+
+.categoryLine_btn {
+   padding: 13px 30px;
+   cursor: pointer;
+   background-color: #F0F0F0;
+   border-radius: 20px;
+   margin-right: 9px;
+}
+
+.categoryLine_btn:hover {
+   background-color: #DDDDDD;
+}
+
+.categoryLine_btn:active {
+   background-color: #303030;
+   color: #FFFFFF;
+}
+
+.categoryLine_btn_active {
+   background-color: #303030;
+   color: #FFFFFF;
+} 
+
+.categoryLine_btn_active:hover {
+   background-color: #303030;
+   color: #FFFFFF;
+}
+
+.btnBlock {
+   position: absolute;
+   display: flex;
+   right: 0;
+   top: 50px;
+}
+
+.btnBlock_right {
+   transform: rotate(180deg);
+   margin-left: 8px;
+}
+
+.sliderWin {
+   margin-left: -10px;
+   height: 370px;
+   width: 1320px;
+   display: flex;
+   overflow: hidden;
+   transition: .3s;
+}
+
+.sliderWinActive {
+   height: 600px;
+}
+
+.sliderTape {
+   height: 370px;
+   display: flex;
+}
+
+.card {
+   box-sizing: border-box;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   z-index: 10;
+   width: 310px;
+   height: 370px;
+   border: 1px solid #F0F0F0;
+   margin: 0 10px;
+   overflow: hidden;
+}
+
+.cardActive {
+   height: 480px;
+   transition: .3s;
+   box-shadow: 0 16px 32px 0 rgba(0, 0, 0, .1);
+   overflow: visible;
+}
+
+.cardImgBlock {
+   position: relative;
+   display: flex;
+   justify-content: center;
+}
+
+.circleGroup {
+   display: flex;
+   position: absolute;
+   bottom: 6px;
+   z-index: 10;
+}
+
+.circleGroup_circle {
+   box-sizing: border-box;
+   height: 8px;
+   width: 8px;
+   border: 1px solid #303030;
+   border-radius: 5px;
+   margin: 0 4px;
+}
+
+.circleGroup_circle_active {
+   background-color: #303030;
+}
+
+.cardImg { 
+   position: relative;
+   height: 200px;
+   width: 200px;
+   margin: 40px 0 0 0;
+}
+
+.priceBlock {
+   display: flex;
+   align-items: end;
+   margin-top: 26px;
+   width: 100%;
+   position: relative;
+}
+
+.price {
+   margin: 0 8px 0 24px;
+   font-weight: 600;
+   font-size: 18px;
+   line-height: 18px;
+}
+
+.oldPrice {
+   margin: 0;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 14px;
+   color: #8F8F8F;
+   text-decoration: line-through;
+   display: none;
+}
+
+.saleIcon {
+   position: absolute;
+   display: none;
+   justify-content: center;
+   align-items: center;
+   border-radius: 15px;
+   color: #FFFFFF;
+   width: 50px;
+   height: 21px;
+   font-weight: 500;
+   font-size: 13px;
+   line-height: 13px;
+   background-color: #E24B33;
+   right: 24px;
+}
+
+.saleIcon_green {
+   background-color: #5B8A8F;
+   left: 24px;
+   top: 16px;
+}
+
+.saleIcon_visible {
+   display: flex;
+}
+
+.likeIconBlock {
+   position: absolute;
+   right: 21px;
+   top: 18px
+}
+
+.likeIcon {
+   fill:#C9C9C9;
+   transition: .3s;
+}
+
+.likeIcon:hover {
+   fill:#979797;
+}
+
+.likeIcon:active {
+   fill:#E24B33;
+}
+
+.eyeIconBlock {
+   position: absolute;
+   right: 21px;
+   top: 51.5px
+}
+
+.eyeIconBlock:hover .eyeIcon {
+   fill:#979797;
+}
+
+.eyeIcon {
+   fill:#C9C9C9;
+   transition: .3s;
+}
+
+.description {
+   margin: 16px 0 0 0;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 22.4px;
+   width: 262px;
+}
+
+.materialDropDown {
+   margin-top: 24px;
+}
+
+.sizeDropDown {
+   margin-top: 8px;
+}
+
+@media screen and (max-width: 1320px) {
+   
+   .sales {
+      width: 90%;
+   }
+
+   .sliderWin {
+      width: 990px;
+      margin: 0 auto;
+   }
+
+}
+
+@media screen and (max-width: 1100px) {
+
+   .sliderWin {
+      width: 660px;
+   }
+
+}
+
+@media screen and (max-width: 733px) {
+
+   .sliderWin {
+      width: 330px;
+   }
+
+}
+
+@media screen and (max-width: 666px) {
+
+   .btnBlock {
+      margin-top: -50px;
+   }
+
+}
+
+@media screen and (max-width: 530px) {
+
+   .categoryLine_btn {
+      width: 128px;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+   }
+
+   .sales_categoryLine {
+      justify-content: space-around;
+   }
+
+   .btnBlock {
+      display: none;
+   }
+
+}
+
+@media screen and (max-width: 367px) {
+
+   .sliderWin {
+      width: 288px;
+   }
+
+   .card {
+      width: 288px;
+      margin: 0;
+   }
+
+}

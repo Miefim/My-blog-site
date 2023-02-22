@@ -1,0 +1,21 @@
+.btn {
+   box-sizing: border-box;
+   height: 54px;
+   width: 54px;
+   border: 1px solid #303030;
+   border-radius: 30px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   transition: .3s;
+}
+
+.btn:hover {
+   background-color: #F5F5F5;
+}
+
+.btn:active img {
+   transform: translateX(-8px);
+   transition: .1s;
+}
