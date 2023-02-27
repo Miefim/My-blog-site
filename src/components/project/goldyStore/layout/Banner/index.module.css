@@ -1,18 +1,9 @@
 .banner {
    display: flex;
-   justify-content: center;
    margin: 20px auto 0 auto;
    width: 1300px;
    height: 560px;
-   overflow: hidden;
    color: #303030;
-   position: relative;
-}
-
-.banner_tape {
-   display: flex;
-   height: 560px;
-   transform: translate3d(0, 0, 0);
 }
 
 .tape_unit {
@@ -71,41 +62,6 @@
 
 .unit_btn:active {
    background-color: #000000;
-}
-
-.left {
-   position: absolute;
-   top: 253px;
-   left: 24px;
-   z-index: 10;
-}
-
-.right {
-   position: absolute;
-   top: 253px;
-   right: 24px;
-   z-index: 10;
-   transform: rotate(180deg);
-}
-
-.circleGroup {
-   display: flex;
-   position: absolute;
-   bottom: 24px;
-   z-index: 10;
-}
-
-.circleGroup_circle {
-   box-sizing: border-box;
-   height: 8px;
-   width: 8px;
-   border: 1px solid #303030;
-   border-radius: 5px;
-   margin: 0 4px;
-}
-
-.circleGroup_circle_active {
-   background-color: #303030;
 }
 
 .unit_img {
@@ -194,14 +150,6 @@
 
    .tape_unit {
       justify-content: center;
-   }
-
-   .left {
-      display: none;
-   }
-
-   .right {
-      display: none;
    }
 
 }

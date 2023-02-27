@@ -15,7 +15,7 @@ const GoldyStoreProjectPage = () => {
          <Sales/>
          <SaleCards/>
          <ProductDay/>
-         <Articles/>
+         {/* <Articles/> */}
       </>
    )
 }

@@ -106,7 +106,7 @@ const Header = () => {
             </div> 
          </div>
          <Modal visible={visible} setVisible={setVisible}>
-            <Login/>
+            <Login successAction={() => setVisible(false)}/>
          </Modal>
       </div>
    )

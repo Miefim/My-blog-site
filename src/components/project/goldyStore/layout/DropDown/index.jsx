@@ -6,7 +6,7 @@ const DropDown = ({children, className, listStyle}) => {
    const [selected, setSelected] = useState(children[0]?.props.children)
 
    const selectMaterial = (e) => {
-      setSelected(e.target.innerText)
+      setSelected(e.currentTarget.innerText)
    }
 
    return(

@@ -1,8 +1,8 @@
 import style from './index.module.css'
 
-const CircleArrowBtn = ({className}) => {
+const CircleArrowBtn = ({className, ...props}) => {
    return (
-      <div className={[style.btn, className].join(' ')}>
+      <div className={[style.btn, className].join(' ')} {...props}>
          <img src="/images/projectImages/goldStore/arrow.svg" alt="" />
       </div>
    )
