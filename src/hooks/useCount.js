@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react"
 
-export const useCount = ({maxIndex = 0, infinity = false, unitWidth}) => {
+export const useCount = ({maxIndex = 0, infinity = false, unitWidth, numberUnitsScreen}) => {
    const [count, setCount] = useState(0)
    const [transformTape, setTransformTape] = useState(0)
    const [xStart, setXStart] = useState(null)
    const [isMove, setIsMove] = useState(false)  
+
+   useEffect(() => {
+      if(count < 0){
+         setCount(0)
+      }
+      else if(count > maxIndex){
+         setCount(maxIndex)
+      }
+   },[count])
    
    const incrimentCount = () => {
       if(count < maxIndex){
@@ -12,6 +21,9 @@ export const useCount = ({maxIndex = 0, infinity = false, unitWidth}) => {
       }
       else if (infinity) {
          setCount(0)
+      }
+      else{
+         setTransformTape(count * (unitWidth * numberUnitsScreen))
       }
    }
 
@@ -46,7 +58,6 @@ export const useCount = ({maxIndex = 0, infinity = false, unitWidth}) => {
       const differenceX = xStart - xEnd
       e.currentTarget.style.transition = "0.3s"
       setIsMove(false)
-
       if(Math.abs(differenceX) > 100){
          if(differenceX > 0){
             incrimentCount()
@@ -56,7 +67,7 @@ export const useCount = ({maxIndex = 0, infinity = false, unitWidth}) => {
          }
       }
       else{
-         setTransformTape(count * unitWidth) 
+         setTransformTape(count * (unitWidth * numberUnitsScreen)) 
       }
 
    }
@@ -64,11 +75,11 @@ export const useCount = ({maxIndex = 0, infinity = false, unitWidth}) => {
    const cancelTransform = (e) => {
       e.currentTarget.style.transition = "0.3s"
       setIsMove(false)
-      setTransformTape(count * unitWidth)
+      setTransformTape(count * (unitWidth * numberUnitsScreen))
    }
 
    useEffect(() => {
-      setTransformTape(count * unitWidth)
+      setTransformTape(count * (unitWidth * numberUnitsScreen))
    },[count])
 
    return [count, transformTape, incrimentCount, decrementCount, setCount, start, move, end, cancelTransform]

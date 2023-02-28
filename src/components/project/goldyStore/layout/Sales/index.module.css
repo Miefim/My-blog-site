@@ -237,6 +237,14 @@
    margin-top: 8px;
 }
 
+.buttonRightSlider {
+   top: -20px;
+}
+
+.buttonLeftSlider {
+   top: 0;
+}
+
 @media screen and (max-width: 1320px) {
    
    .sales {

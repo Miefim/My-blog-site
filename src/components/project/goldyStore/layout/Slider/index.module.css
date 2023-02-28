@@ -43,18 +43,10 @@
    transition: .3s;
 }
 
-.circleGroup_circle_active {
-   background-color: #303030;
+.circleGroup_circle:hover {
+   background-color: #a0a0a0;
 }
 
-@media screen and (max-width: 510px) {
-
-   .left {
-      display: none;
-   }
-
-   .right {
-      display: none;
-   }
-
+.circleGroup_circle_active {
+   background-color: #303030;
 }
