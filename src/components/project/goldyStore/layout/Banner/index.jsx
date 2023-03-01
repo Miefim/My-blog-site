@@ -1,4 +1,4 @@
-import Slider from '../Slider'
+import Slider from '../../UI/Slider'
 import style from './index.module.css'
 
 const Banner = () => {
