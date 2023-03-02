@@ -1,0 +1,92 @@
+[
+   {
+      "title": "Стильное кольцо из белого золота c бриллиантами",
+      "id": "xFzC07NO10iVDArldDhqDA",
+      "type": 0,
+      "price": "41 000",
+      "oldPrice": "65 000",
+      "img": [
+         "/images/projectImages/goldStore/salesRing1.svg",
+         "/images/projectImages/goldStore/salesRing2.svg",
+         "/images/projectImages/goldStore/salesRing3.svg"
+      ]
+   },
+   {
+      "title": "Стильное кольцо из белого золота c бриллиантами",
+      "id": "RBZnh0y8fkml77VA3afeRQ",
+      "type": 0,
+      "price": "56 000",
+      "oldPrice": "100 000",
+      "img": [
+         "/images/projectImages/goldStore/salesRing2.svg",
+         "/images/projectImages/goldStore/salesRing3.svg",
+         "/images/projectImages/goldStore/salesRing4.svg"
+      ]
+   },
+   {
+      "title": "Стильное кольцо из белого золота c бриллиантами",
+      "id": "Ym8bUWhjukS/ojHJa4lNOg",
+      "type": 0,
+      "price": "37 500",
+      "img": [
+         "/images/projectImages/goldStore/salesRing3.svg",
+         "/images/projectImages/goldStore/salesRing4.svg",
+         "/images/projectImages/goldStore/salesRing1.svg"
+      ]
+   },
+   {
+      "title": "Стильное кольцо из белого золота c бриллиантами",
+      "id": "bsEvaqeBrEitlxM1kLigOA",
+      "type": 0,
+      "price": "39 200",
+      "img": [
+         "/images/projectImages/goldStore/salesRing4.svg",
+         "/images/projectImages/goldStore/salesRing1.svg",
+         "/images/projectImages/goldStore/salesRing2.svg"
+      ]
+   },
+   {
+      "title": "Стильное кольцо из белого золота c бриллиантами",
+      "id": "YYeky7EK9EOtsvTgeJ1Uaw",
+      "type": 0,
+      "price": "39 200",
+      "img": [
+         "/images/projectImages/goldStore/salesRing1.svg",
+         "/images/projectImages/goldStore/salesRing2.svg",
+         "/images/projectImages/goldStore/salesRing3.svg"
+      ]
+   },
+   {
+      "title": "На фотках серьги!!!",
+      "id": "aa8J9POg8E+IIaCkGNVWwA",
+      "type": 1,
+      "price": "12 000",
+      "img": [
+         "/images/projectImages/goldStore/salesRing2.svg",
+         "/images/projectImages/goldStore/salesRing3.svg",
+         "/images/projectImages/goldStore/salesRing4.svg"
+      ]
+   },
+   {
+      "title": "На фотках браслет!!!",
+      "id": "iMsMWN4B+k66+1XU0FNy9w",
+      "type": 2,
+      "price": "7 924",
+      "img": [
+         "/images/projectImages/goldStore/salesRing3.svg",
+         "/images/projectImages/goldStore/salesRing4.svg",
+         "/images/projectImages/goldStore/salesRing1.svg"
+      ]
+   },
+   {
+      "title": "На фотках хипые часы!!!",
+      "id": "AGuOMoLTGk+tdUab0ReXbQ",
+      "type": 3,
+      "price": "200 000",
+      "img": [
+         "/images/projectImages/goldStore/salesRing4.svg",
+         "/images/projectImages/goldStore/salesRing1.svg",
+         "/images/projectImages/goldStore/salesRing2.svg"
+      ]
+   }
+]

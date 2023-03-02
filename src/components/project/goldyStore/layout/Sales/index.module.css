@@ -223,6 +223,7 @@
    font-size: 14px;
    line-height: 22.4px;
    width: 262px;
+   min-height: 45px;
 }
 
 .materialDropDown {
