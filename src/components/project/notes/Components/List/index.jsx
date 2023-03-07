@@ -47,7 +47,7 @@ const List = ({className}) => {
                         {item.text?.split(' ')[0] ? item.text?.split(' ')[0] : "Без названия"}
                      </h2>
                      <div className={style.itemText}>
-                        <p className={style.time}>{item.date?.split(' ')[4]}</p> 
+                        <p className={style.time}>{item.date?.match(/[0-9]{2}[:]{1}[0-9]{2}/g)}</p> 
                         {item.text ? item.text : 'Нет дополнительного текста'}
                      </div>
                   </div>

@@ -11,6 +11,8 @@ import style from'./index.module.css'
 export const MyContext = createContext()
 
 function ProjectNotesPage() {
+  window.scrollTo(0, 0)
+
   const [type, setType] = useState(0)
   const [triggerGetLocalStorage, setTriggerGetLocalStorage] = useState(false)
   const [selectedItem, setSelectedItem] = useState(0)

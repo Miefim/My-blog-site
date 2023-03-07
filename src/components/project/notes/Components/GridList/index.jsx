@@ -40,7 +40,7 @@ const GridList = ({className}) => {
                         </div>
                         <div className={style.description} onTouchEnd={() => setType(2)}>
                            <h2 className={style.title}>{item.text?.split(' ')[0] ? item.text?.split(' ')[0] : "Без названия"}</h2>
-                           <p className={style.date}>{item.date?.split(' ')[4]}</p>
+                           <p className={style.date}>{item.date?.match(/[0-9]{2}[:]{1}[0-9]{2}/g)}</p>
                         </div>
                      </div>
                   )
