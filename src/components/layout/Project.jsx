@@ -25,6 +25,8 @@ function Project() {
       return projects
    },[projectCollection])
 
+   projects.sort((a, b) => a.data.importance > b.data.importance ? 1 : -1)
+
    const [projectLink, setProjectLink] = useState('')
    let [projectWindowWidth, setProjectWindowWidth] = React.useState(0)
    let [widthUnit, setWidthUnit] = React.useState(0)

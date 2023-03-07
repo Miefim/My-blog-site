@@ -28,6 +28,8 @@ function ProjectListBlock() {
       return projects
    },[projectCollection])
 
+   projects.sort((a, b) => a.data.importance > b.data.importance ? 1 : -1)
+
    return (
       <div className={style.root}>
          <div className={style.container}>

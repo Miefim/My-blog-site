@@ -1,0 +1,31 @@
+.slider {
+   display: flex;
+   position: relative;
+   width: 100%;
+}
+
+.windows {
+   display: flex;
+   overflow: hidden;
+}
+
+.banner_tape {
+   display: flex;
+   transform: translate3d(0, 0, 0);
+   transition: .3s;
+}
+
+.left {
+   position: absolute;
+   top: 45.2%;
+   left: 24px;
+   z-index: 10;
+}
+
+.right {
+   position: absolute;
+   top: 45.2%;
+   right: 24px;
+   z-index: 10;
+   transform: rotate(180deg);
+}

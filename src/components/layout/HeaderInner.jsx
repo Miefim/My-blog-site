@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import MobileMenu from './MobileMenu'
 import ButtonUp from "../layout/ButtonUp";
 
-function HeaderInner () {
+function HeaderInner ({className}) {
    const navigate = useNavigate()
 
    let [activeHeaderLine, setActiveHeaderLine] = React.useState(false)
@@ -30,7 +30,7 @@ function HeaderInner () {
 
    return (
       <>
-         <section className="header" name="header" style={activeHeaderLine && window.innerWidth <= 670? {height: '60px'} : {}}>
+         <section className={`header ${className}`} name="header" style={activeHeaderLine && window.innerWidth <= 670? {height: '60px'} : {}}>
             <div className="header-line">
                <Link to ="/" className="header-line-button">
                   <p className="header-line-button-text">Home</p>

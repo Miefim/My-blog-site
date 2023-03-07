@@ -1,0 +1,21 @@
+.slider {
+   position: relative;
+   cursor: pointer;
+}
+
+.unit {
+   opacity: 0;
+   position: absolute;
+   transition: .3s;
+}
+
+.unitActive {
+   opacity: 1;
+   position: static;
+}
+
+.circleGroup {
+   position: absolute;
+   bottom: 7px;
+   margin-left: -9px;
+}

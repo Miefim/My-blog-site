@@ -52,34 +52,30 @@
    color: #FFFFFF;
 }
 
-.btnBlock {
-   position: absolute;
-   display: flex;
-   right: 0;
-   top: 50px;
-}
-
-.btnBlock_right {
-   transform: rotate(180deg);
-   margin-left: 8px;
-}
-
-.sliderWin {
+.slider {
    margin-left: -10px;
    height: 370px;
    width: 1320px;
-   display: flex;
-   overflow: hidden;
    transition: .3s;
 }
 
-.sliderWinActive {
+.sliderActiveCard {
    height: 600px;
 }
 
-.sliderTape {
-   height: 370px;
-   display: flex;
+.buttonRightSlider {
+   top: -90px;
+   right: 10px;
+}
+
+.buttonLeftSlider {
+   top: -90px;
+   right: 72px;
+   left: auto;
+}
+
+.sliderCircleGroup {
+   display: none;
 }
 
 .card {
@@ -227,6 +223,7 @@
    font-size: 14px;
    line-height: 22.4px;
    width: 262px;
+   min-height: 45px;
 }
 
 .materialDropDown {
@@ -243,7 +240,7 @@
       width: 90%;
    }
 
-   .sliderWin {
+   .slider {
       width: 990px;
       margin: 0 auto;
    }
@@ -252,7 +249,7 @@
 
 @media screen and (max-width: 1100px) {
 
-   .sliderWin {
+   .slider {
       width: 660px;
    }
 
@@ -260,21 +257,21 @@
 
 @media screen and (max-width: 733px) {
 
-   .sliderWin {
+   .slider {
       width: 330px;
    }
 
-}
+   .buttonLeftSlider {
+      top: -140px;
+   }
 
-@media screen and (max-width: 666px) {
-
-   .btnBlock {
-      margin-top: -50px;
+   .buttonRightSlider {
+      top: -140px;
    }
 
 }
 
-@media screen and (max-width: 530px) {
+@media screen and (max-width: 533px) {
 
    .categoryLine_btn {
       width: 128px;
@@ -288,7 +285,11 @@
       justify-content: space-around;
    }
 
-   .btnBlock {
+   .buttonLeftSlider {
+      display: none;
+   }
+
+   .buttonRightSlider {
       display: none;
    }
 
@@ -296,7 +297,7 @@
 
 @media screen and (max-width: 367px) {
 
-   .sliderWin {
+   .slider {
       width: 288px;
    }
 

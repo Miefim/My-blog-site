@@ -1,0 +1,25 @@
+.circleGroup {
+   display: flex;
+   position: absolute;
+   bottom: 24px;
+   left: 45.2%;
+   z-index: 10;
+}
+
+.circleGroup_circle {
+   box-sizing: border-box;
+   height: 8px;
+   width: 8px;
+   border: 1px solid #303030;
+   border-radius: 5px;
+   margin: 0 4px;
+   transition: .3s;
+}
+
+.circleGroup_circle:hover {
+   background-color: #a0a0a0;
+}
+
+.circleGroup_circle_active {
+   background-color: #303030;
+}

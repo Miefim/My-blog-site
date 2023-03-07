@@ -4,7 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 
 import Login from '../../../../layout/Login'
 import Modal from '../../../../UI/ModalWin'
-import DropDown from '../DropDown'
+import DropDown from '../../UI/DropDown'
 import CompareBtn from '../../UI/CompareBtn'
 import style from './index.module.css'
 
