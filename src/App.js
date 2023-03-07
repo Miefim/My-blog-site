@@ -17,6 +17,7 @@ import ProjectTestTaskReduxSagaPage from "./pages/ProjectTestTaskReduxSagaPage"
 import AdminAutorizationPage from "./pages/AdminAutorizationPage"
 import AdminAccountPage from "./pages/AdminAccountPage"
 import GoldyStoreProjectPage from "./components/project/goldyStore/pages/GoldyStoreProjectPage";
+import ProjectNotesPage from './pages/ProjectNotesPage'
 import NotFoundPage from "./pages/NotFoundPage"
 import ProjectMyBlogPage from "./pages/ProjectMyBlogPage";
 
@@ -32,6 +33,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/project_quote_generator" element={<ProjectQuoteGeneratorPage />} />
     <Route path="/test_task_redux_saga" element={<ProjectTestTaskReduxSagaPage />} />
     <Route path="/goldy-store" element={<GoldyStoreProjectPage />} />
+    <Route path="/notes" element={<ProjectNotesPage />} />
     <Route path="/admin" element={<AdminAutorizationPage />} />
     <Route path="/admin/account" element={<AdminAccountPage />} />
     <Route path="*" element={<NotFoundPage />} />
