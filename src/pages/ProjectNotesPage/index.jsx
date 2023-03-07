@@ -1,5 +1,7 @@
 import { useState, createContext } from 'react'
 
+import Head from '../../components/layout/HeaderInner'
+import Footer from '../../components/layout/Footer'
 import Header from '../../components/project/notes/Components/Header'
 import List from '../../components/project/notes/Components/List'
 import Textarea from '../../components/project/notes/Components/Textarea'
@@ -16,6 +18,7 @@ function ProjectNotesPage() {
 
   return (
     <div className={style.root}>
+      <Head className={style.head}/>
       <div className={style.notes}>
         <MyContext.Provider value={{type, setType, triggerGetLocalStorage, setTriggerGetLocalStorage, selectedItem, setSelectedItem, setFilterItems, filterItems}}>
           <Header className={style.header}/>
@@ -26,6 +29,7 @@ function ProjectNotesPage() {
           </div>
         </MyContext.Provider>
       </div>
+      <Footer className={style.footer}/>
     </div>
   )
 }
