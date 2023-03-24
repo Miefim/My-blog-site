@@ -1,6 +1,6 @@
 import { put, takeEvery } from 'redux-saga/effects'
 
-import { getUserFulfilled, getUserRejected } from '../slices/projectTestTaskSlice'
+import { getUserFulfilled, getUserRejected } from './projectTestTaskSlice'
 
 function* workGetUserFetch() {
    try {

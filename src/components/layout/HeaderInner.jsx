@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import MobileMenu from './MobileMenu'
 import ButtonUp from "../layout/ButtonUp";
 
-function HeaderInner ({className}) {
+function HeaderInner ({className, buttonUpActive = true}) {
    const navigate = useNavigate()
 
    let [activeHeaderLine, setActiveHeaderLine] = React.useState(false)
@@ -63,7 +63,7 @@ function HeaderInner ({className}) {
             </div>
             <MobileMenu fixed={activeHeaderLine}/>
          </section>
-         <ButtonUp flag = {activeHeaderLine} />
+         {buttonUpActive && <ButtonUp flag = {activeHeaderLine} />}
       </>
    )}
 
