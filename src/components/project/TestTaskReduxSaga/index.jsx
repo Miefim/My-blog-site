@@ -1,8 +1,8 @@
-import { useEffect, useState, Fragment, useCallback } from "react"
+import { useEffect, useState, Fragment } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useSnackbar } from 'notistack'
 
-import { setList, getUserFetch } from "../../../Redux/slices/projectTestTaskSlice"
+import { setList, getUserFetch } from "../../../Redux/saga/projectTestTaskSlice"
 
 import LoaderCircle from "../../UI/LoaderCircle"
 import Input from "../../UI/Input"
@@ -12,6 +12,7 @@ import style from "./index.module.css"
 
 const TestTaskReduxSaga = () => {
    const {list, user, isLoading, error} = useSelector(state => state.projectTestTask)
+
    const dispatch = useDispatch()
    
    const [inputValue, setInputValue] = useState('')

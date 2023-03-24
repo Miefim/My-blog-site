@@ -1,23 +1,23 @@
 import { configureStore } from '@reduxjs/toolkit'
-import createSagaMiddleware from '@redux-saga/core'
 
-import projectUserSaga from './saga/projectUserSaga'
-import projectTestTask from './slices/projectTestTaskSlice'
 import blogList from './slices/blogListSlice'
 import adminAutorization from './slices/adminAuthorizationSlice'
 import comments from './slices/commentsSlice'
 import user from './slices/userSlice'
+import booksSlice from '../components/project/googleBookApi/redux/slices/booksSlice'
+import sortSlice from '../components/project/googleBookApi/redux/slices/sortSlice'
+import scrollSlice from '../components/project/googleBookApi/redux/slices/scrollSlice'
+import searchSlice from '../components/project/googleBookApi/redux/slices/searchSlice'
 
-const saga = createSagaMiddleware()
 export const store = configureStore({
   reducer: {
-    projectTestTask,
     blogList,
     adminAutorization,
     comments,
-    user
+    user,
+    booksSlice,
+    sortSlice,
+    scrollSlice,
+    searchSlice
   },
-  middleware: [saga]
 })
-
-saga.run(projectUserSaga)
