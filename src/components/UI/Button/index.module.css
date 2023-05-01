@@ -1,21 +1,35 @@
 .button {
+   box-sizing: border-box;
    padding: 10px 40px;
-   background-color: #ffffff;
+   background-color: #FFFFFF;
    border: 1px solid #499ad6;
    cursor: pointer;
    color: #499ad6;
    font-size: 16px;
    text-decoration: none;
+   transition: 0.3s;
 }
-
 .button:hover {
    background-color: #499ad6;
-   transition: 0.3s;
-   color: #ffffff;
+   color: #FFFFFF;
 }
-
 .button:disabled {
    color: gray;
    border: 1px solid gray;
-   background-color: #ffffff;
+   background-color: #FFFFFF;
+   cursor: default;
+}
+
+.blueButton {
+   border: none;
+   background-color: #499ad6;
+   color: #FFFFFF;
+}
+.blueButton:not([disabled]):hover {
+   background-color: #FFFFFF;
+   color: #499ad6;
+}
+
+.roundedButton {
+   border-radius: 25px;
 }

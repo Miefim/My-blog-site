@@ -1,8 +1,14 @@
 import style from "./index.module.css"
 
-function Button ({ children, className, ...props}) {
+const Button = ({ children, className, onClick, isBlue, isRounded, ...props }) => {
    return (
-      <button {...props} className={[style.button, className].join(' ')}>{children}</button>
+      <button 
+         className={`${style.button} ${isBlue && style.blueButton} ${isRounded && style.roundedButton} ${className}`} 
+         onClick={onClick} 
+         {...props}
+      >
+         {children}
+      </button>
    )
 }
 

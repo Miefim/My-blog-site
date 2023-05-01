@@ -1,0 +1,44 @@
+.wrapper {
+   position: relative;
+   width: 480px;
+   height: 100px;
+}
+
+.textareaFeedback {
+   border: none;
+   padding: 15px;
+   width: 100%;
+   height: 100%;
+   box-sizing: border-box;
+   font-family: 'Open Sans', sans-serif;
+   background-color: #484848;
+   color: #ffffff;
+   resize: none;
+   overflow: auto;
+   -ms-overflow-style: none;
+   scrollbar-width: none;
+}
+.textareaFeedback:focus {
+   outline: none;
+}
+.textareaFeedback::-webkit-scrollbar {
+   width: 5px;
+   background-color: #5c5c5c;
+}
+.textareaFeedback::-webkit-scrollbar-thumb {
+   background-color: #b1b1b1;
+   border-radius: 10px;
+}
+
+.textareaError {
+   background-color: #ff9999;
+}
+
+.textareaErrorMessage {
+   position: absolute;
+   margin: auto;
+   top: 14px;
+   right: 20px;
+   font-size: 15px;
+   color: rgb(181, 0, 0);
+}

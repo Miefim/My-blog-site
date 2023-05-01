@@ -763,89 +763,6 @@ body {
     pointer-events:none;
 }
 
-.feedback-form {
-    display: flex;
-    flex-direction: column;
-    background-color: #333333;
-    pointer-events: all;
-    z-index: 3;
-    margin: auto 0;
-    width: fit-content;
-}
-
-.feedback-form-content {
-    display: flex;
-    flex-direction: column;
-    margin: 80px 50px 80px 50px;
-}
-
-.input-block {
-    position: relative;
-}
-
-.input-error-message {
-    position: absolute;
-    margin: auto;
-    top: 14px;
-    right: 20px;
-    font-size: 15px;
-    color: rgb(181, 0, 0);
-}
-
-.small-input {
-    border: none;
-    margin-bottom: 15px;
-    padding: 15px;
-    width: 450px;
-    font-family: 'Open Sans', sans-serif;
-    background-color: #484848;
-    color: #ffffff;
-}
-
-.big-input {
-    border: none;
-    margin-bottom: 30px;
-    padding: 15px;
-    width: 450px;
-    height: 100px;
-    font-family: 'Open Sans', sans-serif;
-    background-color: #484848;
-    color: #ffffff;
-    resize: none;
-    overflow: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.input-error {
-    background-color: #ff9999;
-}
-
-.big-input::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-}
-
-.big-input:focus, .small-input:focus {
-    outline: none;
-}
-
-.title-feedback {
-    color: #ffffff;
-    font-size: 30px;
-    font-weight: 100;
-    margin-bottom: 50px;
-}
-
-.feedback-button {
-    margin-left: 320px;
-}
-
-.feedback-button-box {
-    display: flex;
-    flex-direction: row-reverse;
-}
-
 .map {
     position: absolute;
     width: 100%;
@@ -1036,10 +953,6 @@ li:before {
         width: 1000px;
     }
 
-    .feedback-form {
-        margin-left: 20px;
-    }
-
     .blog-unit-news {
         font-size: 15px;
     }
@@ -1115,18 +1028,6 @@ li:before {
         width: 100%;
     }
 
-    .feedback-form {
-        width: 100%;
-        margin: 0;
-    }
-
-    .small-input {
-        width: -webkit-fill-available;
-    }
-
-    .big-input {
-        width: -webkit-fill-available;
-    }
 }
 
 @media screen and (max-width: 800px) {
@@ -1219,10 +1120,6 @@ li:before {
 
     .about-me-card {
         min-width: 0;
-    }
-
-    .feedback-button {
-        margin: 0;
     }
 
     .header-banner-title {

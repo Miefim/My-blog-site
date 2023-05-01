@@ -1,0 +1,30 @@
+.wrapper {
+   position: relative;
+   width: 480px;
+}
+
+.inputFeedback {
+   border: none;
+   padding: 15px;
+   width: 100%;
+   box-sizing: border-box;
+   font-family: 'Open Sans', sans-serif;
+   background-color: #484848;
+   color: #ffffff;
+}
+.inputFeedback:focus {
+   outline: none;
+}
+
+.inputError {
+   background-color: #ff9999;
+}
+
+.inputErrorMessage {
+   position: absolute;
+   margin: auto;
+   top: 14px;
+   right: 20px;
+   font-size: 15px;
+   color: rgb(181, 0, 0);
+}
