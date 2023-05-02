@@ -1,8 +1,20 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore" 
 import { getAuth } from "firebase/auth"
 import { useAuthState } from "react-firebase-hooks/auth"
 
+import { 
+   setName, 
+   setTel, 
+   setEmail, 
+   setMessage, 
+   setNameError, 
+   setTelError, 
+   setEmailError, 
+   setMessageError, 
+   feedbackFormSelector 
+} from "../../../Redux/slices/feedbackFormSlice"
 import { useFetching } from "../../../hooks/useFetching"
 import { database } from "../../../firebase"
 import BlueSmallLineUi from "../../UI/BlueSmallLine"
@@ -12,25 +24,27 @@ import Button from "../../UI/Button"
 import LoaderCircle from "../../UI/LoaderCircle"
 import style from "./index.module.css"
 
-const FeedbackForm = () => {
-
+const FeedbackForm = ({ className }) => {
+   
    const auth = getAuth()
    const [user] = useAuthState(auth)
-
-   const [name, setName] = useState('')
-   const [tel, setTel] = useState('')
-   const [email, setEmail] = useState('')
-   const [message, setMessage] = useState('')
-
-   const [nameError, setNameError] = useState('')
-   const [telError, setTelError] = useState('')
-   const [emailError, setEmailError] = useState('')
-   const [messageError, setMessageError] = useState('')
+   
+   const dispatch = useDispatch()
+   const { name, tel, email, message, nameError, telError, emailError, messageError } = useSelector(feedbackFormSelector)
 
    useEffect(() => {
-      setName(user?.displayName? user.displayName : '')
-      setTel(user?.phoneNumber? user.phoneNumber : '')
-      setEmail(user?.email? user.email : '')
+      if(user?.displayName){
+         dispatch(setName(user.displayName))
+         dispatch(setNameError(''))
+      }
+      if(user?.phoneNumber){
+         dispatch(setTel(user.phoneNumber))
+         dispatch(setTelError(''))
+      }
+      if(user?.email){
+         dispatch(setEmail(user.email))
+         dispatch(setEmailError(''))
+      }
    },[user])
 
    const [postFetchMessage, postFetchLoading, postFetchError] = useFetching(async() => {
@@ -42,81 +56,81 @@ const FeedbackForm = () => {
          date: serverTimestamp(),
          uid: user?.uid? user.uid : '',
          read: false
-       });
+       })
    })
 
-   const validationName = (e) => {
-      const value = e.target.value.replace(/\s+/g, '')
-      setName(e.target.value)
+   const validationName = (event) => {
+      const value = event.target.value.replace(/\s+/g, '')
+      dispatch(setName(event.target.value))
       if(value.length < 2){
-         setNameError('Name too short')
+         dispatch(setNameError('Name too short'))
       }
       else{
-         setNameError('')
+         dispatch(setNameError(''))
       }
    }
 
-   const validationTel = (e) => {
-      const value = e.target.value.replace(/\s+/g, '')
-      setTel(e.target.value)
+   const validationTel = (event) => {
+      const value = event.target.value.replace(/\s+/g, '')
+      dispatch(setTel(event.target.value))
       
-      if(value.length < 10){
-         setTelError('The number is too short')
+      if (!value.match(/^[+0-9]{1}[0-9]*$/)){
+         dispatch(setTelError('Invalid number entered'))
       }
-      else if (!value.match(/^[+0-9]{1}[0-9]*$/)){
-         setTelError('Invalid number entered')
+      else if(value.length < 10){
+         dispatch(setTelError('The number is too short'))
       }
       else{
-         setTelError('')
-      }
+         dispatch(setTelError(''))
+      }  
    }
 
-   const validationEmail = (e) => {
-      const value = e.target.value.replace(/\s+/g, '')
-      setEmail(e.target.value)
+   const validationEmail = (event) => {
+      const value = event.target.value.replace(/\s+/g, '')
+      dispatch(setEmail(event.target.value))
       if(!value.match(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/)){
-         setEmailError('Email entered incorrectly')
+         dispatch(setEmailError('Email entered incorrectly'))
       }
       else{
-         setEmailError('') 
+         dispatch(setEmailError(''))
       }
    }
 
-   const validationMessage = (e) => {
-      const value = e.target.value.replace(/\s+/g, '')
-      setMessage(e.target.value)
+   const validationMessage = (event) => {
+      const value = event.target.value.replace(/\s+/g, '')
+      dispatch(setMessage(event.target.value))
       if(!value){
-         setMessageError('Enter your message')
+         dispatch(setMessageError('Enter your message'))
       }
       else{
-         setMessageError('') 
+         dispatch(setMessageError(''))
       }
    }
 
    const sendMessage = async() => {
       if(name && tel && email && message) {
          await postFetchMessage()
-         setName('')
-         setTel('')
-         setEmail('')
-         setMessage('')
+         dispatch(setName(''))
+         dispatch(setTel(''))
+         dispatch(setEmail(''))
+         dispatch(setMessage(''))
       }
       if(!name){
-         setNameError('Enter your name')
+         dispatch(setNameError('Enter your name'))
       }
       if(!tel){
-         setTelError('Enter your phone')
+         dispatch(setTelError('Enter your phone'))
       }
       if(!email){
-         setEmailError('Enter your email')
+         dispatch(setEmailError('Enter your email'))
       }
       if(!message){
-         setMessageError('Enter your message')
+         dispatch(setMessageError('Enter your message'))
       } 
    }
 
    return(
-      <div className={style.feedbackForm}>
+      <div className={`${style.feedbackForm} ${className}`}>
          <BlueSmallLineUi className={style.feedbackForm_blueSmallLine}/>
          <div className={style.titleFeedback}>Send a Message</div>
          <InputFeedbackUi 

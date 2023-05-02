@@ -4,14 +4,13 @@
    background-color: #333333;
    pointer-events: all;
    z-index: 3;
-   margin: auto 0;
    width: 580px;
    box-sizing: border-box;
    padding: 80px 50px;
 }
 
 .feedbackForm_blueSmallLine {
-   padding-bottom: 10px;
+   margin-bottom: 10px;
 }
 
 .titleFeedback {
@@ -39,26 +38,9 @@
    flex-direction: row-reverse;
 }
 
-@media screen and (max-width: 1200px) {
-   
-   .feedbackForm {
-      margin-left: 20px;
-   }
-
-}
-
-@media screen and (max-width: 1000px) {
-   
-   .feedbackForm {
-      margin: 0 auto;
-   }
-
-}
-
 @media screen and (max-width: 600px) {
    
    .feedbackForm {
-      margin: 0;
       width: 100%;
    }
 

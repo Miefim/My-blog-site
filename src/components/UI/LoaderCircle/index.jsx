@@ -1,10 +1,9 @@
-import img from './img/loader.png'
 import style from "./index.module.css"
 
 
-function LoaderCircle({className, ...props}) {
+const LoaderCircle = ({ className, ...props }) => {
    return(
-      <img {...props} className={[style.img, className].join(' ')} src={img} alt="" />
+      <img {...props} className={[style.img, className].join(' ')} src='/images/loader.png' alt="" />
    )
 }
 

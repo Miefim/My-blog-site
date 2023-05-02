@@ -2,11 +2,11 @@ import style from "./index.module.css"
 
 const TextareaFeedbackUi = ({ className, error, placeholder, value, onChange }) => {
    return(
-      <div className={`${style.wrapper} ${className}`}>
+      <div className={`${style.wrapper} ${className} ${error && style.wrapper__error}`}>
          {error && <p className={style.textareaErrorMessage}>{error}</p>}
          <textarea 
             type="text" 
-            className={`${style.textareaFeedback} ${error && style.textareaError}`} 
+            className={`${style.textareaFeedback} ${error && style.textareaFeedback__textareaError}`} 
             placeholder={placeholder} 
             value={value} 
             onChange={onChange}
