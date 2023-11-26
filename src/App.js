@@ -22,6 +22,7 @@ import MainPage from './components/project/googleBookApi/pages/MainPage'
 import BookItemPage from './components/project/googleBookApi/pages/BookItemPage';
 import NotFoundPage from "./pages/NotFoundPage"
 import ProjectMyBlogPage from "./pages/ProjectMyBlogPage";
+import BulbPage from "./feature/bulb/page/bulb"
 
 const router = createBrowserRouter(createRoutesFromElements(
   <>
@@ -40,6 +41,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/google_books_api/:id" element={<BookItemPage />} />
     <Route path="/admin" element={<AdminAutorizationPage />} />
     <Route path="/admin/account" element={<AdminAccountPage />} />
+    <Route path="/happy_bulb" element={<BulbPage />} />
     <Route path="*" element={<NotFoundPage />} />
   </>
 ))
