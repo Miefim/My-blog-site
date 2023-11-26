@@ -140,4 +140,16 @@ const Rope = styled.div.attrs(({ $dy }) => ({
       left: -4px;
       ${({ $isOn }) => $isOn === 'true' && `background-color: #000000`};
    }
+
+   &:after {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #8a919c;
+      bottom: -25px;
+      left: -25px;
+      background: none;
+   }
 `;
