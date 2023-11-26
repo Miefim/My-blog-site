@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { Link } from 'react-scroll'
+import { Link as LinkRRD } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth"
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -11,6 +12,7 @@ import MobileMenu from './MobileMenu'
 import { database } from "../../firebase";
 import ButtonUp from "../layout/ButtonUp";
 import LoaderCircle from "../UI/LoaderCircle";
+import styled from "styled-components";
 
 function Header() {
    const auth = getAuth()
@@ -73,6 +75,9 @@ function Header() {
                </div>    
             </div>
          }
+         <LinkRRD to="/happy_bulb">
+            <BulbIcon src="images/bulb.png" />
+         </LinkRRD>
          <div className="header-banner" style = {activeHeaderLine? {height: `${(headerHeight)}px`} : {}}>
             <div className="container">
                <div className="header-banner-content-top">
@@ -143,3 +148,11 @@ function Header() {
    )}
 
    export default Header;
+
+   const BulbIcon = styled.img`
+      position: absolute;
+      width: 20px;
+      z-index: 2;
+      top: 10px;
+      left: 10px;
+   `;

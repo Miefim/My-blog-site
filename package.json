@@ -24,6 +24,7 @@
     "react-scroll": "^1.8.8",
     "react-transition-group": "^4.4.5",
     "redux-saga": "^1.2.2",
+    "styled-components": "^6.1.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
