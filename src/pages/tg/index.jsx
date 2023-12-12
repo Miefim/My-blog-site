@@ -5,7 +5,7 @@ const Tg = () => {
    return (
       <div>
          <TelegramLoginButton
-            botName="youngwishes_bot"
+            botName="happyoungwishes_bot"
             dataOnauth={(user) => console.log(user)}
          />
       </div>
